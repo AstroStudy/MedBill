@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganesh Billing Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         :root {
@@ -243,10 +245,14 @@
         }
 
         .invoice-info-box {
-            width: 35%;display: flex;
-            border: 1px solid var(--border);align-items: center;  gap: 20px;
+            width: 100%; /* Changed to 100% to take full width */
+            display: flex;
+            border: 1px solid var(--border);
+            align-items: center;
+            gap: 20px;
             border-radius: 5px;
-            padding: 8px; flex-wrap: wrap;
+            padding: 8px;
+            flex-wrap: wrap;
             font-size: 11px;
         }
 
@@ -556,7 +562,7 @@
                 margin: 0;
             }
 
-            .sidebar, .header-bar, .btn-add, .btn-remove, .no-print {
+            .sidebar, .header-bar, .btn-add, .btn-remove, .no-print, #messageModal {
                 display: none !important;
             }
             
@@ -784,6 +790,72 @@
             border-radius: 4px;
             font-size: 13px;
         }
+
+        /* Custom Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            text-align: center;
+        }
+
+        .modal-header {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .modal-footer button {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: var(--secondary);
+        }
+
+        .modal-footer .cancel-btn {
+            background-color: #e74c3c;
+        }
+
+        .modal-footer .cancel-btn:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -813,7 +885,7 @@
             
         <div id="invoice-page" class="page-content">
             <div class="container invoice-container">
-                <div class="invoice-title"> ||<<<<<    MEDICAL BILL        >>>>>||<<<<< TAX INVOICE >>>>>||  GANESH BILLING SOLUTIONS : ravikishoreca@gmail.com ||</div>
+                <div class="invoice-title"> ||<<<<< MEDICAL BILL >>>>>||<<<<< TAX INVOICE >>>>>|| GANESH BILLING SOLUTIONS : ravikishoreca@gmail.com ||</div>
                 
                 <div class="invoice-header">    
                     <div class="vendor-info" style="width: 40%">
@@ -822,22 +894,22 @@
                         <div>GSTIN: 22ABCDE1234F1Z5 | DL No: DL-1234/R/2020</div>
                         <div>Phone: 9876543210 | Email: info@citymedicals.com</div>
                     </div>
-            <div class="customer-box">
+                    <div class="customer-box">
                         <div class="customer-box-header">CUSTOMER DETAILS</div>
                         <div class="customer-inputs">
                             <input type="text" id="customer-name" placeholder="Customer Name">
                             <input type="text" id="customer-address" placeholder="Address (optional)">
                         </div>
                     </div>
-            <div class="invoice-info-box" style="width: 100%; text-align: center;">
+                    <div class="invoice-info-box" style="width: 100%; text-align: center;">
                         <div class="customer-box-header">BILLING INFORMATION</div>
-                        <div><strong>Bill No:</strong> MED2023-001</div>
+                        <div><strong>Bill No:</strong> <span id="invoice-bill-no">MED2023-001</span></div>
                         <div><strong>Date:</strong> <span id="invoice-date2">01/04/2023</span></div>
-                        <div><strong>Time:</strong> 10:45 AM</div>
+                        <div><strong>Time:</strong> <span id="invoice-time">10:45 AM</span></div>
                     </div>                   
                 </div>
 
-                <div class="action-buttons" style="hieght: 60%">
+                <div class="action-buttons" style="height: 60%">
                     <button class="btn btn-add" onclick="addNewRow()">
                         <i class="fas fa-plus"></i> Add Medicine
                     </button>
@@ -863,15 +935,15 @@
                         <tr class="medicine-row">
                             <td class="col-no">1</td>
                             <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name"></td>
-                            <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4"></td>
-                            <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8"></td>
-                            <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch"></td>
-                            <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY"></td>
-                            <td class="col-qty"><input type="text" class="quantity" placeholder="Qty"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate"></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0"></td>
+                            <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
+                            <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
+                            <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
+                            <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
+                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" readonly></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0" readonly></td>
                             <td class="col-gst">
-                                <select class="gst-rate">
+                                <select class="gst-rate" disabled>
                                     <option>5%</option>
                                     <option>12%</option>
                                     <option selected>18%</option>
@@ -883,15 +955,15 @@
                         <tr class="medicine-row">
                             <td class="col-no">2</td>
                             <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name"></td>
-                            <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4"></td>
-                            <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8"></td>
-                            <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch"></td>
-                            <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY"></td>
-                            <td class="col-qty"><input type="text" class="quantity" placeholder="Qty"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate"></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0"></td>
+                            <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
+                            <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
+                            <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
+                            <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
+                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" readonly></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0" readonly></td>
                             <td class="col-gst">
-                                <select class="gst-rate">
+                                <select class="gst-rate" disabled>
                                     <option>5%</option>
                                     <option selected>12%</option>
                                     <option>18%</option>
@@ -925,7 +997,7 @@
                                 <div>UPI: citymedicals@upi</div>
                             </div>
                             <div class="qr-code">
-                              <img src="QR.jpg" alt="QR Code for Payment">
+                              <img src="https://placehold.co/70x70/E0E0E0/333333?text=QR" alt="QR Code for Payment">
                             </div>
                         </div>
                     </div>
@@ -949,7 +1021,7 @@
                             </tr>
                             <tr>
                                 <td><strong>IGST:</strong></td>
-                                <td id="sgst">0.00</td>
+                                <td id="igst">0.00</td>
                             </tr>
                             <tr>
                                 <td><strong>Total:</strong></td>
@@ -979,10 +1051,10 @@
                 <button class="btn" onclick="window.print()" style="background: #27ae60; ">
                     <i class="fas fa-print"></i> Print Invoice
                 </button>
-                <button class="btn" style="background: #27ae60;">
+                <button class="btn" onclick="saveSales()" style="background: #27ae60;">
                     <i class="fas fa-save"></i> Save Invoice
                 </button>
-        <button class="btn" onclick="window.print()" style="background: #27ae60;">
+                <button class="btn" onclick="printAndSaveSales()" style="background: #22a1e6;">
                     <i class="fas fa-print"></i> Print & Save
                 </button>
             </div>
@@ -1044,6 +1116,7 @@
                             <th class="col-expiry">Expiry</th>
                             <th class="col-qty">Qty</th>
                             <th class="col-rate">Rate</th>
+                            <th class="col-disc">Disc.</th>
                             <th class="col-gst">GST</th>
                             <th class="col-amount">Amount</th>
                             <th class="col-action no-print"></th>
@@ -1057,8 +1130,9 @@
                             <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN"></td>
                             <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch"></td>
                             <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY"></td>
-                            <td class="col-qty"><input type="text" class="quantity" placeholder="Qty"></td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
                             <td class="col-rate"><input type="text" class="rate" placeholder="Rate"></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0"></td>
                             <td class="col-gst">
                                 <select class="gst-rate">
                                     <option>5%</option>
@@ -1076,13 +1150,13 @@
                     <button class="btn" style="background: #9b59b6;">
                         <i class="fas fa-file-invoice"></i> View Invoice
                     </button>
-                    <button class="btn" style="background: #27ae60;">
+                    <button class="btn" onclick="savePurchase()" style="background: #27ae60;">
                         <i class="fas fa-save"></i> Save Purchase
                     </button>
                     <button class="btn" style="background: #e67e22;">
                         <i class="fas fa-print"></i> Print
                     </button>
-                    <button class="btn" style="background: #22a1e6;">
+                    <button class="btn" onclick="printAndSavePurchase()" style="background: #22a1e6;">
                         <i class="fas fa-print"></i> Print & Save
                     </button>
                 </div>
@@ -1167,7 +1241,7 @@
                         </div>
                         
                         <div class="form-row">
-                            <button class="btn btn-danger" onclick="deleteByInvoice()" style="width: 100%;">
+                            <button class="btn btn-danger" onclick="confirmDeleteByInvoice()" style="width: 100%;">
                                 <i class="fas fa-trash"></i> Delete Invoice
                             </button>
                         </div>
@@ -1186,7 +1260,7 @@
                         </div>
                         
                         <div class="form-row">
-                            <button class="btn btn-danger" onclick="deleteByDateRange()" style="width: 100%;">
+                            <button class="btn btn-danger" onclick="confirmDeleteByDateRange()" style="width: 100%;">
                                 <i class="fas fa-trash"></i> Delete Transactions
                             </button>
                         </div>
@@ -1221,7 +1295,7 @@
                                 <p style="font-size: 12px; color: #666; margin-bottom: 10px;">
                                     Download a backup of all your data.
                                 </p>
-                                <button class="btn" onclick="createBackup()" style="width: 100%;">
+                                <button class="btn" onclick="createBackupFile()" style="width: 100%;">
                                     <i class="fas fa-file-download"></i> Download Backup
                                 </button>
                             </div>
@@ -1231,8 +1305,8 @@
                             <div class="form-row">
                                 <label>Restore from Backup (Upload a previously saved backup file.)</label>
 
-                                <input type="file" id="backup-file" style="margin-bottom: 8px; width: 50%;">
-                                <button class="btn" onclick="restoreBackup()" style="width: 30%;">
+                                <input type="file" id="backup-file" accept=".json" style="margin-bottom: 8px; width: 50%;">
+                                <button class="btn" onclick="restoreBackupFile()" style="width: 30%;">
                                     <i class="fas fa-file-upload"></i> Restore Backup
                                 </button>
                             </div>
@@ -1243,13 +1317,70 @@
         </div>
     </div>
 
+    <!-- Custom Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modalHeader"></div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter">
+                <button onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Placeholder for Google Apps Script Web App URL
+        // IMPORTANT: Replace 'YOUR_WEB_APP_URL_HERE' with the actual URL after deploying your Apps Script
+        const GOOGLE_APPS_SCRIPT_URL = 'YOUR_WEB_APP_URL_HERE';
+
+        // Function to show custom modal messages
+        function showMessage(header, body, type = 'alert', callback = null) {
+            document.getElementById('modalHeader').textContent = header;
+            document.getElementById('modalBody').textContent = body;
+            const modalFooter = document.getElementById('modalFooter');
+            modalFooter.innerHTML = ''; // Clear previous buttons
+
+            if (type === 'confirm') {
+                const confirmBtn = document.createElement('button');
+                confirmBtn.textContent = 'Confirm';
+                confirmBtn.onclick = () => {
+                    closeModal();
+                    if (callback) callback(true);
+                };
+                modalFooter.appendChild(confirmBtn);
+
+                const cancelBtn = document.createElement('button');
+                cancelBtn.textContent = 'Cancel';
+                cancelBtn.className = 'cancel-btn';
+                cancelBtn.onclick = () => {
+                    closeModal();
+                    if (callback) callback(false);
+                };
+                modalFooter.appendChild(cancelBtn);
+            } else { // 'alert' type
+                const okBtn = document.createElement('button');
+                okBtn.textContent = 'OK';
+                okBtn.onclick = () => {
+                    closeModal();
+                    if (callback) callback();
+                };
+                modalFooter.appendChild(okBtn);
+            }
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+
         // Initialize with 2 rows
         document.addEventListener('DOMContentLoaded', function() {
-            // Set current date for invoice
+            // Set current date and time for invoice
             const today = new Date();
             const formattedDate = today.toLocaleDateString('en-GB');
+            const formattedTime = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
             document.getElementById('invoice-date2').textContent = formattedDate;
+            document.getElementById('invoice-time').textContent = formattedTime;
             
             // Set default dates for purchases and reports
             document.getElementById('purchase-date').valueAsDate = today;
@@ -1262,19 +1393,25 @@
             document.getElementById('delete-to-date').valueAsDate = today;
             
             // Add event listeners to initial rows
-            document.querySelectorAll('.quantity, .rate, .discount').forEach(input => {
+            document.querySelectorAll('#medicine-table-body .quantity, #medicine-table-body .rate, #medicine-table-body .discount').forEach(input => {
                 input.addEventListener('input', calculateRow);
             });
 
-            document.querySelectorAll('.gst-rate').forEach(select => {
+            document.querySelectorAll('#medicine-table-body .gst-rate').forEach(select => {
                 select.addEventListener('change', calculateRow);
             });
 
-            document.querySelectorAll('.medicine-name').forEach(input => {
+            document.querySelectorAll('#medicine-table-body .medicine-name').forEach(input => {
                 input.addEventListener('blur', function() {
-                    if(this.value && this.closest('tr') === document.querySelector('#medicine-table-body tr:last-child')) {
-                        addNewRow();
+                    if(this.value) {
+                        searchMedicineInStock(this);
                     }
+                });
+            });
+
+            document.querySelectorAll('#medicine-table-body .quantity').forEach(input => {
+                input.addEventListener('input', function() {
+                    validateQuantity(this);
                 });
             });
             
@@ -1282,6 +1419,22 @@
             document.getElementById('report-from').addEventListener('change', generateReport);
             document.getElementById('report-to').addEventListener('change', generateReport);
             document.getElementById('report-stock-date').addEventListener('change', generateReport);
+
+            // Initial calculation for existing rows
+            document.querySelectorAll('#medicine-table-body .medicine-row').forEach(row => {
+                const quantityInput = row.querySelector('.quantity');
+                const rateInput = row.querySelector('.rate');
+                const discountInput = row.querySelector('.discount');
+                const gstSelect = row.querySelector('.gst-rate');
+
+                if (quantityInput && rateInput && discountInput && gstSelect) {
+                    quantityInput.addEventListener('input', calculateRow);
+                    rateInput.addEventListener('input', calculateRow);
+                    discountInput.addEventListener('input', calculateRow);
+                    gstSelect.addEventListener('change', calculateRow);
+                }
+            });
+            calculateTotals();
         });
 
         // Show/hide pages based on navigation
@@ -1298,7 +1451,7 @@
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.classList.add('active'); // Use event.target to get the clicked button
             
             // Update page title
             const titles = {
@@ -1348,8 +1501,11 @@
             const discount = parseFloat(row.querySelector('.discount').value) || 0;
             const gstRate = parseFloat(row.querySelector('.gst-rate').value) / 100 || 0;
             
-            const amount = (quantity * rate) - discount;
-            row.querySelector('.amount').textContent = amount.toFixed(2);
+            const amountBeforeGST = (quantity * rate) - discount;
+            const gstAmount = amountBeforeGST * gstRate;
+            const totalAmount = amountBeforeGST + gstAmount;
+
+            row.querySelector('.amount').textContent = totalAmount.toFixed(2);
             calculateTotals();
         }
 
@@ -1358,29 +1514,84 @@
             let totalDiscount = 0;
             let totalGst = 0;
             
-            document.querySelectorAll('.medicine-row').forEach(row => {
-                subtotal += (parseFloat(row.querySelector('.quantity').value) || 0) * (parseFloat(row.querySelector('.rate').value) || 0);
-                totalDiscount += parseFloat(row.querySelector('.discount').value) || 0;
-                
-                const rowAmount = (parseFloat(row.querySelector('.quantity').value) || 0) * (parseFloat(row.querySelector('.rate').value) || 0) - 
-                                 (parseFloat(row.querySelector('.discount').value) || 0);
-                const gstRate = parseFloat(row.querySelector('.gst-rate').value) / 200 || 0; // Divided by 200 for CGST+SGST
-                totalGst += rowAmount * gstRate * 2;
+            document.querySelectorAll('#medicine-table-body .medicine-row').forEach(row => {
+                const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+                const rate = parseFloat(row.querySelector('.rate').value) || 0;
+                const discount = parseFloat(row.querySelector('.discount').value) || 0;
+                const gstRate = parseFloat(row.querySelector('.gst-rate').value) / 100 || 0;
+
+                const rowSubtotal = quantity * rate;
+                const rowDiscount = discount;
+                const amountBeforeGST = rowSubtotal - rowDiscount;
+                const rowGST = amountBeforeGST * gstRate;
+
+                subtotal += rowSubtotal;
+                totalDiscount += rowDiscount;
+                totalGst += rowGST;
             });
-            
-            const taxable = subtotal - totalDiscount;
-            const total = taxable + totalGst;
             
             document.getElementById('subtotal').textContent = '₹' + subtotal.toFixed(2);
             document.getElementById('total-discount').textContent = '₹' + totalDiscount.toFixed(2);
-            document.getElementById('cgst').textContent = '₹' + (totalGst/2).toFixed(2);
-            document.getElementById('sgst').textContent = '₹' + (totalGst/2).toFixed(2);
-            document.getElementById('total').textContent = '₹' + total.toFixed(2);
+            document.getElementById('cgst').textContent = '₹' + (totalGst / 2).toFixed(2);
+            document.getElementById('sgst').textContent = '₹' + (totalGst / 2).toFixed(2);
+            document.getElementById('igst').textContent = '₹0.00'; // Assuming no IGST for simplicity
+            document.getElementById('total').textContent = '₹' + (subtotal - totalDiscount + totalGst).toFixed(2);
         }
 
         function addNewRow() {
             const tbody = document.getElementById('medicine-table-body');
             const newRow = document.querySelector('.medicine-row').cloneNode(true);
+            const rowNum = tbody.children.length + 1;
+            
+            // Clear all inputs in the new row
+            newRow.querySelector('td:first-child').textContent = rowNum;
+            newRow.querySelectorAll('input').forEach(input => {
+                input.value = '';
+                input.removeAttribute('data-available-qty'); // Clear available quantity
+            });
+            newRow.querySelector('.discount').value = '0';
+            newRow.querySelector('.amount').textContent = '0.00';
+            newRow.querySelector('.gst-rate').selectedIndex = 0;
+            newRow.querySelector('.mfr-code').readOnly = true;
+            newRow.querySelector('.hsn-code').readOnly = true;
+            newRow.querySelector('.batch-no').readOnly = true;
+            newRow.querySelector('.expiry').readOnly = true;
+            newRow.querySelector('.rate').readOnly = true;
+            newRow.querySelector('.discount').readOnly = true;
+            newRow.querySelector('.gst-rate').disabled = true;
+
+            tbody.appendChild(newRow);
+            
+            // Add event listeners to new inputs
+            newRow.querySelectorAll('.quantity, .rate, .discount').forEach(input => {
+                input.addEventListener('input', calculateRow);
+            });
+            newRow.querySelector('.gst-rate').addEventListener('change', calculateRow);
+            newRow.querySelector('.medicine-name').addEventListener('blur', function() {
+                if(this.value) {
+                    searchMedicineInStock(this);
+                }
+            });
+            newRow.querySelector('.quantity').addEventListener('input', function() {
+                validateQuantity(this);
+            });
+            
+            // Add remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn btn-remove';
+            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+            removeBtn.onclick = function() { removeRow(this); };
+            newRow.querySelector('.no-print').innerHTML = '';
+            newRow.querySelector('.no-print').appendChild(removeBtn);
+            
+            // Focus on the medicine name field of the new row
+            newRow.querySelector('.medicine-name').focus();
+            calculateTotals(); // Recalculate totals after adding a new row
+        }
+        
+        function addPurchaseRow() {
+            const tbody = document.getElementById('purchase-table-body');
+            const newRow = document.querySelector('#purchase-table-body .medicine-row').cloneNode(true);
             const rowNum = tbody.children.length + 1;
             
             // Clear all inputs in the new row
@@ -1394,44 +1605,9 @@
             
             // Add event listeners to new inputs
             newRow.querySelectorAll('.quantity, .rate, .discount').forEach(input => {
-                input.addEventListener('input', calculateRow);
-            });
-            newRow.querySelector('.gst-rate').addEventListener('change', calculateRow);
-            newRow.querySelector('.medicine-name').addEventListener('blur', function() {
-                if(this.value && this.closest('tr') === document.querySelector('#medicine-table-body tr:last-child')) {
-                    addNewRow();
-                }
-            });
-            
-            // Add remove button
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'btn btn-remove';
-            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            removeBtn.onclick = function() { removeRow(this); };
-            newRow.querySelector('.no-print').innerHTML = '';
-            newRow.querySelector('.no-print').appendChild(removeBtn);
-            
-            // Focus on the medicine name field of the new row
-            newRow.querySelector('.medicine-name').focus();
-        }
-        
-        function addPurchaseRow() {
-            const tbody = document.getElementById('purchase-table-body');
-            const newRow = document.querySelector('.medicine-row').cloneNode(true);
-            const rowNum = tbody.children.length + 1;
-            
-            // Clear all inputs in the new row
-            newRow.querySelector('td:first-child').textContent = rowNum;
-            newRow.querySelectorAll('input').forEach(input => input.value = '');
-            newRow.querySelector('.amount').textContent = '0.00';
-            newRow.querySelector('.gst-rate').selectedIndex = 0;
-            
-            tbody.appendChild(newRow);
-            
-            // Add event listeners to new inputs
-            newRow.querySelectorAll('.quantity, .rate').forEach(input => {
                 input.addEventListener('input', calculatePurchaseRow);
             });
+            newRow.querySelector('.gst-rate').addEventListener('change', calculatePurchaseRow);
             
             // Add remove button
             const removeBtn = document.createElement('button');
@@ -1449,14 +1625,19 @@
             const row = e.target.closest('tr');
             const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
             const rate = parseFloat(row.querySelector('.rate').value) || 0;
+            const discount = parseFloat(row.querySelector('.discount').value) || 0;
+            const gstRate = parseFloat(row.querySelector('.gst-rate').value) / 100 || 0;
             
-            const amount = quantity * rate;
-            row.querySelector('.amount').textContent = amount.toFixed(2);
+            const amountBeforeGST = (quantity * rate) - discount;
+            const gstAmount = amountBeforeGST * gstRate;
+            const totalAmount = amountBeforeGST + gstAmount;
+
+            row.querySelector('.amount').textContent = totalAmount.toFixed(2);
         }
 
         function removeRow(button) {
             const row = button.closest('tr');
-            if (document.querySelectorAll('.medicine-row').length > 1) {
+            if (document.querySelectorAll('#medicine-table-body .medicine-row').length > 1) {
                 row.remove();
                 // Update row numbers
                 document.querySelectorAll('#medicine-table-body tr').forEach((tr, index) => {
@@ -1464,7 +1645,7 @@
                 });
                 calculateTotals();
             } else {
-                alert("You must have at least one medicine row.");
+                showMessage('Error', "You must have at least one medicine row.");
             }
         }
         
@@ -1477,93 +1658,306 @@
                     tr.querySelector('td:first-child').textContent = index + 1;
                 });
             } else {
-                alert("You must have at least one medicine row.");
+                showMessage('Error', "You must have at least one medicine row.");
             }
         }
         
+        // Google Apps Script Integration
+        // This function will be called when the medicine name input loses focus
+        function searchMedicineInStock(medicineNameInput) {
+            const medicineName = medicineNameInput.value.trim();
+            const row = medicineNameInput.closest('tr');
+            
+            if (medicineName === '') {
+                // Clear related fields if medicine name is empty
+                row.querySelector('.mfr-code').value = '';
+                row.querySelector('.hsn-code').value = '';
+                row.querySelector('.batch-no').value = '';
+                row.querySelector('.expiry').value = '';
+                row.querySelector('.quantity').value = '';
+                row.querySelector('.rate').value = '';
+                row.querySelector('.discount').value = '0';
+                row.querySelector('.gst-rate').selectedIndex = 0;
+                row.querySelector('.amount').textContent = '0.00';
+                medicineNameInput.removeAttribute('data-available-qty'); // Clear available quantity
+                calculateTotals();
+                return;
+            }
+
+            // Use google.script.run to call the Apps Script function
+            google.script.run
+                .withSuccessHandler(function(result) {
+                    if (result.error) {
+                        showMessage('Medicine Search', result.error);
+                        // Clear fields if medicine not found
+                        row.querySelector('.mfr-code').value = '';
+                        row.querySelector('.hsn-code').value = '';
+                        row.querySelector('.batch-no').value = '';
+                        row.querySelector('.expiry').value = '';
+                        row.querySelector('.quantity').value = '';
+                        row.querySelector('.rate').value = '';
+                        row.querySelector('.discount').value = '0';
+                        row.querySelector('.gst-rate').selectedIndex = 0;
+                        row.querySelector('.amount').textContent = '0.00';
+                        medicineNameInput.removeAttribute('data-available-qty');
+                    } else {
+                        row.querySelector('.mfr-code').value = result.mfr;
+                        row.querySelector('.hsn-code').value = result.hsn;
+                        row.querySelector('.batch-no').value = result.batch;
+                        row.querySelector('.expiry').value = result.expiry;
+                        // Set rate and discount from stock, but allow editing if needed (currently readonly)
+                        row.querySelector('.rate').value = result.rate.toFixed(2);
+                        row.querySelector('.discount').value = result.disc.toFixed(2);
+                        // Set GST rate
+                        const gstSelect = row.querySelector('.gst-rate');
+                        for (let i = 0; i < gstSelect.options.length; i++) {
+                            if (parseFloat(gstSelect.options[i].value) === result.gst) {
+                                gstSelect.selectedIndex = i;
+                                break;
+                            }
+                        }
+                        medicineNameInput.setAttribute('data-available-qty', result.availableQty);
+                        showMessage('Medicine Found', `${result.medicine} found. Available quantity: ${result.availableQty}`);
+                        calculateRow({ target: row.querySelector('.quantity') }); // Recalculate row amount
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    showMessage('Error', 'Failed to search medicine: ' + error.message);
+                })
+                .searchMedicine(medicineName);
+        }
+
+        function validateQuantity(quantityInput) {
+            const row = quantityInput.closest('tr');
+            const medicineNameInput = row.querySelector('.medicine-name');
+            const availableQty = parseFloat(medicineNameInput.getAttribute('data-available-qty')) || 0;
+            const enteredQty = parseFloat(quantityInput.value) || 0;
+
+            if (enteredQty > availableQty) {
+                showMessage('Quantity Warning', `Quantity entered (${enteredQty}) exceeds available stock (${availableQty}). Please enter a lower quantity.`, 'alert', () => {
+                    quantityInput.value = availableQty; // Set to max available
+                    calculateRow({ target: quantityInput });
+                });
+            } else if (enteredQty < 0) {
+                showMessage('Invalid Quantity', 'Quantity cannot be negative. Setting to 0.', 'alert', () => {
+                    quantityInput.value = 0;
+                    calculateRow({ target: quantityInput });
+                });
+            }
+            calculateRow({ target: quantityInput }); // Always recalculate after validation
+        }
+
+        function saveSales() {
+            const customerName = document.getElementById('customer-name').value;
+            const customerAddress = document.getElementById('customer-address').value;
+            const invoiceNo = document.getElementById('invoice-bill-no').textContent;
+            const invoiceDate = document.getElementById('invoice-date2').textContent;
+            const invoiceTime = document.getElementById('invoice-time').textContent;
+            const paymentMode = document.getElementById('payment-mode').value;
+
+            const items = [];
+            let allFieldsFilled = true;
+
+            document.querySelectorAll('#medicine-table-body .medicine-row').forEach(row => {
+                const medicineName = row.querySelector('.medicine-name').value.trim();
+                const qty = parseFloat(row.querySelector('.quantity').value) || 0;
+                const rate = parseFloat(row.querySelector('.rate').value) || 0;
+                const disc = parseFloat(row.querySelector('.discount').value) || 0;
+                const gst = parseFloat(row.querySelector('.gst-rate').value) || 0;
+                const amount = parseFloat(row.querySelector('.amount').textContent) || 0;
+                const mfr = row.querySelector('.mfr-code').value.trim();
+                const hsn = row.querySelector('.hsn-code').value.trim();
+                const batch = row.querySelector('.batch-no').value.trim();
+                const expiry = row.querySelector('.expiry').value.trim();
+
+                if (!medicineName || qty <= 0 || rate <= 0) {
+                    allFieldsFilled = false;
+                    return;
+                }
+
+                // Calculate CGST, SGST, IGST based on the total amount for the item
+                const amountBeforeGST = (qty * rate) - disc;
+                const gstAmount = amountBeforeGST * (gst / 100);
+                const cgst = gstAmount / 2;
+                const sgst = gstAmount / 2;
+                const igst = 0; // Assuming no IGST for local sales
+
+                items.push({
+                    medicineName, qty, rate, disc, gst, amount, mfr, hsn, batch, expiry, cgst, sgst, igst
+                });
+            });
+
+            if (!customerName || items.length === 0 || !allFieldsFilled) {
+                showMessage('Validation Error', 'Please fill in customer name and all medicine details correctly.');
+                return;
+            }
+
+            const salesData = {
+                customerName, customerAddress, invoiceNo, date: invoiceDate, time: invoiceTime, paymentMode, items
+            };
+
+            google.script.run
+                .withSuccessHandler(function(response) {
+                    if (response.success) {
+                        showMessage('Success', response.message);
+                        // Optionally clear form or reset invoice
+                        resetInvoiceForm();
+                    } else {
+                        showMessage('Error', response.message);
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    showMessage('Error', 'Failed to save sales data: ' + error.message);
+                })
+                .saveSalesData(salesData);
+        }
+
+        function savePurchase() {
+            const vendorName = document.getElementById('vendor-name').value;
+            const vendorAddress = document.getElementById('vendor-address').value;
+            const purchaseInvoice = document.getElementById('purchase-invoice').value;
+            const purchaseDate = document.getElementById('purchase-date').value; //YYYY-MM-DD
+            const paymentTerms = document.getElementById('payment-terms').value;
+            const purchaseTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            const items = [];
+            let allFieldsFilled = true;
+
+            document.querySelectorAll('#purchase-table-body .medicine-row').forEach(row => {
+                const medicineName = row.querySelector('.medicine-name').value.trim();
+                const qty = parseFloat(row.querySelector('.quantity').value) || 0;
+                const rate = parseFloat(row.querySelector('.rate').value) || 0;
+                const disc = parseFloat(row.querySelector('.discount').value) || 0;
+                const gst = parseFloat(row.querySelector('.gst-rate').value) || 0;
+                const amount = parseFloat(row.querySelector('.amount').textContent) || 0;
+                const mfr = row.querySelector('.mfr-code').value.trim();
+                const hsn = row.querySelector('.hsn-code').value.trim();
+                const batch = row.querySelector('.batch-no').value.trim();
+                const expiry = row.querySelector('.expiry').value.trim();
+
+                if (!medicineName || qty <= 0 || rate <= 0) {
+                    allFieldsFilled = false;
+                    return;
+                }
+
+                const amountBeforeGST = (qty * rate) - disc;
+                const gstAmount = amountBeforeGST * (gst / 100);
+                const cgst = gstAmount / 2;
+                const sgst = gstAmount / 2;
+                const igst = 0;
+
+                items.push({
+                    medicineName, qty, rate, disc, gst, amount, mfr, hsn, batch, expiry, cgst, sgst, igst
+                });
+            });
+
+            if (!vendorName || !purchaseInvoice || items.length === 0 || !allFieldsFilled) {
+                showMessage('Validation Error', 'Please fill in vendor details, invoice number, and all medicine details correctly.');
+                return;
+            }
+
+            const purchaseData = {
+                vendorName, vendorAddress, invoiceNo: purchaseInvoice, date: purchaseDate, time: purchaseTime, paymentTerms, items
+            };
+
+            google.script.run
+                .withSuccessHandler(function(response) {
+                    if (response.success) {
+                        showMessage('Success', response.message);
+                        resetPurchaseForm();
+                    } else {
+                        showMessage('Error', response.message);
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    showMessage('Error', 'Failed to save purchase data: ' + error.message);
+                })
+                .savePurchaseData(purchaseData);
+        }
+
+        function printAndSaveSales() {
+            saveSales(); // Save first
+            window.print(); // Then print
+        }
+
+        function printAndSavePurchase() {
+            savePurchase(); // Save first
+            window.print(); // Then print
+        }
+
+        function resetInvoiceForm() {
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-address').value = '';
+            // Reset medicine table to initial state (e.g., 2 empty rows)
+            const tbody = document.getElementById('medicine-table-body');
+            tbody.innerHTML = ''; // Clear all rows
+            addNewRow(); // Add first empty row
+            addNewRow(); // Add second empty row
+            calculateTotals();
+        }
+
+        function resetPurchaseForm() {
+            document.getElementById('vendor-name').value = '';
+            document.getElementById('vendor-gstin').value = '';
+            document.getElementById('vendor-address').value = '';
+            document.getElementById('purchase-invoice').value = '';
+            document.getElementById('payment-terms').selectedIndex = 0;
+            // Reset medicine table
+            const tbody = document.getElementById('purchase-table-body');
+            tbody.innerHTML = '';
+            addPurchaseRow(); // Add first empty row
+        }
+
         function generateReport() {
             const reportType = document.querySelector('input[name="report-type"]:checked').value;
-            loadReportData(reportType);
+            const fromDate = document.getElementById('report-from').value;
+            const toDate = document.getElementById('report-to').value;
+            const stockDate = document.getElementById('report-stock-date').value;
+
+            let actualFromDate = null;
+            let actualToDate = null;
+
+            if (reportType === 'stock') {
+                actualToDate = stockDate; // For stock, 'to' date is 'as of date'
+            } else {
+                actualFromDate = fromDate;
+                actualToDate = toDate;
+            }
+
+            google.script.run
+                .withSuccessHandler(function(response) {
+                    if (response.error) {
+                        showMessage('Report Error', response.error);
+                        document.getElementById('report-body').innerHTML = '';
+                        document.getElementById('report-head').innerHTML = '';
+                        document.getElementById('report-total-value').textContent = `Total Value: ₹0.00`;
+                    } else {
+                        loadReportData(reportType, response.data, response.headers, response.totalValue);
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    showMessage('Error', 'Failed to fetch report data: ' + error.message);
+                })
+                .getReportData(reportType, actualFromDate, actualToDate);
         }
         
-        function loadReportData(type) {
+        function loadReportData(type, data, headers, totalValue) {
             const tbody = document.getElementById('report-body');
             const reportHead = document.getElementById('report-head');
             
             // Clear existing data
             tbody.innerHTML = '';
             
-            let totalValue = 0;
-            let headHtml, data;
-            
-            if (type === 'sales') {
-                headHtml = `
-                    <th>Date</th>
-                    <th>Invoice No</th>
-                    <th>Customer</th>
-                    <th>Medicine</th>
-                    <th>Batch</th>
-                    <th>Qty</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                    <th>GST</th>
-                `;
-                
-                data = [
-                    { date: '15/07/2023', invoice: 'INV-23071501', name: 'Rajesh Kumar', medicine: 'Paracetamol 500mg', batch: 'BATCH001', qty: 10, rate: '₹5.00', amount: '₹50.00', gst: '5%', amountValue: 50 },
-                    { date: '15/07/2023', invoice: 'INV-23071501', name: 'Rajesh Kumar', medicine: 'Amoxicillin 250mg', batch: 'BATCH045', qty: 5, rate: '₹15.00', amount: '₹75.00', gst: '12%', amountValue: 75 },
-                    { date: '14/07/2023', invoice: 'INV-23071402', name: 'Priya Sharma', medicine: 'Vitamin C 500mg', batch: 'BATCH112', qty: 8, rate: '₹8.50', amount: '₹68.00', gst: '18%', amountValue: 68 },
-                    { date: '14/07/2023', invoice: 'INV-23071403', name: 'Vikram Singh', medicine: 'Cetirizine 10mg', batch: 'BATCH078', qty: 15, rate: '₹3.50', amount: '₹52.50', gst: '12%', amountValue: 52.5 },
-                    { date: '13/07/2023', invoice: 'INV-23071301', name: 'Anjali Mehta', medicine: 'Metformin 500mg', batch: 'BATCH093', qty: 12, rate: '₹7.25', amount: '₹87.00', gst: '5%', amountValue: 87 }
-                ];
-            } else if (type === 'purchases') {
-                headHtml = `
-                    <th>Date</th>
-                    <th>Invoice No</th>
-                    <th>Vendor</th>
-                    <th>Medicine</th>
-                    <th>Batch</th>
-                    <th>Qty</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                    <th>GST</th>
-                `;
-                
-                data = [
-                    { date: '10/07/2023', invoice: 'PUR-23071001', name: 'Medi Distributors', medicine: 'Paracetamol 500mg', batch: 'BATCH201', qty: 100, rate: '₹3.50', amount: '₹350.00', gst: '5%', amountValue: 350 },
-                    { date: '09/07/2023', invoice: 'PUR-23070902', name: 'Pharma Solutions', medicine: 'Amoxicillin 250mg', batch: 'BATCH045', qty: 50, rate: '₹12.00', amount: '₹600.00', gst: '12%', amountValue: 600 },
-                    { date: '08/07/2023', invoice: 'PUR-23070801', name: 'Global Meds', medicine: 'Vitamin C 500mg', batch: 'BATCH112', qty: 80, rate: '₹6.50', amount: '₹520.00', gst: '18%', amountValue: 520 },
-                    { date: '07/07/2023', invoice: 'PUR-23070703', name: 'Health Suppliers', medicine: 'Cetirizine 10mg', batch: 'BATCH078', qty: 120, rate: '₹2.50', amount: '₹300.00', gst: '12%', amountValue: 300 },
-                    { date: '05/07/2023', invoice: 'PUR-23070501', name: 'Medico Enterprises', medicine: 'Metformin 500mg', batch: 'BATCH093', qty: 90, rate: '₹5.25', amount: '₹472.50', gst: '5%', amountValue: 472.5 }
-                ];
-            } else if (type === 'stock') {
-                headHtml = `
-                    <th>Medicine</th>
-                    <th>Batch</th>
-                    <th>Expiry</th>
-                    <th>Qty</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                `;
-                
-                data = [
-                    { medicine: 'Paracetamol 500mg', batch: 'BATCH201', expiry: '12/25', qty: 85, rate: '₹3.50', amount: '₹297.50', amountValue: 297.5 },
-                    { medicine: 'Amoxicillin 250mg', batch: 'BATCH045', expiry: '09/24', qty: 45, rate: '₹12.00', amount: '₹540.00', amountValue: 540 },
-                    { medicine: 'Vitamin C 500mg', batch: 'BATCH112', expiry: '03/25', qty: 72, rate: '₹6.50', amount: '₹468.00', amountValue: 468 },
-                    { medicine: 'Cetirizine 10mg', batch: 'BATCH078', expiry: '11/24', qty: 105, rate: '₹2.50', amount: '₹262.50', amountValue: 262.5 },
-                    { medicine: 'Metformin 500mg', batch: 'BATCH093', expiry: '08/25', qty: 78, rate: '₹5.25', amount: '₹409.50', amountValue: 409.5 }
-                ];
-            }
-            
             // Set table headers
+            let headHtml = '';
+            headers.forEach(header => {
+                headHtml += `<th>${header}</th>`;
+            });
             reportHead.innerHTML = headHtml;
             
-            // Populate table and calculate total
+            // Populate table
             data.forEach(item => {
-                totalValue += item.amountValue;
-                
                 const row = document.createElement('tr');
-                
                 if (type === 'sales' || type === 'purchases') {
                     row.innerHTML = `
                         <td>${item.date}</td>
@@ -1586,46 +1980,61 @@
                         <td>${item.amount}</td>
                     `;
                 }
-                
                 tbody.appendChild(row);
             });
             
             // Display total value
-            document.getElementById('report-total-value').textContent = `Total Value: ₹${totalValue.toFixed(2)}`;
+            document.getElementById('report-total-value').textContent = `Total Value: ₹${totalValue}`;
         }
         
         function printReport() {
-            alert(`Printing ${document.querySelector('input[name="report-type"]:checked').value} report...`);
+            showMessage('Print Report', `Printing ${document.querySelector('input[name="report-type"]:checked').value} report...`, 'alert', () => {
+                window.print();
+            });
         }
         
         function exportToCSV() {
-            alert(`Exporting ${document.querySelector('input[name="report-type"]:checked').value} report to CSV...`);
+            showMessage('Export to CSV', `Exporting ${document.querySelector('input[name="report-type"]:checked').value} report to CSV...`);
+            // In a real app, you'd fetch the data and format it as CSV
+            // For now, this is a placeholder.
         }
 
         // Data Management Functions
-        function deleteByInvoice() {
+        function confirmDeleteByInvoice() {
             const type = document.getElementById('delete-transaction-type').value;
             const invoiceNumber = document.getElementById('delete-invoice-number').value.trim();
             
             if (!invoiceNumber) {
-                alert('Please enter an invoice number');
+                showMessage('Input Required', 'Please enter an invoice number');
                 return;
             }
             
-            if (confirm(`Are you sure you want to delete this ${type === 'sale' ? 'sale' : 'purchase'} invoice (${invoiceNumber})? This action cannot be undone.`)) {
-                // In a real app, this would call your backend to delete the invoice
-                alert(`${type === 'sale' ? 'Sale' : 'Purchase'} invoice ${invoiceNumber} has been deleted.`);
-                document.getElementById('delete-invoice-number').value = '';
-            }
+            showMessage('Confirm Deletion', `Are you sure you want to delete this ${type === 'sale' ? 'sale' : 'purchase'} invoice (${invoiceNumber})? This action cannot be undone.`, 'confirm', (confirmed) => {
+                if (confirmed) {
+                    google.script.run
+                        .withSuccessHandler(function(response) {
+                            if (response.success) {
+                                showMessage('Success', response.message);
+                                document.getElementById('delete-invoice-number').value = '';
+                            } else {
+                                showMessage('Error', response.message);
+                            }
+                        })
+                        .withFailureHandler(function(error) {
+                            showMessage('Error', 'Failed to delete invoice: ' + error.message);
+                        })
+                        .deleteByInvoice(type, invoiceNumber);
+                }
+            });
         }
 
-        function deleteByDateRange() {
+        function confirmDeleteByDateRange() {
             const type = document.getElementById('delete-date-type').value;
             const fromDate = document.getElementById('delete-from-date').value;
             const toDate = document.getElementById('delete-to-date').value;
             
             if (!fromDate || !toDate) {
-                alert('Please select both start and end dates');
+                showMessage('Input Required', 'Please select both start and end dates');
                 return;
             }
             
@@ -1634,48 +2043,114 @@
             else if (type === 'purchase') typeText = 'purchases';
             else typeText = 'sales and purchases';
             
-            if (confirm(`Are you sure you want to delete all ${typeText} transactions between ${fromDate} and ${toDate}? This action cannot be undone.`)) {
-                // In a real app, this would call your backend to delete the transactions
-                alert(`All ${typeText} transactions between ${fromDate} and ${toDate} have been deleted.`);
-            }
+            showMessage('Confirm Deletion', `Are you sure you want to delete all ${typeText} transactions between ${fromDate} and ${toDate}? This action cannot be undone.`, 'confirm', (confirmed) => {
+                if (confirmed) {
+                    google.script.run
+                        .withSuccessHandler(function(response) {
+                            if (response.success) {
+                                showMessage('Success', response.message);
+                            } else {
+                                showMessage('Error', response.message);
+                            }
+                        })
+                        .withFailureHandler(function(error) {
+                            showMessage('Error', 'Failed to delete transactions by date range: ' + error.message);
+                        })
+                        .deleteByDateRange(type, fromDate, toDate);
+                }
+            });
         }
 
         function confirmDeleteAll() {
             const password = document.getElementById('admin-password').value;
             
             if (!password) {
-                alert('Please enter the admin password');
+                showMessage('Input Required', 'Please enter the admin password');
                 return;
             }
             
             // In a real app, you would verify the password first
-            if (confirm('WARNING: This will permanently delete ALL transaction data. Are you absolutely sure?')) {
-                if (confirm('This is your last chance to cancel. All data will be lost. Proceed?')) {
-                    // In a real app, this would call your backend to delete all data
-                    alert('All transaction data has been deleted.');
-                    document.getElementById('admin-password').value = '';
+            showMessage('WARNING', 'This will permanently delete ALL transaction data. Are you absolutely sure?', 'confirm', (confirmed1) => {
+                if (confirmed1) {
+                    showMessage('LAST CHANCE', 'This is your last chance to cancel. All data will be lost. Proceed?', 'confirm', (confirmed2) => {
+                        if (confirmed2) {
+                            // In a real app, this would call your backend to delete all data
+                            // For now, we'll just simulate success
+                            google.script.run
+                                .withSuccessHandler(function(response) {
+                                    if (response.success) {
+                                        showMessage('Success', response.message);
+                                        document.getElementById('admin-password').value = '';
+                                    } else {
+                                        showMessage('Error', response.message);
+                                    }
+                                })
+                                .withFailureHandler(function(error) {
+                                    showMessage('Error', 'Failed to delete all data: ' + error.message);
+                                })
+                                .deleteAllData();
+                        }
+                    });
                 }
-            }
+            });
         }
 
-        function createBackup() {
-            // In a real app, this would generate and download a backup file
-            alert('Backup file has been downloaded.');
+        function createBackupFile() {
+            showMessage('Creating Backup', 'Generating backup file...', 'alert'); // Show loading message
+            google.script.run
+                .withSuccessHandler(function(backupJsonString) {
+                    const blob = new Blob([backupJsonString], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `ganesh_billing_backup_${new Date().toISOString().slice(0,10)}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showMessage('Backup Success', 'Backup file has been downloaded.');
+                })
+                .withFailureHandler(function(error) {
+                    showMessage('Error', 'Failed to create backup: ' + error.message);
+                })
+                .createBackup();
         }
 
-        function restoreBackup() {
+        function restoreBackupFile() {
             const fileInput = document.getElementById('backup-file');
             
             if (!fileInput.files.length) {
-                alert('Please select a backup file to restore');
+                showMessage('Input Required', 'Please select a backup file to restore');
                 return;
             }
-            
-            if (confirm('Restoring from backup will overwrite your current data. Continue?')) {
-                // In a real app, this would upload and process the backup file
-                alert('Backup has been successfully restored.');
-                fileInput.value = '';
-            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const backupJsonString = e.target.result;
+                showMessage('Confirm Restore', 'Restoring from backup will overwrite your current data. Continue?', 'confirm', (confirmed) => {
+                    if (confirmed) {
+                        showMessage('Restoring Data', 'Restoring data from backup...', 'alert'); // Show loading message
+                        google.script.run
+                            .withSuccessHandler(function(response) {
+                                if (response.success) {
+                                    showMessage('Restore Success', response.message);
+                                    fileInput.value = ''; // Clear file input
+                                    // Optionally refresh the current page to reflect restored data
+                                    // location.reload();
+                                } else {
+                                    showMessage('Error', response.message);
+                                }
+                            })
+                            .withFailureHandler(function(error) {
+                                showMessage('Error', 'Failed to restore backup: ' + error.message);
+                            })
+                            .restoreBackup(backupJsonString);
+                    }
+                });
+            };
+            reader.readAsText(file);
         }
     </script>
 </body>
