@@ -99,7 +99,7 @@
         /* Main content area */
         .main-content {
             flex: 1;
-            padding: 5px;
+            padding: 5px; 
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -109,16 +109,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1px;
-            padding-bottom: 1px;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
             border-bottom: 1px solid var(--border);
         }
 
         .page-title {
-            font-size: 18px;
-            width: 100%;
-            font-weight: 600;
-            text-align: center;
+            font-size: 18px; width: 100% ;
+            font-weight: 700; text-align: center;
             color: var(--dark);
         }
 
@@ -174,7 +172,7 @@
         }
 
         .vendor-info {
-            width: 60%;
+            width: 40%; /* Adjusted width for better layout with customer details */
             font-size: 11px;
             line-height: 1.4;
             border: 1px solid var(--border);
@@ -200,7 +198,7 @@
 
         .invoice-title {
             text-align: center;
-            font-size: 8px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 8px;
@@ -538,18 +536,53 @@
         }
 
         /* Column widths for perfect fit */
-        .col-no { width: 4%; }
-        .col-name { width: 22%; }
-        .col-mfr { width: 8%; }
-        .col-hsn { width: 8%; }
-        .col-batch { width: 9%; }
-        .col-expiry { width: 8%; }
-        .col-qty { width: 5%; }
-        .col-rate { width: 8%; }
-        .col-disc { width: 7%; }
-        .col-gst { width: 8%; }
-        .col-amount { width: 10%; }
-        .col-action { width: 3%; }
+        /* Updated column widths for Invoice and Purchases table */
+        .col-no { width: 3%; }
+        .col-name { width: 18%; } 
+        .col-mfr { width: 6%; } 
+        .col-hsn { width: 6%; } 
+        .col-batch { width: 7%; } 
+        .col-expiry { width: 7%; }
+        .col-qty { width: 6%; }
+        .col-rate { width: 7%; }
+        .col-disc { width: 6%; } 
+        .col-cgst { width: 5%; } 
+        .col-sgst { width: 5%; } 
+        .col-igst { width: 5%; } 
+        .col-amount { width: 12%; }
+        .col-action { width: 2%; }
+
+        /* New styles for report tables to ensure column alignment */
+        /* Specific column widths for Sales Report */
+        #report-page .medicine-table th:nth-child(1), #report-page .medicine-table td:nth-child(1) { width: 3%; } /* No */
+        #report-page .medicine-table th:nth-child(2), #report-page .medicine-table td:nth-child(2) { width: 8%; } /* Bill No / Inv No */
+        #report-page .medicine-table th:nth-child(3), #report-page .medicine-table td:nth-child(3) { width: 8%; } /* Date */
+        #report-page .medicine-table th:nth-child(4), #report-page .medicine-table td:nth-child(4) { width: 12%; } /* Customer / Vendor */
+        #report-page .medicine-table th:nth-child(5), #report-page .medicine-table td:nth-child(5) { width: 18%; } /* Medicine Name */
+        #report-page .medicine-table th:nth-child(6), #report-page .medicine-table td:nth-child(6) { width: 5%; } /* MFR */
+        #report-page .medicine-table th:nth-child(7), #report-page .medicine-table td:nth-child(7) { width: 5%; } /* HSN */
+        #report-page .medicine-table th:nth-child(8), #report-page .medicine-table td:nth-child(8) { width: 7%; } /* Batch */
+        #report-page .medicine-table th:nth-child(9), #report-page .medicine-table td:nth-child(9) { width: 7%; } /* Expiry */
+        #report-page .medicine-table th:nth-child(10), #report-page .medicine-table td:nth-child(10) { width: 5%; } /* Qty */
+        #report-page .medicine-table th:nth-child(11), #report-page .medicine-table td:nth-child(11) { width: 6%; } /* Rate */
+        #report-page .medicine-table th:nth-child(12), #report-page .medicine-table td:nth-child(12) { width: 5%; } /* Disc. */
+        #report-page .medicine-table th:nth-child(13), #report-page .medicine-table td:nth-child(13) { width: 5%; } /* CGST% */
+        #report-page .medicine-table th:nth-child(14), #report-page .medicine-table td:nth-child(14) { width: 5%; } /* SGST% */
+        #report-page .medicine-table th:nth-child(15), #report-page .medicine-table td:nth-child(15) { width: 5%; } /* IGST% */
+        #report-page .medicine-table th:nth-child(16), #report-page .medicine-table td:nth-child(16) { width: 11%; } /* Amount */
+
+        /* Specific column widths for Stock Report */
+        #report-page .medicine-table.stock-report th:nth-child(1), #report-page .medicine-table.stock-report td:nth-child(1) { width: 5%; } /* No */
+        #report-page .medicine-table.stock-report th:nth-child(2), #report-page .medicine-table.stock-report td:nth-child(2) { width: 25%; } /* Medicine */
+        #report-page .medicine-table.stock-report th:nth-child(3), #report-page .medicine-table.stock-report td:nth-child(3) { width: 8%; } /* MFR */
+        #report-page .medicine-table.stock-report th:nth-child(4), #report-page .medicine-table.stock-report td:nth-child(4) { width: 8%; } /* HSN */
+        #report-page .medicine-table.stock-report th:nth-child(5), #report-page .medicine-table.stock-report td:nth-child(5) { width: 12%; } /* Batch */
+        #report-page .medicine-table.stock-report th:nth-child(6), #report-page .medicine-table.stock-report td:nth-child(6) { width: 12%; } /* Expiry */
+        #report-page .medicine-table.stock-report th:nth-child(7), #report-page .medicine-table.stock-report td:nth-child(7) { width: 10%; } /* Opening */
+        #report-page .medicine-table.stock-report th:nth-child(8), #report-page .medicine-table.stock-report td:nth-child(8) { width: 10%; } /* Purchases */
+        #report-page .medicine-table.stock-report th:nth-child(9), #report-page .medicine-table.stock-report td:nth-child(9) { width: 10%; } /* Sales */
+        #report-page .medicine-table.stock-report th:nth-child(10), #report-page .medicine-table.stock-report td:nth-child(10) { width: 10%; } /* Current Stock */
+
 
         /* Print specific styles */
         @media print {
@@ -564,7 +597,7 @@
                 margin: 0;
             }
 
-            .sidebar, .header-bar, .btn-add, .btn-remove, .no-print, #messageModal {
+            .sidebar, .header-bar, .btn-add, .btn-remove, .no-print, #messageModal, #batchSelectionModal {
                 display: none !important;
             }
             
@@ -859,6 +892,44 @@
         .modal-footer .cancel-btn:hover {
             background-color: #c0392b;
         }
+
+        /* Batch Selection Modal Specific Styles */
+        #batchSelectionModal .modal-content {
+            max-width: 600px;
+        }
+
+        #batchSelectionModal table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        #batchSelectionModal th, #batchSelectionModal td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        #batchSelectionModal th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        #batchSelectionModal tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #batchSelectionModal button.select-batch-btn {
+            background-color: var(--secondary);
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        #batchSelectionModal button.select-batch-btn:hover {
+            background-color: #308060;
+        }
     </style>
 </head>
 <body>
@@ -929,7 +1000,9 @@
                             <th class="col-qty">Qty</th>
                             <th class="col-rate">Rate</th>
                             <th class="col-disc">Disc.</th>
-                            <th class="col-gst">GST</th>
+                            <th class="col-cgst">CGST%</th>
+                            <th class="col-sgst">SGST%</th>
+                            <th class="col-igst">IGST%</th>
                             <th class="col-amount">Amount</th>
                             <th class="col-action no-print"></th>
                         </tr>
@@ -937,41 +1010,33 @@
                     <tbody id="medicine-table-body">
                         <tr class="medicine-row">
                             <td class="col-no">1</td>
-                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name"></td>
+                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
                             <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
                             <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
                             <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
                             <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" readonly></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0" readonly></td>
-                            <td class="col-gst">
-                                <select class="gst-rate" disabled>
-                                    <option>5%</option>
-                                    <option>12%</option>
-                                    <option selected>18%</option>
-                                </select>
-                            </td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
                             <td class="col-amount amount">0.00</td>
                             <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
                         </tr>
                         <tr class="medicine-row">
                             <td class="col-no">2</td>
-                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name"></td>
+                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
                             <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
                             <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
                             <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
                             <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" readonly></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0" readonly></td>
-                            <td class="col-gst">
-                                <select class="gst-rate" disabled>
-                                    <option>5%</option>
-                                    <option selected>12%</option>
-                                    <option>18%</option>
-                                </select>
-                            </td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
                             <td class="col-amount amount">0.00</td>
                             <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
                         </tr>
@@ -1000,7 +1065,7 @@
                                 <div>UPI: citymedicals@upi</div>
                             </div>
                             <div class="qr-code">
-                              <img src="QR.jpg" alt="QR Code for Payment">
+                              <img src="https://placehold.co/70x70/E0E0E0/333333?text=QR" alt="QR Code for Payment">
                             </div>
                         </div>
                     </div>
@@ -1065,7 +1130,7 @@
 
         <div id="purchases-page" class="page-content" style="display: none;">
             <div class="container">
-                <h2 style="margin-bottom: 20px; color: var(--primary);"> 
+                <h2 style="margin-bottom: 20px; color: var(--primary);font-weight: 600"> 
                     <i class="fas fa-cart-plus"></i> Purchase Entry 
                 </h2>
                 <div class="purchase-form">
@@ -1117,7 +1182,9 @@
                             <th class="col-qty">Qty</th>
                             <th class="col-rate">Rate</th>
                             <th class="col-disc">Disc.</th>
-                            <th class="col-gst">GST</th>
+                            <th class="col-cgst">CGST%</th>
+                            <th class="col-sgst">SGST%</th>
+                            <th class="col-igst">IGST%</th>
                             <th class="col-amount">Amount</th>
                             <th class="col-action no-print"></th>
                         </tr>
@@ -1133,13 +1200,9 @@
                             <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculatePurchaseTotals()"></td>
-                            <td class="col-gst">
-                                <select class="gst-rate" onchange="calculatePurchaseTotals()">
-                                    <option>5%</option>
-                                    <option>12%</option>
-                                    <option selected>18%</option>
-                                </select>
-                            </td>
+                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-amount amount">0.00</td>
                             <td class="col-action no-print"><button class="btn btn-remove" onclick="removePurchaseRow(this)"><i class="fas fa-times"></i></button></td>
                         </tr>
@@ -1245,7 +1308,7 @@
 
         <div id="data-management-page" class="page-content" style="display: none;">
             <div class="container">
-                <h2 style="margin-bottom: 20px; color: var(--primary);"> 
+                <h2 style="margin-bottom: 20px; color: var(--primary);font-weight: 600;"> 
                     <i class="fas fa-database"></i> Data Management 
                 </h2>
                 <div class="data-management-form">
@@ -1318,7 +1381,7 @@
                         <div>
                             <div class="form-row">
                                 <label>Restore from Backup (Upload a previously saved backup file.)</label>
-                                <input type="file" id="backup-file" accept=".json" style="margin-bottom: 8px; width: 50%;">
+                                <input type="file" id="backup-file" accept=".csv" style="margin-bottom: 8px; width: 50%;">
                                 <button class="btn" onclick="restoreBackupFile()" style="width: 30%;">
                                     <i class="fas fa-file-upload"></i> Restore Backup
                                 </button>
@@ -1340,10 +1403,86 @@
         </div>
     </div>
 
+    <!-- Batch Selection Modal -->
+    <div id="batchSelectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Select Medicine Batch</div>
+            <div class="modal-body">
+                <p>Multiple batches found for <strong id="selectedMedicineName"></strong>. Please select one:</p>
+                <table id="batchSelectionTable">
+                    <thead>
+                        <tr>
+                            <th>Batch No</th>
+                            <th>Expiry</th>
+                            <th>Rate</th>
+                            <th>Available Qty</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Batch options will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeBatchSelectionModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Placeholder for Google Apps Script Web App URL
-        // IMPORTANT: Replace 'YOUR_WEB_APP_URL_HERE' with the actual URL after deploying your Apps Script
-        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHek_STJ1lSwbvcN51s7hYX3r7L6UZdS39mQ_U1xN8Dz420fO4WjodCGSdfIwGs6o_/exec";
+        // Define the localStorage key for your data
+        const DATA_STORAGE_KEY = 'billingData';
+        // Placeholder for QR code as local file paths are not accessible
+        const QR_PLACEHOLDER_PATH = "https://placehold.co/70x70/E0E0E0/333333?text=QR";
+        
+        // Initial CSV header for the data file - UPDATED TO INCLUDE CGST, SGST, IGST for medicines
+        const CSV_HEADER = "Type,BillNo,Date,Time,CustomerName,CustomerAddress,PaymentMode,Medicines,Subtotal,TotalDiscount,CGST,SGST,IGST,Total,VendorName,VendorGSTIN,VendorAddress,PurchaseInvoice,PaymentTerms\n";
+
+        // Function to load data from localStorage
+        async function loadDataFromStorage() {
+            let csvData = localStorage.getItem(DATA_STORAGE_KEY);
+            if (!csvData) {
+                // If no data exists, initialize with header
+                csvData = CSV_HEADER;
+                localStorage.setItem(DATA_STORAGE_KEY, csvData);
+            }
+            return csvData;
+        }
+
+        // Function to save data to localStorage
+        async function saveDataToStorage(csvString) {
+            localStorage.setItem(DATA_STORAGE_KEY, csvString);
+        }
+
+        // Initialize with current date and time
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('en-GB');
+            const formattedTime = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            
+            document.getElementById('invoice-date2').textContent = formattedDate;
+            document.getElementById('invoice-time').textContent = formattedTime;
+            document.getElementById('purchase-date').valueAsDate = today;
+            document.getElementById('report-from').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            document.getElementById('report-to').valueAsDate = today;
+            document.getElementById('report-stock-date').valueAsDate = today;
+            document.getElementById('delete-from-date').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            document.getElementById('delete-to-date').valueAsDate = today;
+            
+            // Set QR code path
+            document.querySelector('.qr-code img').src = QR_PLACEHOLDER_PATH;
+
+            // Load initial stock report if on stock report page
+            const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+            if (selectedType === 'stock') {
+                loadStockReport(document.getElementById('report-stock-date').value);
+            } else if (selectedType === 'sales') {
+                loadSalesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+            } else if (selectedType === 'purchases') {
+                loadPurchasesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+            }
+        });
 
         // Function to show custom modal messages
         function showMessage(header, body, type = 'alert', callback = null) {
@@ -1385,25 +1524,54 @@
             document.getElementById('messageModal').style.display = 'none';
         }
 
-        // Initialize with 2 rows
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set current date and time for invoice
-            const today = new Date();
-            const formattedDate = today.toLocaleDateString('en-GB');
-            const formattedTime = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            document.getElementById('invoice-date2').textContent = formattedDate;
-            document.getElementById('invoice-time').textContent = formattedTime;
+        // Function to show batch selection modal
+        function showBatchSelectionModal(medicineName, batches, targetRow) {
+            document.getElementById('selectedMedicineName').textContent = medicineName;
+            const batchTableBody = document.querySelector('#batchSelectionTable tbody');
+            batchTableBody.innerHTML = ''; // Clear previous batches
 
-            // Set default dates for purchases and reports
-            document.getElementById('purchase-date').valueAsDate = today;
-            document.getElementById('report-from').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            document.getElementById('report-to').valueAsDate = today;
-            document.getElementById('report-stock-date').valueAsDate = today;
+            batches.forEach(batch => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${batch.batch}</td>
+                    <td>${batch.expiry}</td>
+                    <td>${batch.rate.toFixed(2)}</td>
+                    <td>${batch.currentStock}</td>
+                    <td><button class="btn select-batch-btn" data-batch='${JSON.stringify(batch)}'>Select</button></td>
+                `;
+                batchTableBody.appendChild(row);
+            });
 
-            // Set default dates for delete operations
-            document.getElementById('delete-from-date').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            document.getElementById('delete-to-date').valueAsDate = today;
-        });
+            // Add event listener to select buttons
+            batchTableBody.querySelectorAll('.select-batch-btn').forEach(button => {
+                button.onclick = () => {
+                    const selectedBatch = JSON.parse(button.dataset.batch);
+                    applySelectedBatchToRow(selectedBatch, targetRow);
+                    closeBatchSelectionModal();
+                };
+            });
+
+            document.getElementById('batchSelectionModal').style.display = 'flex';
+        }
+
+        function closeBatchSelectionModal() {
+            document.getElementById('batchSelectionModal').style.display = 'none';
+        }
+
+        // Apply selected batch details to the invoice row
+        function applySelectedBatchToRow(batch, row) {
+            row.querySelector('.mfr-code').value = batch.mfr;
+            row.querySelector('.hsn-code').value = batch.hsn;
+            row.querySelector('.batch-no').value = batch.batch;
+            row.querySelector('.expiry').value = batch.expiry;
+            row.querySelector('.rate').value = batch.rate.toFixed(2);
+            row.querySelector('.quantity').setAttribute('max', batch.currentStock); // Set max quantity
+            row.querySelector('.quantity').value = Math.min(1, batch.currentStock); // Set default quantity to 1 or available stock
+            row.querySelector('.cgst-rate').value = batch.cgst;
+            row.querySelector('.sgst-rate').value = batch.sgst;
+            row.querySelector('.igst-rate').value = batch.igst;
+            calculateInvoiceTotals();
+        }
 
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
@@ -1423,9 +1591,21 @@
             else if (pageId === 'data-management') title = 'Data Management';
             document.getElementById('current-page-title').textContent = title;
 
-            // Recalculate totals when switching to purchases page
+            // Recalculate totals when switching to pages that need it
             if (pageId === 'purchases') {
                 calculatePurchaseTotals();
+            } else if (pageId === 'invoice') {
+                calculateInvoiceTotals();
+            } else if (pageId === 'report') {
+                // Ensure report is loaded when switching to report page
+                const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+                if (selectedType === 'stock') {
+                    loadStockReport(document.getElementById('report-stock-date').value);
+                } else if (selectedType === 'sales') {
+                    loadSalesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+                } else if (selectedType === 'purchases') {
+                    loadPurchasesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+                }
             }
         }
 
@@ -1438,26 +1618,23 @@
             newRow.className = 'medicine-row';
             newRow.innerHTML = `
                 <td class="col-no">${rowCount}</td>
-                <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name"></td>
+                <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
                 <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
                 <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
                 <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
                 <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1"></td>
-                <td class="col-rate"><input type="text" class="rate" placeholder="Rate" readonly></td>
-                <td class="col-disc"><input type="text" class="discount" value="0" readonly></td>
-                <td class="col-gst">
-                    <select class="gst-rate" disabled>
-                        <option>5%</option>
-                        <option>12%</option>
-                        <option selected>18%</option>
-                    </select>
-                </td>
+                <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
                 <td class="col-amount amount">0.00</td>
                 <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
             `;
             tableBody.appendChild(newRow);
             updateRowNumbers('medicine-table-body');
+            calculateInvoiceTotals(); // Recalculate totals after adding a row
         }
 
         function removeRow(button) {
@@ -1465,6 +1642,7 @@
             row.remove();
             updateRowNumbers('medicine-table-body');
             rowCount--;
+            calculateInvoiceTotals(); // Recalculate totals after removing a row
         }
 
         function updateRowNumbers(tableBodyId) {
@@ -1475,17 +1653,174 @@
             }
         }
 
-        // Invoice related functions (saveSales, printAndSaveSales, etc. - assuming they are implemented elsewhere or will be)
-        function saveSales() {
-            // Placeholder for saving sales logic
-            showMessage('Save Sales', 'Sales saving functionality to be implemented.');
+        // Invoice related functions
+        function calculateInvoiceTotals() {
+            const tableBody = document.getElementById('medicine-table-body');
+            const rows = tableBody.getElementsByClassName('medicine-row');
+            let subtotal = 0;
+            let totalDiscount = 0;
+            let totalCGST = 0;
+            let totalSGST = 0;
+            let totalIGST = 0;
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const qty = parseFloat(row.querySelector('.quantity').value) || 0;
+                const rate = parseFloat(row.querySelector('.rate').value) || 0;
+                const discount = parseFloat(row.querySelector('.discount').value) || 0;
+                const cgstRate = parseFloat(row.querySelector('.cgst-rate').value) || 0;
+                const sgstRate = parseFloat(row.querySelector('.sgst-rate').value) || 0;
+                const igstRate = parseFloat(row.querySelector('.igst-rate').value) || 0;
+
+                const itemTotal = qty * rate;
+                const discountAmount = itemTotal * (discount / 100);
+                const taxableValue = itemTotal - discountAmount;
+
+                const cgstAmount = taxableValue * (cgstRate / 100);
+                const sgstAmount = taxableValue * (sgstRate / 100);
+                const igstAmount = taxableValue * (igstRate / 100);
+                
+                const itemAmount = taxableValue + cgstAmount + sgstAmount + igstAmount;
+
+                row.querySelector('.amount').textContent = itemAmount.toFixed(2);
+
+                subtotal += itemTotal;
+                totalDiscount += discountAmount;
+                totalCGST += cgstAmount;
+                totalSGST += sgstAmount;
+                totalIGST += igstAmount;
+            }
+
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('total-discount').textContent = totalDiscount.toFixed(2);
+            document.getElementById('cgst').textContent = totalCGST.toFixed(2);
+            document.getElementById('sgst').textContent = totalSGST.toFixed(2);
+            document.getElementById('igst').textContent = totalIGST.toFixed(2);
+            
+            const total = subtotal - totalDiscount + totalCGST + totalSGST + totalIGST;
+            document.getElementById('total').textContent = '₹' + total.toFixed(2);
+        }
+
+        function getInvoiceData() {
+            const customerName = document.getElementById('customer-name').value;
+            const customerAddress = document.getElementById('customer-address').value;
+            const billNo = document.getElementById('invoice-bill-no').textContent;
+            const date = document.getElementById('invoice-date2').textContent;
+            const time = document.getElementById('invoice-time').textContent;
+            const paymentMode = document.getElementById('payment-mode').value;
+
+            const medicineRows = document.querySelectorAll('#medicine-table-body .medicine-row');
+            const medicines = [];
+            medicineRows.forEach(row => {
+                const medicine = {
+                    name: row.querySelector('.medicine-name').value,
+                    mfr: row.querySelector('.mfr-code').value,
+                    hsn: row.querySelector('.hsn-code').value,
+                    batch: row.querySelector('.batch-no').value,
+                    expiry: row.querySelector('.expiry').value,
+                    quantity: parseFloat(row.querySelector('.quantity').value) || 0,
+                    rate: parseFloat(row.querySelector('.rate').value) || 0,
+                    discount: parseFloat(row.querySelector('.discount').value) || 0,
+                    cgst: parseFloat(row.querySelector('.cgst-rate').value) || 0, // Changed from gst to cgst, sgst, igst
+                    sgst: parseFloat(row.querySelector('.sgst-rate').value) || 0,
+                    igst: parseFloat(row.querySelector('.igst-rate').value) || 0,
+                    amount: parseFloat(row.querySelector('.amount').textContent) || 0
+                };
+                medicines.push(medicine);
+            });
+
+            const subtotal = parseFloat(document.getElementById('subtotal').textContent) || 0;
+            const totalDiscount = parseFloat(document.getElementById('total-discount').textContent) || 0;
+            const cgst = parseFloat(document.getElementById('cgst').textContent) || 0;
+            const sgst = parseFloat(document.getElementById('sgst').textContent) || 0;
+            const igst = parseFloat(document.getElementById('igst').textContent) || 0;
+            const total = parseFloat(document.getElementById('total').textContent.replace('₹', '')) || 0;
+
+            return {
+                type: 'sale',
+                billNo,
+                date,
+                time,
+                customerName,
+                customerAddress,
+                paymentMode,
+                medicines, // This will be stringified for CSV
+                subtotal,
+                totalDiscount,
+                cgst,
+                sgst,
+                igst,
+                total,
+                vendorName: '', // Not applicable for sales
+                vendorGSTIN: '', // Not applicable for sales
+                vendorAddress: '', // Not applicable for sales
+                purchaseInvoice: '', // Not applicable for sales
+                paymentTerms: '' // Not applicable for sales
+            };
+        }
+
+        function formatAsCSV(data) {
+            // Convert medicines array to a string for CSV
+            // Updated to include CGST, SGST, IGST for sales also
+            const medicinesStr = data.medicines.map(m => 
+                `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
+            ).join(';');
+            
+            // Ensure all fields are present, even if empty, to maintain column integrity
+            return [
+                data.type,
+                data.billNo || '',
+                data.date || '',
+                data.time || '',
+                `"${data.customerName || ''}"`,
+                `"${data.customerAddress || ''}"`,
+                data.paymentMode || '',
+                `"${medicinesStr}"`,
+                data.subtotal || 0,
+                data.totalDiscount || 0,
+                data.cgst || 0,
+                data.sgst || 0,
+                data.igst || 0,
+                data.total || 0,
+                `"${data.vendorName || ''}"`,
+                `"${data.vendorGSTIN || ''}"`,
+                `"${data.vendorAddress || ''}"`,
+                data.purchaseInvoice || '',
+                data.paymentTerms || ''
+            ].map(value => {
+                // Escape double quotes within string values
+                if (typeof value === 'string' && value.includes('"')) {
+                    return `"${value.replace(/"/g, '""')}"`;
+                }
+                return value;
+            }).join(',');
+        }
+
+        async function saveSales() {
+            const invoiceData = getInvoiceData();
+            
+            if (!invoiceData.customerName || invoiceData.medicines.length === 0 || invoiceData.medicines.some(m => !m.name)) {
+                showMessage('Validation Error', 'Customer Name and all medicine entries (name, quantity, rate) are required.', 'alert');
+                return;
+            }
+
+            try {
+                let csvData = await loadDataFromStorage();
+                
+                // Append new data
+                csvData += formatAsCSV(invoiceData) + "\n";
+                
+                await saveDataToStorage(csvData);
+                showMessage('Success', 'Invoice saved successfully!');
+            } catch (error) {
+                showMessage('Error', 'Failed to save invoice: ' + error.message);
+            }
         }
 
         function printAndSaveSales() {
-            // Placeholder for print and save sales logic
-            showMessage('Print & Save Sales', 'Print and Save Sales functionality to be implemented.');
+            saveSales();
+            window.print();
         }
-
 
         // PURCHASES PAGE FUNCTIONS
         let purchaseRowCount = 1; // For purchases page, starting with 1 initial row
@@ -1505,13 +1840,9 @@
                 <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculatePurchaseTotals()"></td>
-                <td class="col-gst">
-                    <select class="gst-rate" onchange="calculatePurchaseTotals()">
-                        <option>5%</option>
-                        <option>12%</option>
-                        <option selected>18%</option>
-                    </select>
-                </td>
+                <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-amount amount">0.00</td>
                 <td class="col-action no-print"><button class="btn btn-remove" onclick="removePurchaseRow(this)"><i class="fas fa-times"></i></button></td>
             `;
@@ -1533,39 +1864,46 @@
             const rows = tableBody.getElementsByClassName('medicine-row');
             let subtotal = 0;
             let totalDiscount = 0;
-            let totalGST = 0;
+            let totalCGST = 0;
+            let totalSGST = 0;
+            let totalIGST = 0;
 
             for (let i = 0; i < rows.length; i++) {
                 const row = rows[i];
                 const qty = parseFloat(row.querySelector('.quantity').value) || 0;
                 const rate = parseFloat(row.querySelector('.rate').value) || 0;
                 const discount = parseFloat(row.querySelector('.discount').value) || 0;
-                const gstRateText = row.querySelector('.gst-rate').value;
-                const gstPercentage = parseFloat(gstRateText.replace('%', '')) || 0;
+                const cgstRate = parseFloat(row.querySelector('.cgst-rate').value) || 0;
+                const sgstRate = parseFloat(row.querySelector('.sgst-rate').value) || 0;
+                const igstRate = parseFloat(row.querySelector('.igst-rate').value) || 0;
 
-                const itemTotalBeforeDiscount = qty * rate;
-                const itemDiscountAmount = itemTotalBeforeDiscount * (discount / 100);
-                const itemNetValue = itemTotalBeforeDiscount - itemDiscountAmount;
-                const itemGSTAmount = itemNetValue * (gstPercentage / 100);
-                const itemAmount = itemNetValue + itemGSTAmount;
+                const itemTotal = qty * rate;
+                const discountAmount = itemTotal * (discount / 100);
+                const taxableValue = itemTotal - discountAmount;
+
+                const cgstAmount = taxableValue * (cgstRate / 100);
+                const sgstAmount = taxableValue * (sgstRate / 100);
+                const igstAmount = taxableValue * (igstRate / 100);
+                
+                const itemAmount = taxableValue + cgstAmount + sgstAmount + igstAmount;
 
                 row.querySelector('.amount').textContent = itemAmount.toFixed(2);
 
-                subtotal += itemTotalBeforeDiscount;
-                totalDiscount += itemDiscountAmount;
-                totalGST += itemGSTAmount;
+                subtotal += itemTotal;
+                totalDiscount += discountAmount;
+                totalCGST += cgstAmount;
+                totalSGST += sgstAmount;
+                totalIGST += igstAmount;
             }
-
-            const cgst = totalGST / 2;
-            const sgst = totalGST / 2;
-            const igst = 0; // Assuming IGST is not applicable if CGST/SGST are calculated
 
             document.getElementById('purchase-subtotal').textContent = subtotal.toFixed(2);
             document.getElementById('purchase-total-discount').textContent = totalDiscount.toFixed(2);
-            document.getElementById('purchase-cgst').textContent = cgst.toFixed(2);
-            document.getElementById('purchase-sgst').textContent = sgst.toFixed(2);
-            document.getElementById('purchase-igst').textContent = igst.toFixed(2);
-            document.getElementById('purchase-total').textContent = '₹' + (subtotal - totalDiscount + totalGST).toFixed(2);
+            document.getElementById('purchase-cgst').textContent = totalCGST.toFixed(2);
+            document.getElementById('purchase-sgst').textContent = totalSGST.toFixed(2);
+            document.getElementById('purchase-igst').textContent = totalIGST.toFixed(2);
+            
+            const total = subtotal - totalDiscount + totalCGST + totalSGST + totalIGST;
+            document.getElementById('purchase-total').textContent = '₹' + total.toFixed(2);
         }
 
         function getPurchaseData() {
@@ -1588,7 +1926,9 @@
                     quantity: parseFloat(row.querySelector('.quantity').value) || 0,
                     rate: parseFloat(row.querySelector('.rate').value) || 0,
                     discount: parseFloat(row.querySelector('.discount').value) || 0,
-                    gst: parseFloat(row.querySelector('.gst-rate').value.replace('%', '')) || 0,
+                    cgst: parseFloat(row.querySelector('.cgst-rate').value) || 0,
+                    sgst: parseFloat(row.querySelector('.sgst-rate').value) || 0,
+                    igst: parseFloat(row.querySelector('.igst-rate').value) || 0,
                     amount: parseFloat(row.querySelector('.amount').textContent) || 0
                 };
                 medicines.push(medicine);
@@ -1602,117 +1942,474 @@
             const total = parseFloat(document.getElementById('purchase-total').textContent.replace('₹', '')) || 0;
 
             return {
-                vendorName,
-                vendorGSTIN,
-                vendorAddress,
-                purchaseDate,
-                purchaseInvoice,
-                paymentTerms,
-                medicines,
+                type: 'purchase',
+                billNo: purchaseInvoice, // Using purchase invoice as billNo for consistency in CSV
+                date: purchaseDate,
+                time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }),
+                customerName: '', // Not applicable for purchases
+                customerAddress: '', // Not applicable for purchases
+                paymentMode: '', // Not directly captured in purchase form, could be added
+                medicines, // This will be stringified for CSV
                 subtotal,
                 totalDiscount,
                 cgst,
                 sgst,
                 igst,
-                total
+                total,
+                vendorName,
+                vendorGSTIN,
+                vendorAddress,
+                purchaseInvoice,
+                paymentTerms
             };
         }
 
-        function savePurchase() {
+        async function savePurchase() {
             const purchaseData = getPurchaseData();
 
-            if (!purchaseData.vendorName || !purchaseData.purchaseInvoice || purchaseData.medicines.length === 0) {
-                showMessage('Validation Error', 'Vendor Name, Invoice Number, and at least one medicine entry are required.', 'alert');
+            if (!purchaseData.vendorName || !purchaseData.purchaseInvoice || purchaseData.medicines.length === 0 || purchaseData.medicines.some(m => !m.name)) {
+                showMessage('Validation Error', 'Vendor Name, Invoice Number, and all medicine entries (name, quantity, rate) are required.', 'alert');
                 return;
             }
 
-            showMessage('Saving Purchase', 'Please wait while your purchase data is being saved...', 'alert');
-
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    if (response.success) {
-                        showMessage('Success', response.message);
-                        // Optionally clear form or refresh page
-                        // document.getElementById('purchase-form').reset(); // If you want to reset the form fields
-                        // document.getElementById('purchase-table-body').innerHTML = ''; // Clear medicine rows
-                        // addPurchaseRow(); // Add a default empty row back
-                    } else {
-                        showMessage('Error', response.message);
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showMessage('Error', 'Failed to save purchase: ' + error.message);
-                })
-                .recordPurchase(purchaseData);
+            try {
+                let csvData = await loadDataFromStorage();
+                
+                // Append new data
+                csvData += formatAsCSV(purchaseData) + "\n";
+                
+                await saveDataToStorage(csvData);
+                showMessage('Success', 'Purchase saved successfully!');
+            } catch (error) {
+                showMessage('Error', 'Failed to save purchase: ' + error.message);
+            }
         }
 
         function printAndSavePurchase() {
-            const purchaseData = getPurchaseData();
-
-            if (!purchaseData.vendorName || !purchaseData.purchaseInvoice || purchaseData.medicines.length === 0) {
-                showMessage('Validation Error', 'Vendor Name, Invoice Number, and at least one medicine entry are required.', 'alert');
-                return;
-            }
-
-            showMessage('Printing and Saving Purchase', 'Please wait while your purchase data is being saved and printed...', 'alert');
-
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    if (response.success) {
-                        showMessage('Success', response.message);
-                        window.print(); // Trigger print after successful save
-                    } else {
-                        showMessage('Error', response.message);
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showMessage('Error', 'Failed to print and save purchase: ' + error.message);
-                })
-                .recordPurchase(purchaseData); // Call the same recordPurchase function
+            savePurchase();
+            window.print();
         }
 
-        // Report related functions (showReportType, printReport, exportToCSV - assuming they are implemented elsewhere or will be)
+        // Report related functions
         function showReportType() {
             const salesFilter = document.getElementById('date-range-filter');
             const stockFilter = document.getElementById('stock-date-filter');
             const reportTitle = document.getElementById('current-report-title');
+            const reportTable = document.querySelector('#report-page .medicine-table'); // Get the table element
 
             const selectedReportType = document.querySelector('input[name="report-type"]:checked').value;
+
+            // Remove any existing stock-report class
+            reportTable.classList.remove('stock-report');
 
             if (selectedReportType === 'stock') {
                 salesFilter.style.display = 'none';
                 stockFilter.style.display = 'flex';
                 reportTitle.textContent = 'Stock Report';
+                reportTable.classList.add('stock-report'); // Add stock-report class for specific styling
+                loadStockReport(document.getElementById('report-stock-date').value);
             } else {
                 salesFilter.style.display = 'flex';
                 stockFilter.style.display = 'none';
                 reportTitle.textContent = selectedReportType === 'sales' ? 'Sales Report' : 'Purchases Report';
+                if (selectedReportType === 'sales') {
+                    loadSalesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+                } else if (selectedReportType === 'purchases') {
+                    loadPurchasesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
+                }
             }
-            // Logic to fetch and display report data based on type and dates would go here
         }
+
+        // Helper to parse medicine string from CSV
+        function parseMedicinesString(medicinesStr) {
+            if (!medicinesStr) return [];
+            return medicinesStr.split(';').map(item => {
+                const parts = item.split('|');
+                // Updated parsing to always expect CGST, SGST, IGST
+                return {
+                    name: parts[0] || '',
+                    mfr: parts[1] || '',
+                    hsn: parts[2] || '',
+                    batch: parts[3] || '',
+                    expiry: parts[4] || '',
+                    quantity: parseFloat(parts[5]) || 0,
+                    rate: parseFloat(parts[6]) || 0,
+                    discount: parseFloat(parts[7]) || 0,
+                    cgst: parseFloat(parts[8]) || 0,
+                    sgst: parseFloat(parts[9]) || 0,
+                    igst: parseFloat(parts[10]) || 0,
+                    amount: parseFloat(parts[11]) || 0
+                };
+            });
+        }
+
+        // Load and calculate sales report
+        async function loadSalesReport(fromDate, toDate) {
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== ''); // Filter out empty rows
+                const salesList = [];
+
+                // Assuming header is always the first row
+                if (rows.length <= 1) { // Only header or empty
+                    generateReport([], 'sales');
+                    return;
+                }
+
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    const rowType = columns[0];
+                    const date = columns[2];
+
+                    if (rowType === 'sale' && new Date(date) >= new Date(fromDate) && new Date(date) <= new Date(toDate)) {
+                        salesList.push({
+                            type: columns[0],
+                            billNo: columns[1],
+                            date: columns[2],
+                            time: columns[3],
+                            customerName: columns[4].replace(/^"|"$/g, '').replace(/""/g, '"'), // Remove quotes and unescape
+                            customerAddress: columns[5].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                            paymentMode: columns[6],
+                            medicines: parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"')),
+                            subtotal: parseFloat(columns[8]) || 0,
+                            totalDiscount: parseFloat(columns[9]) || 0,
+                            cgst: parseFloat(columns[10]) || 0,
+                            sgst: parseFloat(columns[11]) || 0,
+                            igst: parseFloat(columns[12]) || 0,
+                            total: parseFloat(columns[13]) || 0
+                        });
+                    }
+                }
+                generateReport(salesList, 'sales');
+            } catch (error) {
+                showMessage('Error', 'Failed to load sales report: ' + error.message);
+            }
+        }
+
+        // Load and calculate purchases report
+        async function loadPurchasesReport(fromDate, toDate) {
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== ''); // Filter out empty rows
+                const purchasesList = [];
+
+                if (rows.length <= 1) {
+                    generateReport([], 'purchases');
+                    return;
+                }
+
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    const rowType = columns[0];
+                    const date = columns[2];
+
+                    if (rowType === 'purchase' && new Date(date) >= new Date(fromDate) && new Date(date) <= new Date(toDate)) {
+                        purchasesList.push({
+                            type: columns[0],
+                            billNo: columns[1], // This is purchase invoice number
+                            date: columns[2],
+                            time: columns[3],
+                            medicines: parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"')),
+                            subtotal: parseFloat(columns[8]) || 0,
+                            totalDiscount: parseFloat(columns[9]) || 0,
+                            cgst: parseFloat(columns[10]) || 0,
+                            sgst: parseFloat(columns[11]) || 0,
+                            igst: parseFloat(columns[12]) || 0,
+                            total: parseFloat(columns[13]) || 0,
+                            vendorName: columns[14].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                            vendorGSTIN: columns[15].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                            vendorAddress: columns[16].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                            purchaseInvoice: columns[17],
+                            paymentTerms: columns[18]
+                        });
+                    }
+                }
+                generateReport(purchasesList, 'purchases');
+            } catch (error) {
+                showMessage('Error', 'Failed to load purchases report: ' + error.message);
+            }
+        }
+
+        // Load and calculate stock report
+        async function loadStockReport(asOfDate) {
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
+                const stockMap = {};
+
+                if (rows.length <= 1) {
+                    generateStockReport([]);
+                    return;
+                }
+
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    const date = columns[2];
+                    const rowType = columns[0]; // 'sale' or 'purchase'
+
+                    if (new Date(date) > new Date(asOfDate)) continue;
+
+                    const medicinesData = parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"'));
+                    
+                    medicinesData.forEach(med => {
+                        const medicine = med.name || '';
+                        const mfr = med.mfr || '';
+                        const hsn = med.hsn || '';
+                        const batch = med.batch || '';
+                        const expiry = med.expiry || '';
+                        const qty = med.quantity || 0;
+                        const rate = med.rate || 0; // Capture rate for stock item
+                        const cgst = med.cgst || 0;
+                        const sgst = med.sgst || 0;
+                        const igst = med.igst || 0;
+
+                        const key = `${medicine}-${batch}`;
+
+                        if (!stockMap[key]) {
+                            stockMap[key] = {
+                                medicine,
+                                mfr,
+                                hsn,
+                                batch,
+                                expiry,
+                                rate, // Store rate
+                                cgst, // Store CGST
+                                sgst, // Store SGST
+                                igst, // Store IGST
+                                opening: 0,
+                                purchases: 0,
+                                sales: 0
+                            };
+                        }
+
+                        if (rowType === 'purchase') {
+                            stockMap[key].purchases += qty;
+                        } else if (rowType === 'sale') {
+                            stockMap[key].sales += qty;
+                        }
+                    });
+                }
+
+                const stockList = Object.values(stockMap).map(item => ({
+                    ...item,
+                    currentStock: item.opening + item.purchases - item.sales
+                }));
+
+                generateStockReport(stockList);
+
+            } catch (error) {
+                showMessage('Error', 'Failed to load stock report: ' + error.message);
+            }
+        }
+
+        function generateReport(dataList, reportType) {
+            const thead = document.getElementById('report-head');
+            const tbody = document.getElementById('report-body');
+            const reportTotal = document.getElementById('report-total-value');
+
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            let headerRow;
+            let totalValue = 0;
+
+            if (reportType === 'sales') {
+                headerRow = document.createElement('tr');
+                ['No', 'Bill No', 'Date', 'Customer', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
+                    .forEach(text => {
+                        const th = document.createElement('th');
+                        th.textContent = text;
+                        thead.appendChild(th); // Append to thead directly
+                    });
+                
+
+                dataList.forEach((item, index) => {
+                    item.medicines.forEach((med, medIndex) => {
+                        const row = document.createElement('tr');
+                        [
+                            index + 1 + (medIndex > 0 ? '' : ''), // Only show main row number for first medicine
+                            item.billNo,
+                            item.date,
+                            item.customerName,
+                            med.name,
+                            med.mfr,
+                            med.hsn,
+                            med.batch,
+                            med.expiry,
+                            med.quantity,
+                            med.rate.toFixed(2),
+                            med.discount.toFixed(2),
+                            med.cgst.toFixed(2), 
+                            med.sgst.toFixed(2), 
+                            med.igst.toFixed(2), 
+                            med.amount.toFixed(2)
+                        ].forEach(value => {
+                            const td = document.createElement('td');
+                            td.textContent = value;
+                            row.appendChild(td);
+                        });
+                        tbody.appendChild(row);
+                    });
+                    totalValue += item.total;
+                });
+                reportTotal.textContent = `Total Sales Value: ₹${totalValue.toFixed(2)}`;
+
+            } else if (reportType === 'purchases') {
+                headerRow = document.createElement('tr');
+                ['No', 'Inv No', 'Date', 'Vendor', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
+                    .forEach(text => {
+                        const th = document.createElement('th');
+                        th.textContent = text;
+                        thead.appendChild(th); // Append to thead directly
+                    });
+                
+
+                dataList.forEach((item, index) => {
+                    item.medicines.forEach((med, medIndex) => {
+                        const row = document.createElement('tr');
+                        [
+                            index + 1 + (medIndex > 0 ? '' : ''), // Only show main row number for first medicine
+                            item.purchaseInvoice,
+                            item.date,
+                            item.vendorName,
+                            med.name,
+                            med.mfr,
+                            med.hsn,
+                            med.batch,
+                            med.expiry,
+                            med.quantity,
+                            med.rate.toFixed(2),
+                            med.discount.toFixed(2),
+                            med.cgst.toFixed(2), 
+                            med.sgst.toFixed(2), 
+                            med.igst.toFixed(2), 
+                            med.amount.toFixed(2)
+                        ].forEach(value => {
+                            const td = document.createElement('td');
+                            td.textContent = value;
+                            row.appendChild(td);
+                        });
+                        tbody.appendChild(row);
+                    });
+                    totalValue += item.total;
+                });
+                reportTotal.textContent = `Total Purchases Value: ₹${totalValue.toFixed(2)}`;
+            }
+        }
+
+
+        function generateStockReport(stockList) {
+            const thead = document.getElementById('report-head');
+            const tbody = document.getElementById('report-body');
+            const reportTotal = document.getElementById('report-total-value');
+
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            const headerRow = document.createElement('tr');
+            ['No', 'Medicine', 'MFR', 'HSN', 'Batch', 'Expiry', 'Opening', 'Purchases', 'Sales', 'Current Stock']
+                .forEach(text => {
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    thead.appendChild(th); // Append to thead directly
+                });
+            
+
+            stockList.forEach((item, index) => {
+                const row = document.createElement('tr');
+                [
+                    index + 1,
+                    item.medicine,
+                    item.mfr,
+                    item.hsn,
+                    item.batch,
+                    item.expiry,
+                    item.opening,
+                    item.purchases,
+                    item.sales,
+                    item.currentStock
+                ].forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+
+            const totalItems = stockList.length;
+            const totalQty = stockList.reduce((sum, item) => sum + item.currentStock, 0);
+
+            reportTotal.textContent = `Total Items: ${totalItems} | Total Quantity: ${totalQty}`;
+        }
+
+        document.getElementById('report-stock-date').addEventListener('change', function () {
+            const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+            if (selectedType === 'stock') {
+                loadStockReport(this.value);
+            }
+        });
+
+        document.getElementById('report-from').addEventListener('change', function () {
+            const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+            if (selectedType === 'sales') {
+                loadSalesReport(this.value, document.getElementById('report-to').value);
+            } else if (selectedType === 'purchases') {
+                loadPurchasesReport(this.value, document.getElementById('report-to').value);
+            }
+        });
+
+        document.getElementById('report-to').addEventListener('change', function () {
+            const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+            if (selectedType === 'sales') {
+                loadSalesReport(document.getElementById('report-from').value, this.value);
+            } else if (selectedType === 'purchases') {
+                loadPurchasesReport(document.getElementById('report-from').value, this.value);
+            }
+        });
 
         function printReport() {
-            // Placeholder for print report logic
-            showMessage('Print Report', 'Report printing functionality to be implemented.');
+            window.print();
         }
 
-        function exportToCSV() {
-            // Placeholder for export to CSV logic
-            showMessage('Export CSV', 'Export to CSV functionality to be implemented.');
+        async function exportToCSV() {
+            try {
+                const csvData = await loadDataFromStorage();
+                const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `MBill-Report-${new Date().toISOString().slice(0,10)}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showMessage('Export Successful', 'Report CSV downloaded successfully.');
+            } catch (error) {
+                showMessage('Error', 'Failed to export CSV: ' + error.message);
+            }
         }
 
-        // Data Management Functions (Backup, Restore, Delete - assuming they interact with Apps Script)
-        function createBackupFile() {
-            showMessage('Creating Backup', 'Please wait while backup is being created...', 'alert');
-            google.script.run
-                .withSuccessHandler(function(url) {
-                    showMessage('Backup Ready', 'Your backup file is ready for download.');
-                    window.open(url, '_blank');
-                })
-                .withFailureHandler(function(error) {
-                    showMessage('Error', 'Failed to create backup: ' + error.message);
-                })
-                .createBackup();
+        // Data Management Functions
+        async function createBackupFile() {
+            try {
+                const csvData = await loadDataFromStorage();
+                const blob = new Blob([csvData], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `MBill-Backup-${new Date().toISOString().slice(0,10)}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showMessage('Backup Created', 'Backup file downloaded successfully.');
+            } catch (error) {
+                showMessage('Error', 'Failed to create backup: ' + error.message);
+            }
         }
 
         function restoreBackupFile() {
@@ -1724,40 +2421,40 @@
                 return;
             }
 
-            if (file.type !== 'application/json') {
-                showMessage('Invalid File Type', 'Please upload a JSON file.', 'alert');
+            if (file.type !== 'text/csv') {
+                showMessage('Invalid File Type', 'Please upload a CSV file.', 'alert');
                 return;
             }
 
             const reader = new FileReader();
 
-            reader.onload = function(e) {
-                const backupJsonString = e.target.result;
-                showMessage('Confirm Restore', 'Restoring from backup will overwrite your current data. Continue?', 'confirm', (confirmed) => {
+            reader.onload = async function(e) {
+                const csvData = e.target.result;
+                showMessage('Confirm Restore', 'Restoring from backup will overwrite your current data. Continue?', 'confirm', async (confirmed) => {
                     if (confirmed) {
-                        showMessage('Restoring Data', 'Restoring data from backup...', 'alert'); // Show loading message
-                        google.script.run
-                            .withSuccessHandler(function(response) {
-                                if (response.success) {
-                                    showMessage('Restore Success', response.message);
-                                    fileInput.value = ''; // Clear file input
-                                    // Optionally refresh the current page to reflect restored data
-                                    // location.reload();
-                                } else {
-                                    showMessage('Error', response.message);
-                                }
-                            })
-                            .withFailureHandler(function(error) {
-                                showMessage('Error', 'Failed to restore backup: ' + error.message);
-                            })
-                            .restoreBackup(backupJsonString);
+                        try {
+                            // Validate header of the uploaded CSV
+                            const lines = csvData.split('\n');
+                            if (lines.length > 0 && lines[0].trim() !== CSV_HEADER.trim()) {
+                                showMessage('Invalid File Format', 'The uploaded file does not have the expected header. Please upload a valid backup CSV.', 'alert');
+                                return;
+                            }
+                            await saveDataToStorage(csvData);
+                            showMessage('Restore Success', 'Data restored successfully from backup.');
+                            fileInput.value = ''; // Clear the file input
+                            // Reload current page data if applicable
+                            const currentPage = document.querySelector('.page-content:not([style*="display: none"])').id.replace('-page', '');
+                            showPage(currentPage); // Re-render the current page with new data
+                        } catch (error) {
+                            showMessage('Error', 'Failed to restore backup: ' + error.message);
+                        }
                     }
                 });
             };
             reader.readAsText(file);
         }
 
-        function confirmDeleteByInvoice() {
+        async function confirmDeleteByInvoice() {
             const type = document.getElementById('delete-transaction-type').value;
             const invoiceNumber = document.getElementById('delete-invoice-number').value;
 
@@ -1766,27 +2463,42 @@
                 return;
             }
 
-            showMessage('Confirm Delete', `Are you sure you want to delete ${type} invoice: ${invoiceNumber}? This action cannot be undone.`, 'confirm', (confirmed) => {
+            showMessage('Confirm Delete', `Are you sure you want to delete ${type} invoice: ${invoiceNumber}? This action cannot be undone.`, 'confirm', async (confirmed) => {
                 if (confirmed) {
-                    showMessage('Deleting Invoice', 'Deleting selected invoice...', 'alert');
-                    google.script.run
-                        .withSuccessHandler(function(response) {
-                            if (response.success) {
-                                showMessage('Delete Success', response.message);
-                                document.getElementById('delete-invoice-number').value = '';
-                            } else {
-                                showMessage('Error', response.message);
+                    try {
+                        let csvData = await loadDataFromStorage();
+                        const lines = csvData.split('\n');
+                        const header = lines[0];
+                        const newLines = [header];
+                        
+                        for (let i = 1; i < lines.length; i++) {
+                            if (lines[i].trim() === '') continue;
+                            const cols = lines[i].split(',');
+                            // Check if the row type and invoice number match
+                            // For sales, billNo is columns[1]
+                            // For purchases, purchaseInvoice is columns[17]
+                            const currentInvoiceNo = (cols[0] === 'sale') ? cols[1] : cols[17];
+                            
+                            if (!(cols[0] === type && currentInvoiceNo === invoiceNumber)) {
+                                newLines.push(lines[i]);
                             }
-                        })
-                        .withFailureHandler(function(error) {
-                            showMessage('Error', 'Failed to delete invoice: ' + error.message);
-                        })
-                        .deleteByInvoice(type, invoiceNumber);
+                        }
+                        
+                        const newCsvData = newLines.join('\n');
+                        await saveDataToStorage(newCsvData);
+                        showMessage('Delete Success', 'Invoice deleted successfully.');
+                        document.getElementById('delete-invoice-number').value = '';
+                        // Reload current page data if applicable
+                        const currentPage = document.querySelector('.page-content:not([style*="display: none"])').id.replace('-page', '');
+                        showPage(currentPage);
+                    } catch (error) {
+                        showMessage('Error', 'Failed to delete invoice: ' + error.message);
+                    }
                 }
             });
         }
 
-        function confirmDeleteByDateRange() {
+        async function confirmDeleteByDateRange() {
             const type = document.getElementById('delete-date-type').value;
             const fromDate = document.getElementById('delete-from-date').value;
             const toDate = document.getElementById('delete-to-date').value;
@@ -1796,58 +2508,185 @@
                 return;
             }
 
-            showMessage('Confirm Delete', `Are you sure you want to delete ${type} transactions from ${fromDate} to ${toDate}? This action cannot be undone.`, 'confirm', (confirmed) => {
+            showMessage('Confirm Delete', `Are you sure you want to delete ${type} transactions from ${fromDate} to ${toDate}? This action cannot be undone.`, 'confirm', async (confirmed) => {
                 if (confirmed) {
-                    showMessage('Deleting Transactions', 'Deleting transactions by date range...', 'alert');
-                    google.script.run
-                        .withSuccessHandler(function(response) {
-                            if (response.success) {
-                                showMessage('Delete Success', response.message);
-                            } else {
-                                showMessage('Error', response.message);
+                    try {
+                        let csvData = await loadDataFromStorage();
+                        const lines = csvData.split('\n');
+                        const header = lines[0];
+                        const newLines = [header];
+                        
+                        const fromDateObj = new Date(fromDate);
+                        const toDateObj = new Date(toDate);
+
+                        for (let i = 1; i < lines.length; i++) {
+                            if (lines[i].trim() === '') continue;
+                            const cols = lines[i].split(',');
+                            const rowType = cols[0];
+                            const transactionDate = new Date(cols[2]); // Assuming date is in column 2
+                            
+                            let shouldKeep = true;
+                            if (transactionDate >= fromDateObj && transactionDate <= toDateObj) {
+                                if (type === 'both') {
+                                    shouldKeep = false;
+                                } else if (rowType === type) {
+                                    shouldKeep = false;
+                                }
                             }
-                        })
-                        .withFailureHandler(function(error) {
-                            showMessage('Error', 'Failed to delete transactions by date range: ' + error.message);
-                        })
-                        .deleteByDateRange(type, fromDate, toDate);
+                            
+                            if (shouldKeep) {
+                                newLines.push(lines[i]);
+                            }
+                        }
+                        
+                        const newCsvData = newLines.join('\n');
+                        await saveDataToStorage(newCsvData);
+                        showMessage('Delete Success', 'Transactions deleted successfully.');
+                        // Reload current page data if applicable
+                        const currentPage = document.querySelector('.page-content:not([style*="display: none"])').id.replace('-page', '');
+                        showPage(currentPage);
+                    } catch (error) {
+                        showMessage('Error', 'Failed to delete transactions: ' + error.message);
+                    }
                 }
             });
         }
 
-        function confirmDeleteAll() {
+        async function confirmDeleteAll() {
             const adminPassword = document.getElementById('admin-password').value;
 
-            if (!adminPassword) {
-                showMessage('Password Required', 'Please enter the admin password to proceed with deleting all data.', 'alert');
+            if (adminPassword !== 'DELETE ALL') { // Simple hardcoded password for demonstration
+                showMessage('Incorrect Password', 'Please type "DELETE ALL" (case-sensitive) to confirm.', 'alert');
                 return;
             }
 
-            showMessage('Confirm Delete All Data', 'This will permanently delete ALL sales and purchase transactions. This action cannot be undone. Enter "DELETE ALL" to confirm.', 'confirm', (confirmed) => {
+            showMessage('Confirm Delete All Data', 'This will permanently delete ALL sales and purchase transactions. This action cannot be undone. Enter "DELETE ALL" to confirm.', 'confirm', async (confirmed) => {
                 if (confirmed) {
-                    showMessage('Deleting All Data', 'Attempting to delete all data...', 'alert');
-                    google.script.run
-                        .withSuccessHandler(function(response) {
-                            if (response.success) {
-                                showMessage('Delete Success', response.message);
-                                document.getElementById('admin-password').value = '';
-                            } else {
-                                showMessage('Error', response.message);
-                            }
-                        })
-                        .withFailureHandler(function(error) {
-                            showMessage('Error', 'Failed to delete all data: ' + error.message);
-                        })
-                        .deleteAllData(adminPassword);
+                    try {
+                        // Clear the entire file (keep headers)
+                        const newCsvData = CSV_HEADER;
+                        
+                        await saveDataToStorage(newCsvData);
+                        showMessage('Delete Success', 'All data has been deleted successfully.');
+                        document.getElementById('admin-password').value = '';
+                        // Reload current page data if applicable
+                        const currentPage = document.querySelector('.page-content:not([style*="display: none"])').id.replace('-page', '');
+                        showPage(currentPage);
+                    } catch (error) {
+                        showMessage('Error', 'Failed to delete all data: ' + error.message);
+                    }
                 }
             });
         }
-    </script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script>
-        // Placeholder for the google.script.run functions.
-        // These are typically provided by Google Apps Script automatically when deployed as a web app.
-        // No direct client-side implementation needed for google.script.run functions.
+
+        /**
+         * Auto-fills medicine details based on the medicine name entered.
+         * It searches through purchase and opening stock data.
+         * If multiple batches are found, it prompts the user to select one.
+         * @param {HTMLInputElement} inputElement The input field where medicine name is entered.
+         */
+        async function autoFillMedicineDetails(inputElement) {
+            const medicineName = inputElement.value.trim();
+            const currentRow = inputElement.closest('.medicine-row');
+            
+            // Clear previous values in the current row
+            currentRow.querySelector('.mfr-code').value = '';
+            currentRow.querySelector('.hsn-code').value = '';
+            currentRow.querySelector('.batch-no').value = '';
+            currentRow.querySelector('.expiry').value = '';
+            currentRow.querySelector('.quantity').value = '';
+            currentRow.querySelector('.quantity').removeAttribute('max'); // Remove max attribute
+            currentRow.querySelector('.rate').value = '';
+            currentRow.querySelector('.cgst-rate').value = '0';
+            currentRow.querySelector('.sgst-rate').value = '0';
+            currentRow.querySelector('.igst-rate').value = '0';
+            calculateInvoiceTotals();
+
+            if (medicineName.length < 3) { // Require at least 3 characters for search
+                return;
+            }
+
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
+                const matchingBatches = [];
+
+                if (rows.length <= 1) {
+                    showMessage('No Data', 'No purchase or stock data available to autofill.', 'alert');
+                    return;
+                }
+
+                const today = new Date();
+                // Load stock report to get current stock for each batch
+                const stockMap = {};
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    const recordDate = new Date(columns[2]);
+                    const rowType = columns[0];
+
+                    // Only consider records up to today's date for stock calculation
+                    if (recordDate > today) continue;
+
+                    const medicinesData = parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"'));
+                    
+                    medicinesData.forEach(med => {
+                        const medName = med.name || '';
+                        const batch = med.batch || '';
+                        const qty = med.quantity || 0;
+
+                        const key = `${medName.toLowerCase()}-${batch.toLowerCase()}`;
+
+                        if (!stockMap[key]) {
+                            stockMap[key] = {
+                                medicine: medName,
+                                mfr: med.mfr || '',
+                                hsn: med.hsn || '',
+                                batch: batch,
+                                expiry: med.expiry || '',
+                                rate: med.rate || 0,
+                                cgst: med.cgst || 0,
+                                sgst: med.sgst || 0,
+                                igst: med.igst || 0,
+                                currentStock: 0 // Will be calculated below
+                            };
+                        }
+
+                        if (rowType === 'purchase') {
+                            stockMap[key].currentStock += qty;
+                        } else if (rowType === 'sale') {
+                            stockMap[key].currentStock -= qty;
+                        }
+                    });
+                }
+
+                // Filter for matching medicine names and available stock
+                for (const key in stockMap) {
+                    const item = stockMap[key];
+                    if (item.medicine.toLowerCase().includes(medicineName.toLowerCase()) && item.currentStock > 0) {
+                        matchingBatches.push(item);
+                    }
+                }
+
+                if (matchingBatches.length === 0) {
+                    showMessage('No Match', 'No matching medicine or available stock found.', 'alert');
+                } else if (matchingBatches.length === 1) {
+                    applySelectedBatchToRow(matchingBatches[0], currentRow);
+                } else {
+                    // Sort batches by expiry date (earliest first)
+                    matchingBatches.sort((a, b) => {
+                        const [m1, y1] = a.expiry.split('/').map(Number);
+                        const [m2, y2] = b.expiry.split('/').map(Number);
+                        const dateA = new Date(2000 + y1, m1 - 1); // Assuming 20xx for year
+                        const dateB = new Date(2000 + y2, m2 - 1);
+                        return dateA - dateB;
+                    });
+                    showBatchSelectionModal(medicineName, matchingBatches, currentRow);
+                }
+
+            } catch (error) {
+                showMessage('Error', 'Failed to retrieve medicine details: ' + error.message);
+            }
+        }
     </script>
 </body>
 </html>
