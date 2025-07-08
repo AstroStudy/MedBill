@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganesh Billing Solutions</title>
+    <title>Ganesh Software Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -14,29 +14,44 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
         }
-
-        
+ 		
         :root {
-            --primary: #2c7a5a;
-            --secondary: #3daa7d;
-            --light: #f0f7f4;
-            --dark: #1e3f34;
-            --accent: #ff6b35;
-            --border: #d1e5dc;
+            --primary: #1e5f8c;    /* Darker blue (replaces #2c7a5a) */
+	    --secondary: #2a7fbf;  /* Medium blue (replaces #3daa7d) */
+	    --light: #f0f7fc;      /* Very light blue (replaces #f0f7f4) */
+	    --dark: #1a3a5f;       /* Navy blue (replaces #1e3f34) */
+	    --accent: #ff6b35;     /* Keeping the same orange accent */
+	    --border: #d1e0ed;     /* Light blue border (replaces #d1e5dc) */
         }
+	
+
+	body::before {
+	    content: "";
+	    position: fixed;
+	    top: 0; 
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    border: 4px double #000; /* Double border for each printed page */
+	    pointer-events: none;
+	    z-index: 9999;
+	}
 
         body {
-            background: linear-gradient(135deg, #f0f7f4 0%, #e1f0e9 100%);
-            min-height: 100vh; height: 100%;
-            display: flex; transform: scale(0.85); transform-origin: top left; width: 117.65%;
+            background: linear-gradient(135deg, #f0f7f4 0%, #e1f0e9 100%); 
+            height: 100%; /* Changed height to min-height: 100vh */
+            display: flex;
+	    justify-content: center;
+	    align-items: flex-start;
             color: var(--dark);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.0; height: auto !important; margin: 0 !important;
         }
+
 
         /* Navigation sidebar */
         .sidebar {
-            width: 200px;
+            width: 200px; height: 100vh;
             background: var(--dark);
             color: white;
             padding: 20px 0;
@@ -45,8 +60,9 @@
             flex-direction: column;
         }
 
+
         .logo-container {
-            padding: 0 20px 20px;
+            padding: 0 20px 10px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 20px;
             text-align: center;
@@ -55,7 +71,7 @@
         .logo {
             font-size: 16px;
             font-weight: 700;
-            color: white;
+            color: white; margin-top: 0;
             margin-bottom: 5px;
         }
 
@@ -67,7 +83,7 @@
         .nav-btn {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
+            padding: 12px 24px;
             margin: 5px 10px;
             background: transparent;
             color: rgba(255,255,255,0.8);
@@ -78,6 +94,18 @@
             font-size: 14px;
             transition: all 0.3s ease;
         }
+
+
+
+        #clear-all-btn.disabled {
+	    opacity: 0.5;
+	    cursor: not-allowed;
+	    pointer-events: none;
+	}
+
+
+
+
 
         .nav-btn i {
             margin-right: 12px;
@@ -99,24 +127,14 @@
 
         /* Main content area */
         .main-content {
-            flex: 1;
-            padding: 5px; 
+            flex: none ; transform: none;
+            padding: 1px; 
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--border);
+            display: block;            
         }
 
         .page-title {
-            font-size: 18px; width: 100% ;
+            font-size: 8px; width: 100% ;
             font-weight: 700; text-align: center;
             color: var(--dark);
         }
@@ -140,52 +158,52 @@
         }
 
         /* Common styles for containers */
-        .container {
-            background: white;
+        .container {transform: none;
+            background: white; width: 70%; 
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 10px;
+            margin: 10px 30px 0 10px !important;  
         }
 
         .invoice-container {
-            width: 8.27in;
-            min-height: 5.83in;
-            height: auto;
-            margin: 0 auto;
-            padding: 15px;
-            border: 1px solid var(--border);
-            box-sizing: border-box;
-            page-break-after: avoid;
-            page-break-inside: avoid;
-            font-size: 12px;
-        }
+	    width: 8.27in; transform: none;    
+	    background: white;
+	    height: 100%;
+	    margin: 0 40px 0 10px !important;
+	    padding: 0 8px;
+	    box-sizing: border-box;
+	    page-break-after: avoid;
+	    page-break-inside: avoid;
+	    font-size: 12px;
+	}
 
         /* Invoice Header */
         .invoice-header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary);
-            gap: 10px;
+            margin-bottom: 0px; margin-left: 3px;
+            padding-bottom: 0px;
+            gap: 15px;
         }
 
         .vendor-info {
-            width: 40%; /* Adjusted width for better layout with customer details */
-            font-size: 11px;
-            line-height: 1.4;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            padding: 8px;
+            max-width: 100%; /* Adjusted width for better layout with customer details */
+            font-size: 11px; 
+            line-height: 1.1;margin-left: 8px;
+            /* UPDATED: Reduced border thickness and vertical padding */
+            border: 2px solid var(--border); 
+            border-radius: 2px;
+            padding: 0px 0 !important; /* Reduced from 2px 0 */
+            margin-bottom: 0 !important;
         }
 
         .vendor-name {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
         .invoice-meta {
@@ -199,13 +217,13 @@
 
         .invoice-title {
             text-align: center;
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-top: 4px;
             padding: 4px;
             background: rgba(61, 170, 125, 0.1);
-            border-radius: 5px;
+            border-radius: 4px;
         }
 
         /* Customer Details - New Compact Layout */
@@ -213,20 +231,22 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 0 !important;
         }
 
         .customer-box {
-            flex: 1;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            padding: 8px;
+            flex: 1; 
+            /* UPDATED: Reduced border thickness and vertical padding */
+            border: 2px solid var(--border); 
+            margin-right: 8px;
+            border-radius: 2px;
+            padding: 0 !important;
             font-size: 11px;
         }
 
         .customer-box-header {
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-weight: 700;margin-bottom: 0 !important;
+            margin-bottom: 2px !important;
             color: var(--primary);
             font-size: 8px;
         }
@@ -234,37 +254,99 @@
         .customer-inputs {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 2px;
         }
 
         .customer-inputs input {
-            width: 100%;
-            padding: 6px 8px;
+            width: 100%; margin: 0 !important;       /* Remove default input margins */    		
+            padding: 4px 8px !important; /* Adjust padding for compactness */
             border: 1px solid var(--border);
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
         }
+
+
+
+	/* Customer form styles */
+	.license-entry {
+	    display: flex;
+	    gap: 8px;
+	    margin-bottom: 8px;
+	    align-items: center;
+	}
+
+	.license-entry input {
+	    flex: 1;
+	    padding: 6px;
+	    font-size: 12px;
+	}
+
+	.btn-small {
+	    padding: 5px 10px;
+	    font-size: 12px;
+	}
+
+
+
+
 
         .invoice-info-box {
             width: 100%; /* Changed to 100% to take full width */
-            display: flex;
-            border: 1px solid var(--border);
-            align-items: center;
-            gap: 20px;
-            border-radius: 5px;
-            padding: 8px;
-            flex-wrap: wrap;
-            font-size: 11px;
+            display: flex; margin-bottom: 6px;  align-items: center;        
+            justify-content: center;
+            gap: 30px;
+            border-radius: 0px;
+            padding: 0;
+            flex-wrap: nowrap;
+            font-size: 10px; line-height: 0;
         }
 
         /* Medicine Table */
         .medicine-table {
-            width: 100%;
+            width: 100%; flex-wrap: wrap;
             border-collapse: collapse;
-            margin: 10px 0;
+            margin: 0; 
             font-size: 10px;
-            table-layout: fixed;
+            table-layout: fixed; 
         }
+
+
+
+	.suggestions-container {
+	        position: relative;
+	        display: inline-block;
+	        width: 100%;
+	    }
+    
+	.suggestions-list {
+		position: absolute;
+	        z-index: 1000;
+	        width: 100%;
+	        max-height: 200px;
+	        overflow-y: auto;
+	        background: white;
+	        border: 1px solid var(--border);
+	        border-radius: 4px;
+	        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	        display: none;
+	    }
+    
+	.suggestion-item {
+	        padding: 8px;
+	        cursor: pointer;
+	        border-bottom: 1px solid var(--border);
+	    }
+    
+    	.suggestion-item:hover {
+	        background-color: var(--light);
+	    }
+    
+	.suggestion-item.highlighted {
+	        background-color: var(--primary);
+	        color: white;
+	    }
+
+
 
         .medicine-table th {
             background: var(--primary);
@@ -302,13 +384,14 @@
         .action-buttons {
             display: flex;
             justify-content: flex-end;
-            margin-bottom: 8px;
+            margin: 0 !important;
+	    padding: 0 !important;
         }
 
         .btn {
             background: var(--primary);
             color: white;
-            border: none;
+            border: none; margin: 0 !important;
             padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
@@ -340,7 +423,7 @@
         .totals-section {
             display: flex;
             justify-content: space-between;
-            margin-top: 12px;
+            margin-top: 4px;
         }
 
         .payment-info {
@@ -349,7 +432,7 @@
 
         .payment-mode {
             font-size: 11px;
-            margin-bottom: 8px;
+            margin-bottom: 0;
         }
 
         .payment-mode select {
@@ -361,8 +444,8 @@
         }
 
         .bank-details {
-            margin-top: 8px;
-            padding: 8px;
+            margin-top: 4px;
+            padding: 4px;
             background: rgba(240, 247, 244, 0.5);
             border-radius: 5px;
             font-size: 10px;
@@ -376,8 +459,8 @@
         }
 
         .qr-code {
-            width: 70px;
-            height: 70px;
+            width: 68px;
+            height: 68px;
             background: #f8f8f8;
             display: flex;
             align-items: center;
@@ -424,26 +507,26 @@
         .invoice-footer {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
-            padding-top: 10px;
+            margin-top: 0; margin-bottom: 0;
+            padding-top: 0;
             border-top: 1px solid var(--border);
             font-size: 10px;
             line-height: 1.4;
         }
 
         .declaration {
-            width: 70%;
+            width: 70%; hieght: 30%;margin-bottom: 0;
         }
 
         .declaration ul {
-            margin-top: 3px;
+            margin-top: 0; margin-bottom: 0;
             padding-left: 15px;
             font-size: 9px;
         }
 
         .signature {
-            width: 25%;
-            text-align: center;
+            width: 50%;
+            text-align: center; margin-bottom :0px !important;
         }
 
         .signature-line {
@@ -457,7 +540,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 15px; 
         }
 
         .form-group {
@@ -485,12 +568,12 @@
         .report-controls {
             display: flex;
             gap: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 4px;
             flex-wrap: wrap;
         }
 
         .date-filter {
-            display: flex;
+            display: flex; 
             gap: 8px;
             align-items: center;
             background: var(--light);
@@ -522,11 +605,11 @@
         }
 
         .btn-csv {
-            background: #27ae60;
+            background: #2a7fbf;
         }
 
         .report-type-selector {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             padding: 8px 0;
         }
 
@@ -543,14 +626,14 @@
         .col-mfr { width: 6%; } 
         .col-hsn { width: 6%; } 
         .col-batch { width: 7%; } 
-        .col-expiry { width: 7%; }
+        .col-expiry { width: 5%; }
         .col-qty { width: 6%; }
         .col-rate { width: 7%; }
         .col-disc { width: 6%; } 
-        .col-cgst { width: 5%; } 
-        .col-sgst { width: 5%; } 
-        .col-igst { width: 5%; } 
-        .col-amount { width: 12%; }
+        .col-cgst { width: 6%; } 
+        .col-sgst { width: 6%; } 
+        .col-igst { width: 6%; } 
+        .col-amount { width: 11%; }
         .col-action { width: 2%; }
 
         /* New styles for report tables to ensure column alignment */
@@ -563,61 +646,109 @@
         #report-page .medicine-table th:nth-child(6), #report-page .medicine-table td:nth-child(6) { width: 5%; } /* MFR */
         #report-page .medicine-table th:nth-child(7), #report-page .medicine-table td:nth-child(7) { width: 5%; } /* HSN */
         #report-page .medicine-table th:nth-child(8), #report-page .medicine-table td:nth-child(8) { width: 7%; } /* Batch */
-        #report-page .medicine-table th:nth-child(9), #report-page .medicine-table td:nth-child(9) { width: 7%; } /* Expiry */
+        #report-page .medicine-table th:nth-child(9), #report-page .medicine-table td:nth-child(9) { width: 5%; } /* Expiry */
         #report-page .medicine-table th:nth-child(10), #report-page .medicine-table td:nth-child(10) { width: 5%; } /* Qty */
         #report-page .medicine-table th:nth-child(11), #report-page .medicine-table td:nth-child(11) { width: 6%; } /* Rate */
         #report-page .medicine-table th:nth-child(12), #report-page .medicine-table td:nth-child(12) { width: 5%; } /* Disc. */
-        #report-page .medicine-table th:nth-child(13), #report-page .medicine-table td:nth-child(13) { width: 5%; } /* CGST% */
-        #report-page .medicine-table th:nth-child(14), #report-page .medicine-table td:nth-child(14) { width: 5%; } /* SGST% */
-        #report-page .medicine-table th:nth-child(15), #report-page .medicine-table td:nth-child(15) { width: 5%; } /* IGST% */
-        #report-page .medicine-table th:nth-child(16), #report-page .medicine-table td:nth-child(16) { width: 11%; } /* Amount */
+        #report-page .medicine-table th:nth-child(13), #report-page .medicine-table td:nth-child(13) { width: 6%; } /* CGST% */
+        #report-page .medicine-table th:nth-child(14), #report-page .medicine-table td:nth-child(14) { width: 6%; } /* SGST% */
+        #report-page .medicine-table th:nth-child(15), #report-page .medicine-table td:nth-child(15) { width: 6%; } /* IGST% */
+        #report-page .medicine-table th:nth-child(16), #report-page .medicine-table td:nth-child(16) { width: 10%; } /* Amount */
 
         /* Specific column widths for Stock Report */
-        #report-page .medicine-table.stock-report th:nth-child(1), #report-page .medicine-table.stock-report td:nth-child(1) { width: 5%; } /* No */
-        #report-page .medicine-table.stock-report th:nth-child(2), #report-page .medicine-table.stock-report td:nth-child(2) { width: 25%; } /* Medicine */
-        #report-page .medicine-table.stock-report th:nth-child(3), #report-page .medicine-table.stock-report td:nth-child(3) { width: 8%; } /* MFR */
-        #report-page .medicine-table.stock-report th:nth-child(4), #report-page .medicine-table.stock-report td:nth-child(4) { width: 8%; } /* HSN */
-        #report-page .medicine-table.stock-report th:nth-child(5), #report-page .medicine-table.stock-report td:nth-child(5) { width: 12%; } /* Batch */
-        #report-page .medicine-table.stock-report th:nth-child(6), #report-page .medicine-table.stock-report td:nth-child(6) { width: 12%; } /* Expiry */
-        #report-page .medicine-table.stock-report th:nth-child(7), #report-page .medicine-table.stock-report td:nth-child(7) { width: 10%; } /* Opening */
-        #report-page .medicine-table.stock-report th:nth-child(8), #report-page .medicine-table.stock-report td:nth-child(8) { width: 10%; } /* Purchases */
-        #report-page .medicine-table.stock-report th:nth-child(9), #report-page .medicine-table.stock-report td:nth-child(9) { width: 10%; } /* Sales */
-        #report-page .medicine-table.stock-report th:nth-child(10), #report-page .medicine-table.stock-report td:nth-child(10) { width: 10%; } /* Current Stock */
+        #report-page .medicine-table.stock-report th:nth-child(1), 
+#report-page .medicine-table.stock-report td:nth-child(1) { width: 5%; } /* No */
+#report-page .medicine-table.stock-report th:nth-child(2), 
+#report-page .medicine-table.stock-report td:nth-child(2) { width: 25%; } /* Medicine */
+#report-page .medicine-table.stock-report th:nth-child(3), 
+#report-page .medicine-table.stock-report td:nth-child(3) { width: 8%; } /* MFR */
+#report-page .medicine-table.stock-report th:nth-child(4), 
+#report-page .medicine-table.stock-report td:nth-child(4) { width: 8%; } /* HSN */
+#report-page .medicine-table.stock-report th:nth-child(5), 
+#report-page .medicine-table.stock-report td:nth-child(5) { width: 12%; } /* Batch */
+#report-page .medicine-table.stock-report th:nth-child(6), 
+#report-page .medicine-table.stock-report td:nth-child(6) { width: 12%; } /* Expiry */
+#report-page .medicine-table.stock-report th:nth-child(7), 
+#report-page .medicine-table.stock-report td:nth-child(7) { width: 10%; } /* Purchases */
+#report-page .medicine-table.stock-report th:nth-child(8), 
+#report-page .medicine-table.stock-report td:nth-child(8) { width: 10%; } /* Sales */
+#report-page .medicine-table.stock-report th:nth-child(9), 
+#report-page .medicine-table.stock-report td:nth-child(9) { width: 10%; } /* Current Stock */
 
 
         /* Print specific styles */
         @media print {
+
+	html, body {
+		    height: auto !important;
+		    overflow: visible !important;
+		    width: 100%; /* Ensure full width usage */
+	            min-height: 0 !important; /* No minimum height forcing extra space */
+        	    margin: 0 !important;
+                    padding: 0 !important;
+		    }
+
+
             body {
-                padding: 0;
-                margin: 0;
-                background: white;
-                font-size: 10px;
-            }
-            
+	        padding: 0; /* Changed from 12px 0 to 0 to remove extra top/bottom space */
+	        margin: 0;
+	        background: white;
+	        font-size: 10px;
+	        display: flex; /* Make the body a flex container */
+	        justify-content: center; /* Center content horizontally within the body */
+	        align-items: flex-start; /* Align items to the top, allowing pages to flow naturally */
+	    }
+
+           
             @page {
-                margin: 0;
+                margin: 3mm;  
             }
 
-            .sidebar, .header-bar, .btn-add, .btn-remove, .no-print, #messageModal, #batchSelectionModal {
+            .sidebar, .btn-add, .btn-remove, .no-print, #messageModal, #invoice-print-actions,  #batchSelectionModal {
+                display: none !important;
+            }
+
+	    {
                 display: none !important;
             }
             
             .main-content {
-                padding: 0;
+                padding: 0; transform-origin: top center; overflow: visible !important;
+		flex: none !important; /* Do not take up flexible space */
+                width: 100% !important; /* Ensure it takes full width */
+                margin: 0 !important;
             }
             
             .invoice-container {
-                border: none;
-                box-shadow: none;
-                width: 100%;
-                margin: 0 !important;
-                min-height: auto;
-                padding: 0;
-                transform: none;
-                transform-origin: top left;
-                font-size: 9px;
-                page-break-inside: avoid;
+	        /* Keep existing necessary styles */
+	        width: 100%; transform: scaleX(1.18) scaleY(1.0);
+	        page-break-inside: avoid;
+	        page-break-after: auto; min-height: auto !important;
+	        box-shadow: none;
+	        height: auto;
+	        padding: 0  !important;
+	        transform-origin: top center;
+	        font-size: 9px !important;
+	        margin: 0 auto !important; /* This will now effectively center the invoice container horizontally */
+	    }
+
+	    /* Aggressive line-height for all relevant text and input elements */
+            p, li, div:not(.sidebar):not(.main-content):not(.invoice-container), span, 
+            table, tbody, tr, td, th, h1, h2, h3, h4, h5, h6, input, select {
+            line-height: 1.2 !important; /* Compress line height slightly for readability */
             }
+
+
+	    .invoice-info-box {
+		margin-top: 0 !important;
+	        margin-bottom: 0 !important; /* Ensure no extra space at the very bottom */
+	    }
+
+
+	    .invoice-footer {
+		margin-top: 0 !important;
+	        margin-bottom: 0 !important; /* Ensure no extra space at the very bottom */
+	    }
             
             .btn {
                 display: none;
@@ -628,7 +759,7 @@
             }
             
             .medicine-table th, .medicine-table td {
-                padding: 3px 2px;
+                padding: 1px !important;
             }
             
             .medicine-table input, .medicine-table select {
@@ -637,11 +768,11 @@
             }
             
             .invoice-title {
-                font-size: 12px;
+                font-size: 8px; width: 100%;
             }
             
             .vendor-info, .invoice-meta {
-                font-size: 9px;
+                font-size: 9px; width: 100%;
             }
             
             .customer-box-header {
@@ -651,6 +782,12 @@
             .bank-details {
                 font-size: 8px;
             }
+
+	
+	    .qr-code {
+            	width: 68px;
+	        height: 68px;
+		}
             
             .totals table {
                 font-size: 9px;
@@ -666,20 +803,24 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 1200px) {
-            .sidebar {
-                width: 180px;
+        @media screen and (min-width: 0px) {
+	    .invoice-container {
+	        width: 100%;
+	        max-width: 800px; /* or any fixed max width */
+	        margin: 0 auto;    /* center horizontally */
+	        padding: 15px;
+        	box-sizing: border-box;
+		}	
+	    .sidebar {
+                width: 180px; 
             }
             
-            .invoice-container {
-                width: 100%;
-                padding: 15px;
-            }
+            
         }
 
-        @media (max-width: 992px) {
+        @media (width: 100%) {
             body {
-                flex-direction: column;
+                flex-direction: column; aling: top center;
             }
             
             .sidebar {
@@ -709,7 +850,7 @@
 
         @media (max-width: 768px) {
             .customer-details-section {
-                flex-direction: column;
+                flex-direction: start-flex;
             }
             
             .customer-box, .invoice-info-box {
@@ -736,7 +877,9 @@
             }
             
             .qr-code {
-                margin: 8px 0 0 0; margin-left: 10px !important;margin-top: 0 !important;
+            	width: 68px;
+	        height: 68px;
+                margin: 2px 0 0 0; margin-left: 10px !important;margin-top: 0 !important;
                 align-self: flex-start;
             }
         }
@@ -833,7 +976,7 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1000; /* Sit on top */
-            left: 0;
+            left: 0;margin-botton: 2px;
             top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
@@ -845,7 +988,7 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: auto;
+            margin-botton: 2px;
             padding: 20px;
             border: 1px solid #888;
             border-radius: 8px;
@@ -858,14 +1001,14 @@
         .modal-header {
             padding: 10px 0;
             border-bottom: 1px solid #eee;
-            margin-bottom: 10px;
+            margin-bottom: 10px; 
             font-size: 18px;
             font-weight: 600;
             color: var(--primary);
         }
 
         .modal-body {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             font-size: 14px;
             line-height: 1.5;
         }
@@ -931,65 +1074,293 @@
         #batchSelectionModal button.select-batch-btn:hover {
             background-color: #308060;
         }
+
+
+.tracker-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        
+        .tracker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tracker-title {
+            font-size: 22px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .tracker-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-size: 13px;
+        }
+        
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .filter-actions {
+            display: flex; flex-wrap: wrap;flex: 1 1 100%; /* Each div takes full width, forcing a new line */
+            gap: 10px; max-width: 100%; /* Ensures it doesn't exceed parent width */
+            justify-content: flex-end;
+            margin-top: 10px;
+            
+        }
+        
+        .tracker-table-container {
+            overflow-x: auto;
+        }
+        
+        .tracker-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 13px;
+        }
+        
+        .tracker-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .tracker-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tracker-table tr:nth-child(even) {
+            background-color: rgba(240, 247, 252, 0.3);
+        }
+        
+        .tracker-table tr:hover {
+            background-color: rgba(42, 127, 191, 0.1);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .tracker-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tracker-filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .tracker-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .tracker-title {
+                margin-bottom: 15px;
+            }
+        }
+
+
+
+
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="logo-container">
             <div class="logo">GANESH </div>
-            <div class="logo-sub">Billing Solutions</div>
+            <div class="logo-sub">Software Solutions</div>
         </div>
-        <button class="nav-btn active" onclick="showPage('invoice')">
+        <button class="nav-btn active" onclick="showPage('invoice-page')">
             <i class="fas fa-file-invoice"></i> Invoice
         </button>
-        <button class="nav-btn" onclick="showPage('purchases')">
+        <button class="nav-btn" onclick="showPage('purchases-page')">
             <i class="fas fa-cart-plus"></i> Purchases
         </button>
-        <button class="nav-btn" onclick="showPage('report')">
+        <button class="nav-btn" onclick="showPage('report-page')">
             <i class="fas fa-chart-bar"></i> Reports
         </button>
-        <button class="nav-btn" onclick="showPage('data-management')">
+	
+	<button class="nav-btn" onclick="showPage('tracker-page')"> 
+		<i class="fas fa-search"></i> Tracker
+	</button>
+
+        <button class="nav-btn" onclick="showPage('data-management-page')">
             <i class="fas fa-database"></i> Data Management
         </button>
+	
+	<button class="nav-btn" onclick="clearAllData()" id="clear-all-btn" style="margin-top: auto; margin-bottom: 20px;">
+	    <i class="fas fa-trash-alt"></i> Clear All
+	</button>
+
     </div>
     
-    <div class="main-content">
-        <div class="header-bar">
-            <div class="page-title" id="current-page-title">Tax Invoice</div>
-        </div>
-            
+    <div class="main-content">                  
         <div id="invoice-page" class="page-content">
+            <!-- New container for all buttons and input -->
+            <div id="invoice-actions-top" class="no-print flex flex-wrap justify-center items-center p-1 gap-2 bg-gray-100 rounded-md mb-0">
+                <!-- Print/Save Buttons -->
+                <button class="btn" onclick="window.print()" style="background: #2a7fbf;">
+                    <i class="fas fa-print"></i> Print Invoice
+                </button>
+                <button class="btn" onclick="saveSales()" style="background: #2a7fbf;">
+                    <i class="fas fa-save"></i> Save Invoice
+                </button>
+                <button class="btn" onclick="printAndSaveSales()" style="background: #22a1e6;">
+                    <i class="fas fa-print"></i> Print & Save
+                </button>
+
+                <!-- Add Medicine Button -->
+                <button class="btn btn-add" onclick="addNewRow()">
+                    <i class="fas fa-plus"></i> Add Medicine
+                </button>
+
+                <!-- Add New Customer Button -->
+                <button class="btn btn-small" onclick="openCustomerForm()">
+                    <i class="fas fa-plus"></i> Add New Customer
+                </button>
+
+                <!-- Load Invoice Button and Input -->
+                <button class="btn" onclick="loadInvoiceByBillNumber()" style="background-color: #3498db;">
+                    <i class="fas fa-search"></i> Load Invoice
+                </button>
+                <input type="text" id="search-bill-number" placeholder="Enter Bill No" class="p-1 text-sm border rounded w-auto">
+            </div>
+
             <div class="container invoice-container">
-                <div class="invoice-title"> ||<< MEDICAL BILL >>||<< TAX INVOICE >>|| GANESH BILLING SOLUTIONS : ravikishoreca@gmail.com ||</div>
+                <div class="invoice-title" style="width:100%; text-align: center; color: black;"> This application is developed by <a href="https://kishoredvr.github.io/Exploring/" target="_blank" 			style="color: #22a1e6; font-weight: bold; font-size: 1.1em; text-decoration: none;"> Kishore DVR</a>.<span style="color: black;">To contact me</span> 
+		  <a href="https://kishoredvr.github.io/Exploring/MessageMe.html" target="_blank" style="color: #22a1e6; font-weight: bold; font-size: 1.1em; text-decoration: none;">
+		    Click here
+		  </a>
+	    </div>
                 
                 <div class="invoice-header">    
-                    <div class="vendor-info" style="width: 40%">
-                        <div class="vendor-name">City Medical Store</div>
-                        <div>123 Health Street, Medical Town - 400001</div>
-                        <div>GSTIN: 22ABCDE1234F1Z5 | DL No: DL-1234/R/2020</div>
-                        <div>Phone: 9876543210 | Email: info@citymedicals.com</div>
+                    <div class="vendor-info" style="width: 40%; margin-left :4px;">
+                        <div class="vendor-name" style="margin-top :4px;"> Jaya Surya Medical Agencies</div>
+                        <div>Flat No.288, 5th Line, NGGO`S Colony, Guntur - 522004</div>
+                        <div>GSTIN: 37ADTPL5097J2ZN </div>
+			<div>DL No:20B; AP/07/01/2022-28815 | DL No:21B; AP/07/01/2022-28816 </div>
+                        <div>Phone: 8125220635 | Email:veeranjaneyaprasad52@gmail.com</div>
                     </div>
-                    <div class="customer-box">
-                        <div class="customer-box-header">CUSTOMER DETAILS</div>
-                        <div class="customer-inputs">
-                            <input type="text" id="customer-name" placeholder="Customer Name">
-                            <input type="text" id="customer-address" placeholder="Address (optional)">
-                        </div>
-                    </div>
-                    <div class="invoice-info-box" style="width: 100%; text-align: center;">
-                        <div class="customer-box-header">BILLING INFORMATION</div>
+                    <div class="customer-box" style="bottom-margin: 0;">
+			    <div class="customer-box-header">CUSTOMER DETAILS</div>
+			    <div class="customer-inputs">
+			    <div class="suggestions-container">
+		            <input type="text" id="customer-name" placeholder="Customer Name" oninput="showCustomerSuggestions(this); checkForModifications()">
+		            <div class="suggestions-list" id="customer-suggestions"></div>
+		   </div>	
+		  
+          	        <input type="text" id="customer-address" placeholder="Address (optional)" oninput="checkForModifications()">
+	         	  </div>
+		   </div>
+
+
+
+		<!-- Customer Form Modal -->
+		<div id="customerFormModal" class="modal" >
+		    <div class="modal-content">
+		        <div class="modal-header">Add New Customer</div>
+		        <div class="modal-body">
+		            <form id="customer-form">
+		                <div class="form-group">
+		                    <label>Customer Name*</label>
+		                    <input type="text" id="customer-form-name" required>
+		                </div>
+		                <div class="form-group">
+		                    <label>Address</label>
+		                    <textarea id="customer-form-address"></textarea>
+		                </div>
+		                <div class="form-group">
+		                    <label>GSTIN</label>
+		                    <input type="text" id="customer-form-gstin">
+		                </div>
+		                <div class="form-group">
+		                    <label>Drug Licenses</label>
+		                    <div id="license-container">
+		                        <div class="license-entry">
+		                            <input type="text" placeholder="License Type" class="license-type">
+		                            <input type="text" placeholder="License Number" class="license-number">
+		                            <button type="button" class="btn btn-remove" onclick="removeLicense(this)">
+		                                <i class="fas fa-times"></i>
+		                            </button>
+		                        </div>
+		                    </div>
+		                    <button type="button" class="btn btn-small" onclick="addLicense()">
+		                        <i class="fas fa-plus"></i> Add License
+		                    </button>
+		                </div>
+		                <div class="form-group">
+		                    <label>Mobile Number</label>
+		                    <input type="tel" id="customer-form-mobile">
+		                </div>
+		                <div class="form-group">
+		                    <label>Email ID</label>
+		                    <input type="email" id="customer-form-email">
+		                </div>
+		            </form>
+		        </div>
+		        <div class="modal-footer">
+		            <button class="cancel-btn" onclick="closeCustomerForm()">Cancel</button>
+		            <button onclick="saveCustomer()">Save Customer</button>
+		        </div>
+		    </div>
+		</div>
+
+                    <div class="invoice-info-box" style="width: 100%; align-items: center;">
+                        <div><strong>BILLING INFORMATION</strong></div>
                         <div><strong>Bill No:</strong> <span id="invoice-bill-no">MED2023-001</span></div>
                         <div><strong>Date:</strong> <span id="invoice-date2">01/04/2023</span></div>
                         <div><strong>Time:</strong> <span id="invoice-time">10:45 AM</span></div>
                     </div>                   
                 </div>
 
-                <div class="action-buttons" style="height: 60%">
-                    <button class="btn btn-add" onclick="addNewRow()">
-                        <i class="fas fa-plus"></i> Add Medicine
-                    </button>
-                </div>
-                <table class="medicine-table">
+                <table class="medicine-table" style = "font-size: 8px;">
                     <thead>
                         <tr>
                             <th class="col-no">No</th>
@@ -1011,42 +1382,53 @@
                     <tbody id="medicine-table-body">
                         <tr class="medicine-row">
                             <td class="col-no">1</td>
-                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
+                            <td class="col-name">
+				<div class="suggestions-container">
+				        <input type="text" class="medicine-name" placeholder="Medicine name" oninput="showMedicineSuggestions(this); checkForModifications()" onkeydown="handleSuggestionNavigation(event, this)" onfocus="showMedicineSuggestions(this)">
+			        <div class="suggestions-list"></div>
+				</div>
+			    </td>
                             <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
                             <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
                             <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
                             <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                            <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
                             <td class="col-amount amount">0.00</td>
                             <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
                         </tr>
                         <tr class="medicine-row">
                             <td class="col-no">2</td>
-                            <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
-                            <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
-                            <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
-                            <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
-                            <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                            <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                            <td class="col-amount amount">0.00</td>
-                            <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
+    <td class="col-name">
+        <div class="suggestions-container">
+            <input type="text" class="medicine-name" placeholder="Medicine name" oninput="showMedicineSuggestions(this); checkForModifications()" onkeydown="handleSuggestionNavigation(event, this)" onfocus="showMedicineSuggestions(this)">
+            <div class="suggestions-list"></div>
+        </div>
+    </td>
+    <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
+    <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
+    <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
+    <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
+    <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+    <td class="col-amount amount">0.00</td>
+    <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
+</tr>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="totals-section">
                     <div class="payment-info">
-                        <div class="payment-mode">
+                        <div class="payment-mode" onchange="checkForModifications()">
                             <strong>Payment Mode:</strong> 
                             <select id="payment-mode">
                                 <option>Cash</option>
@@ -1059,14 +1441,13 @@
                         <div class="bank-details">
                             <div class="bank-info">
                                 <strong>Bank Details:</strong>
-                                <div>Bank: State Bank of India</div>
-                                <div>A/C Name: City Medical Store</div>
-                                <div>A/C No.: 1234567890</div>
-                                <div>IFSC: SBIN0000123</div>
-                                <div>UPI: citymedicals@upi</div>
+                                <div>Bank	: Union Bank Of India</div>
+                                <div>A/C Name	:  Jaya Surya Medical Agencies</div>
+                                <div>A/C No.	: 510101002749008 | IFSC	: UBIN0560987</div>
+                                <div>UPI	: veeranjaneyaprasad52-4@oksbi</div>
                             </div>
                             <div class="qr-code">
-                              <img src="https://placehold.co/70x70/E0E0E0/333333?text=QR" alt="QR Code for Payment">
+                              <img src="QR.jpg" alt="QR Code for Payment">
                             </div>
                         </div>
                     </div>
@@ -1100,7 +1481,7 @@
                     </div>
                 </div>
 
-                <div class="invoice-footer">
+                <div class="invoice-footer" style="margin-bottom: 0 !important;">
                     <div class="declaration">
                         <strong>Declaration:</strong> 
                         <ul>
@@ -1109,31 +1490,19 @@
                         </ul>
                     </div>
                     <div class="signature">
-                        <div>For <strong>City Medical Store</strong></div>
+                        <div>For <strong> Jaya Surya Medical Agencies</strong></div>
                         <div class="signature-line"></div>
-                        <div>Authorized Signatory</div>
+                        <div style = "margin-bottom: 0;">Authorized Signatory</div>
                     </div>
                 </div>
             </div>
             
-            <div class="action-buttons" style="margin-top: 15px; justify-content: center; gap: 20px;">
-                <button class="btn" onclick="window.print()" style="background: #27ae60; ">
-                    <i class="fas fa-print"></i> Print Invoice
-                </button>
-                <button class="btn" onclick="saveSales()" style="background: #27ae60;">
-                    <i class="fas fa-save"></i> Save Invoice
-                </button>
-                <button class="btn" onclick="printAndSaveSales()" style="background: #22a1e6;">
-                    <i class="fas fa-print"></i> Print & Save
-                </button>
-            </div>
+            <!-- The action-buttons div at the bottom is removed as its content is moved to the top -->
         </div>
 
         <div id="purchases-page" class="page-content" style="display: none;">
-            <div class="container">
-                <h2 style="margin-bottom: 20px; color: var(--primary);font-weight: 600"> 
-                    <i class="fas fa-cart-plus"></i> Purchase Entry 
-                </h2>
+            <div class="container" style="margin: 0 auto;">
+                
                 <div class="purchase-form">
                     <div class="form-group">
                         <label>Vendor Name</label>
@@ -1203,7 +1572,7 @@
                             <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
-                            <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                            <td class="col-igst"><input type="number" class="igst-rate" value="0" oninput="calculatePurchaseTotals()"></td>
                             <td class="col-amount amount">0.00</td>
                             <td class="col-action no-print"><button class="btn btn-remove" onclick="removePurchaseRow(this)"><i class="fas fa-times"></i></button></td>
                         </tr>
@@ -1246,7 +1615,7 @@
                     <button class="btn" style="background: #9b59b6;">
                         <i class="fas fa-file-invoice"></i> View Invoice
                     </button>
-                    <button class="btn" onclick="savePurchase()" style="background: #27ae60;">
+                    <button class="btn" onclick="savePurchase()" style="background: #2a7fbf;">
                         <i class="fas fa-save"></i> Save Purchase
                     </button>
                     <button class="btn" style="background: #e67e22;">
@@ -1260,7 +1629,7 @@
         </div>
 
         <div id="report-page" class="page-content" style="display: none;">
-            <div class="container">
+            <div class="container" style="margin: 0 auto;">
                 <div class="report-header">
                     <div class="report-title" id="current-report-title">Reports</div>
                 </div>
@@ -1307,8 +1676,67 @@
             </div>
         </div>
 
+
+
+	<div id="tracker-page" class="page-content" style="display: none;">
+	    <div class="container">
+	        <h2 class="page-title">Sales and Purchase Tracker</h2>
+	         <div class="tracker-filters" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+
+
+		   <select id="tracker-type" style="flex: 1 1 15%;">
+	                <option value="">All (Sales/Purchases)</option>
+	                <option value="sales">Sales</option>
+	                <option value="purchases">Purchases</option>
+	            </select>
+
+
+	            <input type="text" id="tracker-medicine-name" style="width: 20%;" placeholder="Medicine Name" style="flex: 1 1 20%;">
+	            <input type="text" id="tracker-customer-vendor" style="width: 20%;" placeholder="Customer/Vendor Name" style="flex: 1 1 25%;">
+	            <input type="text" id="tracker-batch" style="width: 20%;" placeholder="Batch Number" style="flex: 1 1 10%;">
+
+		    
+
+	            <input type="text" id="filter-expiry-month-year" name="filter-expiry-month-year" placeholder="MM/YY"
+	                   pattern="(0[1-9]|1[0-2])\/[0-9]{2}" title="Enter a date in MM/YY format (e.g., 07/25)" style="flex: 1 1 10%;">
+	            <input type="date" style="width: 20%;" id="tracker-from-date" style="flex: 1 1 20%;">
+	            <input type="date" style="width: 20%;" id="tracker-to-date" style="flex: 1 1 20%;">
+	           
+
+	            <!-- Buttons Wrapper -->
+	            <div style="flex: 1 1 40%;  display: flex; gap: 8px;">
+	                <button class="btn" onclick="applyFilters()">Apply</button>
+	                <button class="btn" onclick="printReport()">Print</button>
+	            </div>
+
+        </div>
+	        <div class="tracker-table-container">
+	            <table class="tracker-table">
+	                <thead>
+	                    <tr>
+	                        <th>Date</th>
+	                        <th>Bill No.</th>
+	                        <th>Type</th>
+	                        <th>Customer/Vendor</th>
+	                        <th>Medicine</th>
+	                        <th>Batch</th>
+	                        <th>Qty</th>
+	                        <th>Rate</th>
+	                        <th>Amount</th>
+	                    </tr>
+	                </thead>
+	                <tbody id="tracker-table-body">
+	                    </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+
+
+
+
         <div id="data-management-page" class="page-content" style="display: none;">
-            <div class="container">
+            <div class="container" style="margin: 0 auto;">
                 <h2 style="margin-bottom: 20px; color: var(--primary);font-weight: 600;"> 
                     <i class="fas fa-database"></i> Data Management 
                 </h2>
@@ -1337,7 +1765,7 @@
                                     <option value="sale">Sales</option>
                                     <option value="purchase">Purchases</option>
                                     <option value="both">Both</option>
-                                </select>
+                                ></select>
                                 <input type="date" id="delete-from-date" style="flex: 1;">
                                 <input type="date" id="delete-to-date" style="flex: 1;">
                             </div>
@@ -1435,12 +1863,12 @@
         // Define the localStorage key for your data
         const DATA_STORAGE_KEY = 'billingData';
         // Placeholder for QR code as local file paths are not accessible
-        const QR_PLACEHOLDER_PATH = "https://placehold.co/70x70/E0E0E0/333333?text=QR";
+        const QR_PLACEHOLDER_PATH = "QR.jpg";
         
         // Initial CSV header for the data file - UPDATED TO INCLUDE CGST, SGST, IGST for medicines
         const CSV_HEADER = "Type,BillNo,Date,Time,CustomerName,CustomerAddress,PaymentMode,Medicines,Subtotal,TotalDiscount,CGST,SGST,IGST,Total,VendorName,VendorGSTIN,VendorAddress,PurchaseInvoice,PaymentTerms\n";
 
-        // Function to load data from localStorage
+        // Function to load data from localStorage	
         async function loadDataFromStorage() {
             let csvData = localStorage.getItem(DATA_STORAGE_KEY);
             if (!csvData) {
@@ -1449,41 +1877,12 @@
                 localStorage.setItem(DATA_STORAGE_KEY, csvData);
             }
             return csvData;
-        }
+        } // Function: loadDataFromStorage - Complete
 
         // Function to save data to localStorage
         async function saveDataToStorage(csvString) {
             localStorage.setItem(DATA_STORAGE_KEY, csvString);
-        }
-
-        // Initialize with current date and time
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date();
-            const formattedDate = today.toLocaleDateString('en-GB');
-            const formattedTime = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            
-            document.getElementById('invoice-date2').textContent = formattedDate;
-            document.getElementById('invoice-time').textContent = formattedTime;
-            document.getElementById('purchase-date').valueAsDate = today;
-            document.getElementById('report-from').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            document.getElementById('report-to').valueAsDate = today;
-            document.getElementById('report-stock-date').valueAsDate = today;
-            document.getElementById('delete-from-date').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            document.getElementById('delete-to-date').valueAsDate = today;
-            
-            // Set QR code path
-            document.querySelector('.qr-code img').src = QR_PLACEHOLDER_PATH;
-
-            // Load initial stock report if on stock report page
-            const selectedType = document.querySelector('input[name="report-type"]:checked').value;
-            if (selectedType === 'stock') {
-                loadStockReport(document.getElementById('report-stock-date').value);
-            } else if (selectedType === 'sales') {
-                loadSalesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
-            } else if (selectedType === 'purchases') {
-                loadPurchasesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
-            }
-        });
+        } // Function: saveDataToStorage - Complete
 
         // Function to show custom modal messages
         function showMessage(header, body, type = 'alert', callback = null) {
@@ -1519,11 +1918,11 @@
                 modalFooter.appendChild(okBtn);
             }
             document.getElementById('messageModal').style.display = 'flex';
-        }
+        } // Function: showMessage - Complete
 
         function closeModal() {
             document.getElementById('messageModal').style.display = 'none';
-        }
+        } // Function: closeModal - Complete
 
         // Function to show batch selection modal
         function showBatchSelectionModal(medicineName, batches, targetRow) {
@@ -1553,11 +1952,11 @@
             });
 
             document.getElementById('batchSelectionModal').style.display = 'flex';
-        }
+        } // Function: showBatchSelectionModal - Complete
 
         function closeBatchSelectionModal() {
             document.getElementById('batchSelectionModal').style.display = 'none';
-        }
+        } // Function: closeBatchSelectionModal - Complete
 
         // Apply selected batch details to the invoice row
         function applySelectedBatchToRow(batch, row) {
@@ -1572,34 +1971,60 @@
             row.querySelector('.sgst-rate').value = batch.sgst;
             row.querySelector('.igst-rate').value = batch.igst;
             calculateInvoiceTotals();
-        }
+        } // Function: applySelectedBatchToRow - Complete
 
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
                 page.style.display = 'none';
             });
-            document.getElementById(pageId + '-page').style.display = 'block';
+            const targetPage = document.getElementById(pageId); // Removed '-page' suffix here
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            } else {
+                console.error(`Error: Page element with ID ${pageId} not found.`);
+            }
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.querySelector(`.nav-btn[onclick="showPage('${pageId}')"]`).classList.add('active');
+            const navButton = document.querySelector(`.nav-btn[onclick*="showPage('${pageId}')"]`);
+            if (navButton) {
+                navButton.classList.add('active');
+            } else {
+                console.warn(`Warning: Navigation button for page ${pageId} not found.`);
+            }
+
+            // Update clear all button state
+            const clearAllBtn = document.getElementById('clear-all-btn');
+		if (clearAllBtn) {
+		    if (pageId === 'invoice-page' || pageId === 'purchases-page' || pageId === 'tracker-page') {
+		        clearAllBtn.classList.remove('disabled');
+		    } else {
+		        clearAllBtn.classList.add('disabled');
+		    }
+		}
+
 
             let title = '';
-            if (pageId === 'invoice') title = 'Tax Invoice';
-            else if (pageId === 'purchases') title = 'Purchase Entry';
-            else if (pageId === 'report') title = 'Reports';
-            else if (pageId === 'data-management') title = 'Data Management';
-            document.getElementById('current-page-title').textContent = title;
+            if (pageId === 'invoice-page') title = 'Tax Invoice';
+            else if (pageId === 'purchases-page') title = 'Purchase Entry';
+            else if (pageId === 'report-page') title = 'Reports';
+	        else if (pageId === 'tracker-page') title = 'Tracker';
+            else if (pageId === 'data-management-page') title = 'Data Management';
+            const reportTitleElement = document.getElementById('current-report-title');
+            if (reportTitleElement) {
+                reportTitleElement.textContent = title;
+            } else {
+                console.warn(`Warning: Element with ID 'current-report-title' not found.`);
+            }
 
-            // Recalculate totals when switching to pages that need it
-            if (pageId === 'purchases') {
+            // Recalculate totals or load reports when switching to pages that need it
+            if (pageId === 'purchases-page') {
                 calculatePurchaseTotals();
-            } else if (pageId === 'invoice') {
+            } else if (pageId === 'invoice-page') {
                 calculateInvoiceTotals();
-            } else if (pageId === 'report') {
-                // Ensure report is loaded when switching to report page
-                const selectedType = document.querySelector('input[name="report-type"]:checked').value;
+            } else if (pageId === 'report-page') {
+                const selectedType = document.querySelector('input[name="report-type"]:checked')?.value || 'sales'; // Default to sales if not found
                 if (selectedType === 'stock') {
                     loadStockReport(document.getElementById('report-stock-date').value);
                 } else if (selectedType === 'sales') {
@@ -1608,7 +2033,7 @@
                     loadPurchasesReport(document.getElementById('report-from').value, document.getElementById('report-to').value);
                 }
             }
-        }
+        } // Function: showPage - Complete
 
         let rowCount = 2; // For invoice page, starting with 2 initial rows
 
@@ -1619,24 +2044,32 @@
             newRow.className = 'medicine-row';
             newRow.innerHTML = `
                 <td class="col-no">${rowCount}</td>
-                <td class="col-name"><input type="text" class="medicine-name" placeholder="Medicine name" oninput="autoFillMedicineDetails(this)"></td>
+                <td class="col-name">
+                    <div class="suggestions-container">
+                        <input type="text" class="medicine-name" placeholder="Medicine name" oninput="showMedicineSuggestions(this); checkForModifications()" onkeydown="handleSuggestionNavigation(event, this)" onfocus="showMedicineSuggestions(this)">
+                        <div class="suggestions-list"></div>
+                    </div>
+                </td>
                 <td class="col-mfr"><input type="text" class="mfr-code" placeholder="MFR" maxlength="4" readonly></td>
                 <td class="col-hsn"><input type="text" class="hsn-code" placeholder="HSN" maxlength="8" readonly></td>
                 <td class="col-batch"><input type="text" class="batch-no" placeholder="Batch" readonly></td>
                 <td class="col-expiry"><input type="text" class="expiry" placeholder="MM/YY" readonly></td>
-                <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals()"></td>
-                <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals()"></td>
-                <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals()"></td>
-                <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
-                <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals()"></td>
+                <td class="col-qty"><input type="number" class="quantity" placeholder="Qty" min="1" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                <td class="col-rate"><input type="text" class="rate" placeholder="Rate" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
                 <td class="col-amount amount">0.00</td>
                 <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
             `;
             tableBody.appendChild(newRow);
             updateRowNumbers('medicine-table-body');
-            calculateInvoiceTotals(); // Recalculate totals after adding a row
-        }
+            calculateInvoiceTotals();
+            
+            // Initialize autofill for the new row
+            initializeAutofillForRow(newRow);
+        } // Function: addNewRow - Complete
 
         function removeRow(button) {
             const row = button.closest('.medicine-row');
@@ -1644,7 +2077,7 @@
             updateRowNumbers('medicine-table-body');
             rowCount--;
             calculateInvoiceTotals(); // Recalculate totals after removing a row
-        }
+        } // Function: removeRow - Complete
 
         function updateRowNumbers(tableBodyId) {
             const tableBody = document.getElementById(tableBodyId);
@@ -1652,7 +2085,7 @@
             for (let i = 0; i < rows.length; i++) {
                 rows[i].querySelector('.col-no').textContent = i + 1;
             }
-        }
+        } // Function: updateRowNumbers - Complete
 
         // Invoice related functions
         function calculateInvoiceTotals() {
@@ -1700,13 +2133,14 @@
             
             const total = subtotal - totalDiscount + totalCGST + totalSGST + totalIGST;
             document.getElementById('total').textContent = '₹' + total.toFixed(2);
-        }
+        } // Function: calculateInvoiceTotals - Complete
 
         function getInvoiceData() {
             const customerName = document.getElementById('customer-name').value;
-            const customerAddress = document.getElementById('customer-address').value;
-            const billNo = document.getElementById('invoice-bill-no').textContent;
-            const date = document.getElementById('invoice-date2').textContent;
+	        const customerAddress = document.getElementById('customer-address').value;
+	        const billNo = document.getElementById('invoice-bill-no').textContent; // Get current bill number
+            // Store date in McFarland-MM-DD format for consistency
+            const date = formatDateForStorage(document.getElementById('invoice-date2').textContent); 
             const time = document.getElementById('invoice-time').textContent;
             const paymentMode = document.getElementById('payment-mode').value;
 
@@ -1722,7 +2156,7 @@
                     quantity: parseFloat(row.querySelector('.quantity').value) || 0,
                     rate: parseFloat(row.querySelector('.rate').value) || 0,
                     discount: parseFloat(row.querySelector('.discount').value) || 0,
-                    cgst: parseFloat(row.querySelector('.cgst-rate').value) || 0, // Changed from gst to cgst, sgst, igst
+                    cgst: parseFloat(row.querySelector('.cgst-rate').value) || 0,
                     sgst: parseFloat(row.querySelector('.sgst-rate').value) || 0,
                     igst: parseFloat(row.querySelector('.igst-rate').value) || 0,
                     amount: parseFloat(row.querySelector('.amount').textContent) || 0
@@ -1758,11 +2192,10 @@
                 purchaseInvoice: '', // Not applicable for sales
                 paymentTerms: '' // Not applicable for sales
             };
-        }
+        } // Function: getInvoiceData - Complete
 
         function formatAsCSV(data) {
             // Convert medicines array to a string for CSV
-            // Updated to include CGST, SGST, IGST for sales also
             const medicinesStr = data.medicines.map(m => 
                 `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
             ).join(';');
@@ -1795,33 +2228,277 @@
                 }
                 return value;
             }).join(',');
-        }
+        } // Function: formatAsCSV - Complete
 
         async function saveSales() {
             const invoiceData = getInvoiceData();
+            const billNo = invoiceData.billNo;
             
-            if (!invoiceData.customerName || invoiceData.medicines.length === 0 || invoiceData.medicines.some(m => !m.name)) {
-                showMessage('Validation Error', 'Customer Name and all medicine entries (name, quantity, rate) are required.', 'alert');
+            // Check if this is a loaded invoice (originalInvoiceData exists)
+            if (originalInvoiceData) {
+                // Check if any changes were made
+                if (!hasInvoiceBeenModified(originalInvoiceData)) {
+                    showMessage('No Changes', 
+                        'No changes detected. Please modify the invoice before saving.', 
+                        'alert');
+                    return;
+                }
+                
+                // If changes were made, confirm before saving as new invoice
+                showMessage('Confirm Save', 
+                    'You are modifying an existing invoice. This will create a new invoice with a new number and current date/time. Continue?', 
+                    'confirm', async (confirmed) => {
+                        if (confirmed) {
+                            try {
+                                let csvData = await loadDataFromStorage();
+                                const newBillNo = await generateNewInvoiceNumber();
+                                
+                                // Update invoice display fields
+                                document.getElementById('invoice-bill-no').textContent = newBillNo;
+                                updateInvoiceDateTime(); // Updates display date/time
+                                
+                                // Update invoiceData object for saving
+                                invoiceData.billNo = newBillNo;
+                                invoiceData.date = formatDateForStorage(document.getElementById('invoice-date2').textContent); // Get formatted date for storage
+                                invoiceData.time = document.getElementById('invoice-time').textContent;
+                                
+                                // Remove modification note from customer name
+                                invoiceData.customerName = invoiceData.customerName
+                                    .replace(/ \(Modified from .*\)$/, '')
+                                    .replace(/ \(Loaded from .*\)$/, '');
+                                
+                                // Format medicines data properly for CSV
+                                const medicinesStr = invoiceData.medicines.map(m => 
+                                    `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
+                                ).join(';');
+                                
+                                // Escape quotes in string fields
+                                const escapeQuotes = (str) => `"${str.replace(/"/g, '""')}"`;
+                                
+                                const newRow = [
+                                    'sale',
+                                    invoiceData.billNo,
+                                    invoiceData.date,
+                                    invoiceData.time,
+                                    escapeQuotes(invoiceData.customerName),
+                                    escapeQuotes(invoiceData.customerAddress),
+                                    invoiceData.paymentMode,
+                                    escapeQuotes(medicinesStr),
+                                    invoiceData.subtotal,
+                                    invoiceData.totalDiscount,
+                                    invoiceData.cgst,
+                                    invoiceData.sgst,
+                                    invoiceData.igst,
+                                    invoiceData.total,
+                                    '', '', '', '', '' // Vendor fields (empty for sales)
+                                ].join(',');
+                                
+                                csvData += newRow + "\n";
+                                await saveDataToStorage(csvData);
+                                
+                                showMessage('Success', 
+                                    `Modified invoice saved with new number: ${newBillNo}. Original was ${originalInvoiceData.billNo}`);
+                                originalInvoiceData = null; // Clear original data after saving as new
+                            } catch (error) {
+                                showMessage('Error', 'Failed to save invoice: ' + error.message);
+                            }
+                        }
+                    });
+                return;
+            }
+            
+            // For new invoices, check for duplicates
+            if (await invoiceNumberExists(billNo)) {
+                showMessage('Duplicate Invoice', 
+                    `Invoice number ${billNo} already exists. Please modify the invoice number or details.`, 
+                    'alert');
+                return;
+            }
+            
+            // Validate required fields
+            if (!invoiceData.customerName || invoiceData.medicines.length === 0 || 
+                invoiceData.medicines.some(m => !m.name || !m.quantity || !m.rate)) {
+                showMessage('Validation Error', 
+                    'Customer Name and all medicine entries (name, quantity, rate) are required.', 
+                    'alert');
                 return;
             }
 
             try {
                 let csvData = await loadDataFromStorage();
                 
-                // Append new data
-                csvData += formatAsCSV(invoiceData) + "\n";
+                // Format medicines data properly for CSV
+                const medicinesStr = invoiceData.medicines.map(m => 
+                    `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
+                ).join(';');
                 
+                // Escape quotes in string fields
+                const escapeQuotes = (str) => `"${str.replace(/"/g, '""')}"`;
+                
+                const newRow = [
+                    'sale',
+                    invoiceData.billNo,
+                    invoiceData.date, // Already formatted in getInvoiceData
+                    invoiceData.time,
+                    escapeQuotes(invoiceData.customerName),
+                    escapeQuotes(invoiceData.customerAddress),
+                    invoiceData.paymentMode,
+                    escapeQuotes(medicinesStr),
+                    invoiceData.subtotal,
+                    invoiceData.totalDiscount,
+                    invoiceData.cgst,
+                    invoiceData.sgst,
+                    invoiceData.igst,
+                    invoiceData.total,
+                    '', '', '', '', '' // Vendor fields (empty for sales)
+                ].join(',');
+                
+                csvData += newRow + "\n";
                 await saveDataToStorage(csvData);
-                showMessage('Success', 'Invoice saved successfully!');
+                
+                showMessage('Success', 'New invoice saved successfully!');
             } catch (error) {
                 showMessage('Error', 'Failed to save invoice: ' + error.message);
             }
-        }
+        } // Function: saveSales - Complete
 
-        function printAndSaveSales() {
-            saveSales();
-            window.print();
-        }
+        async function printAndSaveSales() {
+            const invoiceData = getInvoiceData();
+            const billNo = invoiceData.billNo;
+            
+            // Check if this is a loaded invoice (originalInvoiceData exists)
+            if (originalInvoiceData) {
+                // Check if any changes were made
+                if (!hasInvoiceBeenModified(originalInvoiceData)) {
+                    showMessage('No Changes', 
+                        'No changes detected. Please modify the invoice before saving and printing.', 
+                        'alert');
+                    return;
+                }
+                
+                // If changes were made, confirm before saving as new invoice
+                showMessage('Confirm Save & Print', 
+                    'You are modifying an existing invoice. This will create a new invoice with a new number and current date/time. Continue?', 
+                    'confirm', async (confirmed) => {
+                        if (confirmed) {
+                            try {
+                                let csvData = await loadDataFromStorage();
+                                const newBillNo = await generateNewInvoiceNumber();
+                                
+                                // Update invoice display fields
+                                document.getElementById('invoice-bill-no').textContent = newBillNo;
+                                updateInvoiceDateTime(); // Updates display date/time
+                                
+                                // Update invoiceData object for saving
+                                invoiceData.billNo = newBillNo;
+                                invoiceData.date = formatDateForStorage(document.getElementById('invoice-date2').textContent); // Get formatted date for storage
+                                invoiceData.time = document.getElementById('invoice-time').textContent;
+                                
+                                // Remove modification note from customer name
+                                invoiceData.customerName = invoiceData.customerName
+                                    .replace(/ \(Modified from .*\)$/, '')
+                                    .replace(/ \(Loaded from .*\)$/, '');
+                                
+                                // Format medicines data properly for CSV
+                                const medicinesStr = invoiceData.medicines.map(m => 
+                                    `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
+                                ).join(';');
+                                
+                                // Escape quotes in string fields
+                                const escapeQuotes = (str) => `"${str.replace(/"/g, '""')}"`;
+                                
+                                const newRow = [
+                                    'sale',
+                                    invoiceData.billNo,
+                                    invoiceData.date,
+                                    invoiceData.time,
+                                    escapeQuotes(invoiceData.customerName),
+                                    escapeQuotes(invoiceData.customerAddress),
+                                    invoiceData.paymentMode,
+                                    escapeQuotes(medicinesStr),
+                                    invoiceData.subtotal,
+                                    invoiceData.totalDiscount,
+                                    invoiceData.cgst,
+                                    invoiceData.sgst,
+                                    invoiceData.igst,
+                                    invoiceData.total,
+                                    '', '', '', '', '' // Vendor fields (empty for sales)
+                                ].join(',');
+                                
+                                csvData += newRow + "\n";
+                                await saveDataToStorage(csvData);
+                                
+                                // Print after successful save
+                                window.print();
+                                
+                                showMessage('Success', 
+                                    `Modified invoice saved and printed with new number: ${newBillNo}. Original was ${originalInvoiceData.billNo}`);
+                                originalInvoiceData = null; // Clear original data after saving as new
+                            } catch (error) {
+                                showMessage('Error', 'Failed to save and print invoice: ' + error.message);
+                            }
+                        }
+                    });
+                return;
+            }
+            
+            // For new invoices, check for duplicates
+            if (await invoiceNumberExists(billNo)) {
+                showMessage('Duplicate Invoice', 
+                    `Invoice number ${billNo} already exists. Please modify the invoice number or details.`, 
+                    'alert');
+                return;
+            }
+            
+            // Validate required fields
+            if (!invoiceData.customerName || invoiceData.medicines.length === 0 || 
+                invoiceData.medicines.some(m => !m.name || !m.quantity || !m.rate)) {
+                showMessage('Validation Error', 
+                    'Customer Name and all medicine entries (name, quantity, rate) are required.', 
+                    'alert');
+                return;
+            }
+
+            try {
+                let csvData = await loadDataFromStorage();
+                
+                // Format medicines data properly for CSV
+                const medicinesStr = invoiceData.medicines.map(m => 
+                    `${m.name}|${m.mfr}|${m.hsn}|${m.batch}|${m.expiry}|${m.quantity}|${m.rate}|${m.discount}|${m.cgst}|${m.sgst}|${m.igst}|${m.amount}`
+                ).join(';');
+                
+                // Escape quotes in string fields
+                const escapeQuotes = (str) => `"${str.replace(/"/g, '""')}"`;
+                
+                const newRow = [
+                    'sale',
+                    invoiceData.billNo,
+                    invoiceData.date, // Already formatted in getInvoiceData
+                    invoiceData.time,
+                    escapeQuotes(invoiceData.customerName),
+                    escapeQuotes(invoiceData.customerAddress),
+                    invoiceData.paymentMode,
+                    escapeQuotes(medicinesStr),
+                    invoiceData.subtotal,
+                    invoiceData.totalDiscount,
+                    invoiceData.cgst,
+                    invoiceData.sgst,
+                    invoiceData.igst,
+                    invoiceData.total,
+                    '', '', '', '', '' // Vendor fields (empty for sales)
+                ].join(',');
+                
+                csvData += newRow + "\n";
+                await saveDataToStorage(csvData);
+                
+                // Print after successful save
+                window.print();
+                
+                showMessage('Success', 'New invoice saved and printed successfully!');
+            } catch (error) {
+                showMessage('Error', 'Failed to save and print invoice: ' + error.message);
+            }
+        } // Function: printAndSaveSales - Complete
 
         // PURCHASES PAGE FUNCTIONS
         let purchaseRowCount = 1; // For purchases page, starting with 1 initial row
@@ -1843,14 +2520,14 @@
                 <td class="col-disc"><input type="text" class="discount" value="0" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-cgst"><input type="number" class="cgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-sgst"><input type="number" class="sgst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
-                <td class="col-igst"><input type="number" class="igst-rate" placeholder="%" min="0" max="100" step="0.01" value="0" oninput="calculatePurchaseTotals()"></td>
+                <td class="col-igst"><input type="number" class="igst-rate" value="0" oninput="calculatePurchaseTotals()"></td>
                 <td class="col-amount amount">0.00</td>
                 <td class="col-action no-print"><button class="btn btn-remove" onclick="removePurchaseRow(this)"><i class="fas fa-times"></i></button></td>
             `;
             tableBody.appendChild(newRow);
             updateRowNumbers('purchase-table-body');
             calculatePurchaseTotals();
-        }
+        } // Function: addPurchaseRow - Complete
 
         function removePurchaseRow(button) {
             const row = button.closest('.medicine-row');
@@ -1858,7 +2535,7 @@
             updateRowNumbers('purchase-table-body');
             purchaseRowCount--;
             calculatePurchaseTotals();
-        }
+        } // Function: removePurchaseRow - Complete
 
         function calculatePurchaseTotals() {
             const tableBody = document.getElementById('purchase-table-body');
@@ -1905,13 +2582,13 @@
             
             const total = subtotal - totalDiscount + totalCGST + totalSGST + totalIGST;
             document.getElementById('purchase-total').textContent = '₹' + total.toFixed(2);
-        }
+        } // Function: calculatePurchaseTotals - Complete
 
         function getPurchaseData() {
             const vendorName = document.getElementById('vendor-name').value;
             const vendorGSTIN = document.getElementById('vendor-gstin').value;
             const vendorAddress = document.getElementById('vendor-address').value;
-            const purchaseDate = document.getElementById('purchase-date').value;
+            const purchaseDate = document.getElementById('purchase-date').value; // Already McFarland-MM-DD from input type="date"
             const purchaseInvoice = document.getElementById('purchase-invoice').value;
             const paymentTerms = document.getElementById('payment-terms').value;
 
@@ -1934,7 +2611,7 @@
                 };
                 medicines.push(medicine);
             });
-
+		
             const subtotal = parseFloat(document.getElementById('purchase-subtotal').textContent) || 0;
             const totalDiscount = parseFloat(document.getElementById('purchase-total-discount').textContent) || 0;
             const cgst = parseFloat(document.getElementById('purchase-cgst').textContent) || 0;
@@ -1963,7 +2640,7 @@
                 purchaseInvoice,
                 paymentTerms
             };
-        }
+        } // Function: getPurchaseData - Complete
 
         async function savePurchase() {
             const purchaseData = getPurchaseData();
@@ -1984,12 +2661,12 @@
             } catch (error) {
                 showMessage('Error', 'Failed to save purchase: ' + error.message);
             }
-        }
+        } // Function: savePurchase - Complete
 
         function printAndSavePurchase() {
             savePurchase();
             window.print();
-        }
+        } // Function: printAndSavePurchase - Complete
 
         // Report related functions
         function showReportType() {
@@ -2021,115 +2698,171 @@
             }
         }
 
+
+	 // Function: showReportType - Complete
+
         // Helper to parse medicine string from CSV
         function parseMedicinesString(medicinesStr) {
-            if (!medicinesStr) return [];
-            return medicinesStr.split(';').map(item => {
-                const parts = item.split('|');
-                // Updated parsing to always expect CGST, SGST, IGST
-                return {
-                    name: parts[0] || '',
-                    mfr: parts[1] || '',
-                    hsn: parts[2] || '',
-                    batch: parts[3] || '',
-                    expiry: parts[4] || '',
-                    quantity: parseFloat(parts[5]) || 0,
-                    rate: parseFloat(parts[6]) || 0,
-                    discount: parseFloat(parts[7]) || 0,
-                    cgst: parseFloat(parts[8]) || 0,
-                    sgst: parseFloat(parts[9]) || 0,
-                    igst: parseFloat(parts[10]) || 0,
-                    amount: parseFloat(parts[11]) || 0
-                };
-            });
-        }
+	    if (!medicinesStr) return [];
+	    return medicinesStr.split(';').map(item => {
+	        const parts = item.split('|');
+	        return {
+	            name: parts[0] || '',
+	            mfr: parts[1] || '',
+	            hsn: parts[2] || '',
+	            batch: parts[3] || '',
+	            expiry: parts[4] || '',
+	            quantity: parseFloat(parts[5]) || 0,
+	            rate: parseFloat(parts[6]) || 0,
+	            discount: parseFloat(parts[7]) || 0,
+	            cgst: parseFloat(parts[8]) || 0,
+	            sgst: parseFloat(parts[9]) || 0,
+	            igst: parseFloat(parts[10]) || 0,
+	            amount: parseFloat(parts[11]) || 0
+	        };
+	    });
+	}
+
+
+	 // Function: parseMedicinesString - Complete
+
+        // Add this helper function to format dates for storage (YYYY-MM-DD)
+        function formatDateForStorage(dateString) {
+            // Assumes dateString is in DD/MM/YYYY format
+            const parts = dateString.split('/');
+            if (parts.length === 3) {
+                return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+            }
+            return dateString; // Return as is if format is unexpected
+        } // Function: formatDateForStorage - Complete
+
+        // Add this helper function to format dates for display (DD/MM/YYYY)
+        function formatDateForDisplay(dateString) {
+            // Assumes dateString is in McFarland-MM-DD format
+            if (!dateString) return '';
+            const parts = dateString.split('-');
+            if (parts.length === 3) {
+                return `${parts[2].padStart(2, '0')}/${parts[1].padStart(2, '0')}/${parts[0]}`;
+            }
+            return dateString; // Return as is if format is unexpected
+        } // Function: formatDateForDisplay - Complete
 
         // Load and calculate sales report
         async function loadSalesReport(fromDate, toDate) {
             try {
                 const csvData = await loadDataFromStorage();
-                const rows = csvData.split('\n').filter(row => row.trim() !== ''); // Filter out empty rows
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
                 const salesList = [];
+                
+                // Convert input dates to Date objects for comparison
+                const fromDateObj = new Date(fromDate);
+                const toDateObj = new Date(toDate);
+                toDateObj.setHours(23, 59, 59, 999); // Include the entire 'to' day
 
-                // Assuming header is always the first row
-                if (rows.length <= 1) { // Only header or empty
-                    generateReport([], 'sales');
-                    return;
-                }
-
+                // Skip header row
                 for (let i = 1; i < rows.length; i++) {
-                    const columns = rows[i].split(',');
-                    const rowType = columns[0];
-                    const date = columns[2];
-
-                    if (rowType === 'sale' && new Date(date) >= new Date(fromDate) && new Date(date) <= new Date(toDate)) {
-                        salesList.push({
-                            type: columns[0],
-                            billNo: columns[1],
-                            date: columns[2],
-                            time: columns[3],
-                            customerName: columns[4].replace(/^"|"$/g, '').replace(/""/g, '"'), // Remove quotes and unescape
-                            customerAddress: columns[5].replace(/^"|"$/g, '').replace(/""/g, '"'),
-                            paymentMode: columns[6],
-                            medicines: parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"')),
-                            subtotal: parseFloat(columns[8]) || 0,
-                            totalDiscount: parseFloat(columns[9]) || 0,
-                            cgst: parseFloat(columns[10]) || 0,
-                            sgst: parseFloat(columns[11]) || 0,
-                            igst: parseFloat(columns[12]) || 0,
-                            total: parseFloat(columns[13]) || 0
-                        });
+                    try {
+                        if (rows[i].trim() === '') continue;
+                        
+                        const columns = rows[i].split(',');
+                        const rowType = columns[0];
+                        const date = columns[2]; // This should be in McFarland-MM-DD from storage
+                        
+                        if (rowType === 'sale') {
+                            const rowDate = new Date(date);
+                            
+                            if (rowDate >= fromDateObj && rowDate <= toDateObj) {
+                                let medicinesStr = columns[7];
+                                if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                                    medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+                                }
+                                medicinesStr = medicinesStr.replace(/""/g, '"');
+                                
+                                salesList.push({
+                                    type: rowType,
+                                    billNo: columns[1].replace(/^"|"$/g, ''), // Clean bill number
+                                    date: formatDateForDisplay(date), // Format for display
+                                    time: columns[3],
+                                    customerName: columns[4].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                                    customerAddress: columns[5].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                                    paymentMode: columns[6],
+                                    medicines: parseMedicinesString(medicinesStr),
+                                    subtotal: parseFloat(columns[8]) || 0,
+                                    totalDiscount: parseFloat(columns[9]) || 0,
+                                    cgst: parseFloat(columns[10]) || 0,
+                                    sgst: parseFloat(columns[11]) || 0,
+                                    igst: parseFloat(columns[12]) || 0,
+                                    total: parseFloat(columns[13]) || 0
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.error(`Error processing row ${i} in loadSalesReport:`, error);
                     }
                 }
                 generateReport(salesList, 'sales');
             } catch (error) {
+                console.error('Error in loadSalesReport:', error);
                 showMessage('Error', 'Failed to load sales report: ' + error.message);
             }
-        }
+        } // Function: loadSalesReport - Complete
 
         // Load and calculate purchases report
         async function loadPurchasesReport(fromDate, toDate) {
             try {
                 const csvData = await loadDataFromStorage();
-                const rows = csvData.split('\n').filter(row => row.trim() !== ''); // Filter out empty rows
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
                 const purchasesList = [];
 
-                if (rows.length <= 1) {
-                    generateReport([], 'purchases');
-                    return;
-                }
+                // Convert dates
+                const fromDateObj = new Date(fromDate);
+                const toDateObj = new Date(toDate);
+                toDateObj.setHours(23, 59, 59, 999);
 
                 for (let i = 1; i < rows.length; i++) {
                     const columns = rows[i].split(',');
                     const rowType = columns[0];
-                    const date = columns[2];
+                    const date = columns[2]; // Date is in column index 2
 
-                    if (rowType === 'purchase' && new Date(date) >= new Date(fromDate) && new Date(date) <= new Date(toDate)) {
-                        purchasesList.push({
-                            type: columns[0],
-                            billNo: columns[1], // This is purchase invoice number
-                            date: columns[2],
-                            time: columns[3],
-                            medicines: parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"')),
-                            subtotal: parseFloat(columns[8]) || 0,
-                            totalDiscount: parseFloat(columns[9]) || 0,
-                            cgst: parseFloat(columns[10]) || 0,
-                            sgst: parseFloat(columns[11]) || 0,
-                            igst: parseFloat(columns[12]) || 0,
-                            total: parseFloat(columns[13]) || 0,
-                            vendorName: columns[14].replace(/^"|"$/g, '').replace(/""/g, '"'),
-                            vendorGSTIN: columns[15].replace(/^"|"$/g, '').replace(/""/g, '"'),
-                            vendorAddress: columns[16].replace(/^"|"$/g, '').replace(/""/g, '"'),
-                            purchaseInvoice: columns[17],
-                            paymentTerms: columns[18]
-                        });
+                    if (rowType === 'purchase') {
+                        const rowDate = new Date(date);
+                        if (rowDate >= fromDateObj && rowDate <= toDateObj) {
+                            // Unescape vendor data
+                            const vendorName = columns[14].replace(/^"|"$/g, '').replace(/""/g, '"');
+                            const vendorGSTIN = columns[15].replace(/^"|"$/g, '').replace(/""/g, '"');
+                            const vendorAddress = columns[16].replace(/^"|"$/g, '').replace(/""/g, '"');
+                            
+                            let medicinesStr = columns[7];
+                            if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                                medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+                            }
+                            medicinesStr = medicinesStr.replace(/""/g, '"');
+
+                            purchasesList.push({
+                                type: rowType,
+                                billNo: columns[1].replace(/^"|"$/g, ''), // Invoice number (which is purchaseInvoice from getPurchaseData)
+                                date: formatDateForDisplay(date),
+                                time: columns[3],
+                                vendorName,
+                                vendorGSTIN,
+                                vendorAddress,
+                                medicines: parseMedicinesString(medicinesStr),
+                                subtotal: parseFloat(columns[8]) || 0,
+                                totalDiscount: parseFloat(columns[9]) || 0,
+                                cgst: parseFloat(columns[10]) || 0,
+                                sgst: parseFloat(columns[11]) || 0,
+                                igst: parseFloat(columns[12]) || 0,
+                                total: parseFloat(columns[13]) || 0
+                            });
+                        }
                     }
                 }
                 generateReport(purchasesList, 'purchases');
             } catch (error) {
+                console.error('Error in loadPurchasesReport:', error);
                 showMessage('Error', 'Failed to load purchases report: ' + error.message);
             }
-        }
+        } // Function: loadPurchasesReport - Complete
 
         // Load and calculate stock report
         async function loadStockReport(asOfDate) {
@@ -2143,205 +2876,211 @@
                     return;
                 }
 
+                const reportDate = new Date(asOfDate);
+                reportDate.setHours(23, 59, 59, 999); // Include the entire 'asOfDate'
+
                 for (let i = 1; i < rows.length; i++) {
                     const columns = rows[i].split(',');
-                    const date = columns[2];
-                    const rowType = columns[0]; // 'sale' or 'purchase'
+                    const recordDate = new Date(columns[2]); 
+                    const rowType = columns[0];
 
-                    if (new Date(date) > new Date(asOfDate)) continue;
+                    if (recordDate > reportDate) continue;
 
-                    const medicinesData = parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"'));
+                    let medicinesStr = columns[7];
+                    if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                        medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+                    }
+                    medicinesStr = medicinesStr.replace(/""/g, '"');
+                    const medicinesData = parseMedicinesString(medicinesStr);
                     
                     medicinesData.forEach(med => {
-                        const medicine = med.name || '';
+                        const medName = med.name || '';
                         const mfr = med.mfr || '';
                         const hsn = med.hsn || '';
                         const batch = med.batch || '';
                         const expiry = med.expiry || '';
                         const qty = med.quantity || 0;
-                        const rate = med.rate || 0; // Capture rate for stock item
-                        const cgst = med.cgst || 0;
-                        const sgst = med.sgst || 0;
-                        const igst = med.igst || 0;
 
-                        const key = `${medicine}-${batch}`;
+                        const key = `${medName.toLowerCase()}-${batch.toLowerCase()}`;
 
                         if (!stockMap[key]) {
                             stockMap[key] = {
-                                medicine,
-                                mfr,
-                                hsn,
-                                batch,
-                                expiry,
-                                rate, // Store rate
-                                cgst, // Store CGST
-                                sgst, // Store SGST
-                                igst, // Store IGST
-                                opening: 0,
+                                medicine: medName,
+                                mfr: mfr,
+                                hsn: hsn,
+                                batch: batch,
+                                expiry: expiry,
                                 purchases: 0,
-                                sales: 0
+                                sales: 0,
+                                currentStock: 0
                             };
                         }
 
                         if (rowType === 'purchase') {
                             stockMap[key].purchases += qty;
+                            stockMap[key].currentStock += qty;
                         } else if (rowType === 'sale') {
                             stockMap[key].sales += qty;
+                            stockMap[key].currentStock -= qty;
                         }
                     });
                 }
 
-                const stockList = Object.values(stockMap).map(item => ({
-                    ...item,
-                    currentStock: item.opening + item.purchases - item.sales
-                }));
-
+                const stockList = Object.values(stockMap);
                 generateStockReport(stockList);
 
             } catch (error) {
+                console.error('Error in loadStockReport:', error);
                 showMessage('Error', 'Failed to load stock report: ' + error.message);
             }
-        }
+        } // Function: loadStockReport - Complete
 
-        function generateReport(dataList, reportType) {
-            const thead = document.getElementById('report-head');
-            const tbody = document.getElementById('report-body');
-            const reportTotal = document.getElementById('report-total-value');
+	    function generateReport(dataList, reportType) {
+	        const thead = document.getElementById('report-head');
+	        const tbody = document.getElementById('report-body');
+	        const reportTotal = document.getElementById('report-total-value');
 
-            thead.innerHTML = '';
-            tbody.innerHTML = '';
+	        thead.innerHTML = '';
+	        tbody.innerHTML = '';
 
-            let headerRow;
-            let totalValue = 0;
+	        let headerRow;
+	        let totalValue = 0;
 
-            if (reportType === 'sales') {
-                headerRow = document.createElement('tr');
-                ['No', 'Bill No', 'Date', 'Customer', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
-                    .forEach(text => {
-                        const th = document.createElement('th');
-                        th.textContent = text;
-                        thead.appendChild(th); // Append to thead directly
-                    });
+	        if (reportType === 'sales') {
+	            headerRow = document.createElement('tr');
+	            ['No', 'Bill No', 'Date', 'Customer', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
+	                .forEach(text => {
+	                    const th = document.createElement('th');
+	                    th.textContent = text;
+	                    thead.appendChild(th); // Append to thead directly
+	                });
                 
+	            dataList.forEach((item, index) => {
+	                item.medicines.forEach((med, medIndex) => {
+	                    const row = document.createElement('tr');
+	                    [
+	                        index + 1 + (medIndex > 0 ? '' : ''), // Only show main row number for first medicine
+	                        item.billNo,
+	                        item.date,
+	                        item.customerName,
+	                        med.name,
+	                        med.mfr,
+	                        med.hsn,
+	                        med.batch,
+	                        med.expiry,
+	                        med.quantity,
+	                        med.rate.toFixed(2),
+	                        med.discount.toFixed(2),
+	                        med.cgst.toFixed(2), 
+	                        med.sgst.toFixed(2), 
+	                        med.igst.toFixed(2), 
+	                        med.amount.toFixed(2)
+	                    ].forEach(value => {
+	                        const td = document.createElement('td');
+	                        td.textContent = value;
+	                        row.appendChild(td);
+	                    });
+	                    tbody.appendChild(row);
+	                });
+	                totalValue += item.total;
+	            });
+	            reportTotal.textContent = `Total Sales Value: ₹${totalValue.toFixed(2)}`;
 
-                dataList.forEach((item, index) => {
-                    item.medicines.forEach((med, medIndex) => {
-                        const row = document.createElement('tr');
-                        [
-                            index + 1 + (medIndex > 0 ? '' : ''), // Only show main row number for first medicine
-                            item.billNo,
-                            item.date,
-                            item.customerName,
-                            med.name,
-                            med.mfr,
-                            med.hsn,
-                            med.batch,
-                            med.expiry,
-                            med.quantity,
-                            med.rate.toFixed(2),
-                            med.discount.toFixed(2),
-                            med.cgst.toFixed(2), 
-                            med.sgst.toFixed(2), 
-                            med.igst.toFixed(2), 
-                            med.amount.toFixed(2)
-                        ].forEach(value => {
-                            const td = document.createElement('td');
-                            td.textContent = value;
-                            row.appendChild(td);
-                        });
-                        tbody.appendChild(row);
-                    });
-                    totalValue += item.total;
-                });
-                reportTotal.textContent = `Total Sales Value: ₹${totalValue.toFixed(2)}`;
-
-            } else if (reportType === 'purchases') {
-                headerRow = document.createElement('tr');
-                ['No', 'Inv No', 'Date', 'Vendor', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
-                    .forEach(text => {
-                        const th = document.createElement('th');
-                        th.textContent = text;
-                        thead.appendChild(th); // Append to thead directly
-                    });
-                
-
-                dataList.forEach((item, index) => {
-                    item.medicines.forEach((med, medIndex) => {
-                        const row = document.createElement('tr');
-                        [
-                            index + 1 + (medIndex > 0 ? '' : ''), // Only show main row number for first medicine
-                            item.purchaseInvoice,
-                            item.date,
-                            item.vendorName,
-                            med.name,
-                            med.mfr,
-                            med.hsn,
-                            med.batch,
-                            med.expiry,
-                            med.quantity,
-                            med.rate.toFixed(2),
-                            med.discount.toFixed(2),
-                            med.cgst.toFixed(2), 
-                            med.sgst.toFixed(2), 
-                            med.igst.toFixed(2), 
-                            med.amount.toFixed(2)
-                        ].forEach(value => {
-                            const td = document.createElement('td');
-                            td.textContent = value;
-                            row.appendChild(td);
-                        });
-                        tbody.appendChild(row);
-                    });
-                    totalValue += item.total;
-                });
-                reportTotal.textContent = `Total Purchases Value: ₹${totalValue.toFixed(2)}`;
-            }
-        }
-
-
-        function generateStockReport(stockList) {
-            const thead = document.getElementById('report-head');
-            const tbody = document.getElementById('report-body');
-            const reportTotal = document.getElementById('report-total-value');
-
-            thead.innerHTML = '';
-            tbody.innerHTML = '';
-
-            const headerRow = document.createElement('tr');
-            ['No', 'Medicine', 'MFR', 'HSN', 'Batch', 'Expiry', 'Opening', 'Purchases', 'Sales', 'Current Stock']
+	        } 
+		else if (reportType === 'purchases') {
+            headerRow = document.createElement('tr');
+            ['No', 'Inv No', 'Date', 'Vendor', 'Medicine Name', 'MFR', 'HSN', 'Batch', 'Expiry', 'Qty', 'Rate', 'Disc.', 'CGST%', 'SGST%', 'IGST%', 'Amount']
                 .forEach(text => {
                     const th = document.createElement('th');
                     th.textContent = text;
-                    thead.appendChild(th); // Append to thead directly
+                    thead.appendChild(th);
                 });
             
-
-            stockList.forEach((item, index) => {
-                const row = document.createElement('tr');
-                [
-                    index + 1,
-                    item.medicine,
-                    item.mfr,
-                    item.hsn,
-                    item.batch,
-                    item.expiry,
-                    item.opening,
-                    item.purchases,
-                    item.sales,
-                    item.currentStock
-                ].forEach(value => {
-                    const td = document.createElement('td');
-                    td.textContent = value;
-                    row.appendChild(td);
+            dataList.forEach((item, index) => {
+                item.medicines.forEach((med, medIndex) => {
+                    const row = document.createElement('tr');
+                    [
+                        index + 1 + (medIndex > 0 ? '' : ''), 
+                        item.billNo,  // Invoice number
+                        item.date,
+                        item.vendorName,  // Vendor name
+                        med.name,
+                        med.mfr,
+                        med.hsn,
+                        med.batch,
+                        med.expiry,
+                        med.quantity,
+                        med.rate.toFixed(2),
+                        med.discount.toFixed(2),
+                        med.cgst.toFixed(2), 
+                        med.sgst.toFixed(2), 
+                        med.igst.toFixed(2), 
+                        med.amount.toFixed(2)
+                    ].forEach(value => {
+                        const td = document.createElement('td');
+                        td.textContent = value;
+                        row.appendChild(td);
+                    });
+                    tbody.appendChild(row);
                 });
-                tbody.appendChild(row);
+                totalValue += item.total;
             });
-
-            const totalItems = stockList.length;
-            const totalQty = stockList.reduce((sum, item) => sum + item.currentStock, 0);
-
-            reportTotal.textContent = `Total Items: ${totalItems} | Total Quantity: ${totalQty}`;
+            reportTotal.textContent = `Total Purchases Value: ₹${totalValue.toFixed(2)}`;
         }
+    }
+
+
+	 // Function: generateReport - Complete
+
+        function generateStockReport(stockList) {
+	    const thead = document.getElementById('report-head');
+	    const tbody = document.getElementById('report-body');
+	    const reportTotal = document.getElementById('report-total-value');
+
+	    thead.innerHTML = '';
+	    tbody.innerHTML = '';
+
+	    const headerRow = document.createElement('tr');
+	    ['No', 'Medicine', 'MFR', 'HSN', 'Batch', 'Expiry', 'Purchases', 'Sales', 'Current Stock']
+	        .forEach(text => {
+	            const th = document.createElement('th');
+	            th.textContent = text;
+	            thead.appendChild(th);
+	        });
+    
+	    stockList.forEach((item, index) => {
+	        const row = document.createElement('tr');
+	        [
+	            index + 1,
+	            item.medicine,
+	            item.mfr,
+	            item.hsn,
+	            item.batch,
+	            item.expiry,
+	            item.purchases,
+	            item.sales,
+	            item.currentStock
+	        ].forEach(value => {
+	            const td = document.createElement('td');
+	            td.textContent = value;
+	            row.appendChild(td);
+	        });
+	        tbody.appendChild(row);
+	    });
+
+	    const totalItems = stockList.length;
+	    const totalQty = stockList.reduce((sum, item) => sum + item.currentStock, 0);
+	    const totalPurchases = stockList.reduce((sum, item) => sum + item.purchases, 0);
+	    const totalSales = stockList.reduce((sum, item) => sum + item.sales, 0);
+
+	    reportTotal.textContent = 
+	        `Total Items: ${totalItems} | Current Stock: ${totalQty} | Purchases: ${totalPurchases} | Sales: ${totalSales}`;
+	}
+
+
+
+
+		// Function: generateStockReport - Complete
 
         document.getElementById('report-stock-date').addEventListener('change', function () {
             const selectedType = document.querySelector('input[name="report-type"]:checked').value;
@@ -2350,6 +3089,10 @@
             }
         });
 
+
+
+	 // Event Listener: report-stock-date change - Complete
+
         document.getElementById('report-from').addEventListener('change', function () {
             const selectedType = document.querySelector('input[name="report-type"]:checked').value;
             if (selectedType === 'sales') {
@@ -2357,7 +3100,7 @@
             } else if (selectedType === 'purchases') {
                 loadPurchasesReport(this.value, document.getElementById('report-to').value);
             }
-        });
+        }); // Event Listener: report-from change - Complete
 
         document.getElementById('report-to').addEventListener('change', function () {
             const selectedType = document.querySelector('input[name="report-type"]:checked').value;
@@ -2366,11 +3109,15 @@
             } else if (selectedType === 'purchases') {
                 loadPurchasesReport(document.getElementById('report-from').value, this.value);
             }
-        });
+        }); // Event Listener: report-to change - Complete
 
         function printReport() {
             window.print();
         }
+
+
+
+	 // Function: printReport - Complete
 
         async function exportToCSV() {
             try {
@@ -2390,7 +3137,7 @@
             } catch (error) {
                 showMessage('Error', 'Failed to export CSV: ' + error.message);
             }
-        }
+        } // Function: exportToCSV - Complete
 
         // Data Management Functions
         async function createBackupFile() {
@@ -2411,7 +3158,7 @@
             } catch (error) {
                 showMessage('Error', 'Failed to create backup: ' + error.message);
             }
-        }
+        } // Function: createBackupFile - Complete
 
         function restoreBackupFile() {
             const fileInput = document.getElementById('backup-file');
@@ -2453,11 +3200,11 @@
                 });
             };
             reader.readAsText(file);
-        }
+        } // Function: restoreBackupFile - Complete
 
         async function confirmDeleteByInvoice() {
             const type = document.getElementById('delete-transaction-type').value;
-            const invoiceNumber = document.getElementById('delete-invoice-number').value;
+            const invoiceNumber = document.getElementById('delete-invoice-number').value.trim();
 
             if (!invoiceNumber) {
                 showMessage('Input Required', 'Please enter an invoice number to delete.', 'alert');
@@ -2478,7 +3225,7 @@
                             // Check if the row type and invoice number match
                             // For sales, billNo is columns[1]
                             // For purchases, purchaseInvoice is columns[17]
-                            const currentInvoiceNo = (cols[0] === 'sale') ? cols[1] : cols[17];
+                            const currentInvoiceNo = (cols[0] === 'sale') ? cols[1].replace(/^"|"$/g, '') : cols[17].replace(/^"|"$/g, '');
                             
                             if (!(cols[0] === type && currentInvoiceNo === invoiceNumber)) {
                                 newLines.push(lines[i]);
@@ -2497,7 +3244,7 @@
                     }
                 }
             });
-        }
+        } // Function: confirmDeleteByInvoice - Complete
 
         async function confirmDeleteByDateRange() {
             const type = document.getElementById('delete-date-type').value;
@@ -2519,12 +3266,13 @@
                         
                         const fromDateObj = new Date(fromDate);
                         const toDateObj = new Date(toDate);
+                        toDateObj.setHours(23, 59, 59, 999); // Include the entire 'to' day
 
                         for (let i = 1; i < lines.length; i++) {
                             if (lines[i].trim() === '') continue;
                             const cols = lines[i].split(',');
                             const rowType = cols[0];
-                            const transactionDate = new Date(cols[2]); // Assuming date is in column 2
+                            const transactionDate = new Date(cols[2]); // Assuming date is in column 2 (YYYY-MM-DD)
                             
                             let shouldKeep = true;
                             if (transactionDate >= fromDateObj && transactionDate <= toDateObj) {
@@ -2551,7 +3299,7 @@
                     }
                 }
             });
-        }
+        } // Function: confirmDeleteByDateRange - Complete
 
         async function confirmDeleteAll() {
             const adminPassword = document.getElementById('admin-password').value;
@@ -2578,7 +3326,7 @@
                     }
                 }
             });
-        }
+        } // Function: confirmDeleteAll - Complete
 
         /**
          * Auto-fills medicine details based on the medicine name entered.
@@ -2586,7 +3334,7 @@
          * If multiple batches are found, it prompts the user to select one.
          * @param {HTMLInputElement} inputElement The input field where medicine name is entered.
          */
-        async function autoFillMedicineDetails(inputElement) {
+	    async function autoFillMedicineDetails(inputElement) {
             const medicineName = inputElement.value.trim();
             const currentRow = inputElement.closest('.medicine-row');
             
@@ -2596,14 +3344,14 @@
             currentRow.querySelector('.batch-no').value = '';
             currentRow.querySelector('.expiry').value = '';
             currentRow.querySelector('.quantity').value = '';
-            currentRow.querySelector('.quantity').removeAttribute('max'); // Remove max attribute
+            currentRow.querySelector('.quantity').removeAttribute('max');
             currentRow.querySelector('.rate').value = '';
             currentRow.querySelector('.cgst-rate').value = '0';
             currentRow.querySelector('.sgst-rate').value = '0';
             currentRow.querySelector('.igst-rate').value = '0';
             calculateInvoiceTotals();
 
-            if (medicineName.length < 3) { // Require at least 3 characters for search
+            if (medicineName.length < 2) { // Require at least 2 characters for search
                 return;
             }
 
@@ -2613,52 +3361,70 @@
                 const matchingBatches = [];
 
                 if (rows.length <= 1) {
-                    showMessage('No Data', 'No purchase or stock data available to autofill.', 'alert');
+                    // No data available - don't show error to avoid interrupting typing
                     return;
                 }
 
                 const today = new Date();
+                today.setHours(23, 59, 59, 999); // Consider end of today for stock calculation
+
                 // Load stock report to get current stock for each batch
                 const stockMap = {};
                 for (let i = 1; i < rows.length; i++) {
                     const columns = rows[i].split(',');
-                    const recordDate = new Date(columns[2]);
-                    const rowType = columns[0];
+                    const recordDate = new Date(columns[2]); // Assuming McFarland-MM-DD from storage
+                    const rowType = columns[0]; // 'sale' or 'purchase'
 
                     // Only consider records up to today's date for stock calculation
                     if (recordDate > today) continue;
 
-                    const medicinesData = parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"'));
+                    let medicinesStr = columns[7];
+                    if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                        medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+                    }
+                    medicinesStr = medicinesStr.replace(/""/g, '"');
+                    const medicinesData = parseMedicinesString(medicinesStr);
                     
                     medicinesData.forEach(med => {
                         const medName = med.name || '';
+                        const mfr = med.mfr || '';
+                        const hsn = med.hsn || '';
                         const batch = med.batch || '';
+                        const expiry = med.expiry || '';
                         const qty = med.quantity || 0;
+                        const rate = med.rate || 0;
+                        const cgst = med.cgst || 0;
+                        const sgst = med.sgst || 0;
+                        const igst = med.igst || 0;
 
                         const key = `${medName.toLowerCase()}-${batch.toLowerCase()}`;
 
                         if (!stockMap[key]) {
-                            stockMap[key] = {
-                                medicine: medName,
-                                mfr: med.mfr || '',
-                                hsn: med.hsn || '',
-                                batch: batch,
-                                expiry: med.expiry || '',
-                                rate: med.rate || 0,
-                                cgst: med.cgst || 0,
-                                sgst: med.sgst || 0,
-                                igst: med.igst || 0,
-                                currentStock: 0 // Will be calculated below
-                            };
-                        }
+			    stockMap[key] = {
+			        medicine: medName,
+			        mfr: mfr,
+			        hsn: hsn,
+			        batch: batch,
+			        expiry: expiry,
+			        rate: rate,
+			        cgst: cgst,
+			        sgst: sgst,
+			        igst: igst,
+			        purchases: 0,
+			        sales: 0,
+			        currentStock: 0
+			    };
+			}
 
-                        if (rowType === 'purchase') {
-                            stockMap[key].currentStock += qty;
-                        } else if (rowType === 'sale') {
-                            stockMap[key].currentStock -= qty;
-                        }
-                    });
-                }
+			if (rowType === 'purchase') {
+					stockMap[key].purchases += qty;
+				        stockMap[key].currentStock += qty;
+					} else if (rowType === 'sale') {
+					stockMap[key].sales += qty;
+					stockMap[key].currentStock -= qty;
+					}
+			                    });
+			                }
 
                 // Filter for matching medicine names and available stock
                 for (const key in stockMap) {
@@ -2669,25 +3435,876 @@
                 }
 
                 if (matchingBatches.length === 0) {
-                    showMessage('No Match', 'No matching medicine or available stock found.', 'alert');
+                    // Don't show message here to avoid interrupting typing flow
+                    return;
                 } else if (matchingBatches.length === 1) {
-                    applySelectedBatchToRow(matchingBatches[0], currentRow);
+                    // Auto-fill if only one exact match
+                    if (matchingBatches[0].medicine.toLowerCase() === medicineName.toLowerCase()) {
+                        applySelectedBatchToRow(matchingBatches[0], currentRow);
+                    }
                 } else {
-                    // Sort batches by expiry date (earliest first)
+                    // Sort batches by expiry date (earliest first) and then by medicine name
                     matchingBatches.sort((a, b) => {
-                        const [m1, y1] = a.expiry.split('/').map(Number);
-                        const [m2, y2] = b.expiry.split('/').map(Number);
-                        const dateA = new Date(2000 + y1, m1 - 1); // Assuming 20xx for year
-                        const dateB = new Date(2000 + y2, m2 - 1);
+                        // First sort by medicine name
+                        const nameCompare = a.medicine.localeCompare(b.medicine);
+                        if (nameCompare !== 0) return nameCompare;
+                        
+                        // Then by expiry date (MM/YY)
+                        const [aMonth, aYear] = a.expiry.split('/').map(Number);
+                        const [bMonth, bYear] = b.expiry.split('/').map(Number);
+                        // Convert to full year (assuming 20xx)
+                        const fullYearA = aYear < 50 ? 2000 + aYear : 1900 + aYear;
+                        const fullYearB = bYear < 50 ? 2000 + bYear : 1900 + bYear;
+
+                        const dateA = new Date(fullYearA, aMonth - 1);
+                        const dateB = new Date(fullYearB, bMonth - 1);
                         return dateA - dateB;
                     });
-                    showBatchSelectionModal(medicineName, matchingBatches, currentRow);
+
+                    // If exact match exists, auto-fill the first one
+                    const exactMatch = matchingBatches.find(b => b.medicine.toLowerCase() === medicineName.toLowerCase());
+                    if (exactMatch) {
+                        applySelectedBatchToRow(exactMatch, currentRow);
+                    } else {
+                        // Show batch selection modal only if user hasn't selected from suggestions
+                        const container = inputElement.closest('.suggestions-container');
+                        const suggestionsList = container.querySelector('.suggestions-list');
+                        if (suggestionsList.style.display === 'none') { // Only show modal if suggestions list is not active
+                            showBatchSelectionModal(medicineName, matchingBatches, currentRow);
+                        }
+                    }
                 }
 
             } catch (error) {
-                showMessage('Error', 'Failed to retrieve medicine details: ' + error.message);
+                console.error('Error in autoFillMedicineDetails:', error);
+                // Don't show error to user during typing
+            }
+        } // Function: autoFillMedicineDetails - Complete
+
+        let originalInvoiceData = null;
+
+        async function loadInvoiceByBillNumber() {
+            const billNumber = document.getElementById('search-bill-number').value.trim();
+            if (!billNumber) {
+                showMessage('Error', 'Please enter a valid Bill Number to search.');
+                return;
+            }
+
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.trim().split('\n');
+                const dataRows = rows.slice(1);
+
+                const invoiceRow = dataRows.find(row => {
+                    const columns = row.split(',');
+                    // Remove quotes from stored bill number for comparison
+                    const storedBillNo = columns[1].replace(/^"|"$/g, ''); 
+                    return storedBillNo === billNumber && columns[0] === 'sale';
+                });
+
+                if (!invoiceRow) {
+                    showMessage('Not Found', `No invoice found with Bill Number: ${billNumber}`);
+                    return;
+                }
+
+                const columns = invoiceRow.split(',');
+                
+                // Store original data
+                originalInvoiceData = {
+                    billNo: columns[1].replace(/^"|"$/g, ''), // Clean bill number
+                    date: columns[2], // McFarland-MM-DD
+                    time: columns[3],
+                    customerName: columns[4].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                    customerAddress: columns[5].replace(/^"|"$/g, '').replace(/""/g, '"'),
+                    paymentMode: columns[6],
+                    medicines: parseMedicinesString(columns[7].replace(/^"|"$/g, '').replace(/""/g, '"')),
+                    subtotal: parseFloat(columns[8]) || 0,
+                    totalDiscount: parseFloat(columns[9]) || 0,
+                    cgst: parseFloat(columns[10]) || 0,
+                    sgst: parseFloat(columns[11]) || 0,
+                    igst: parseFloat(columns[12]) || 0,
+                    total: parseFloat(columns[13]) || 0
+                };
+
+                // Load with original data first
+                document.getElementById('invoice-bill-no').textContent = originalInvoiceData.billNo;
+                document.getElementById('invoice-date2').textContent = formatDateForDisplay(originalInvoiceData.date); // Format for display
+                document.getElementById('invoice-time').textContent = originalInvoiceData.time;
+                document.getElementById('customer-name').value = originalInvoiceData.customerName;
+                document.getElementById('customer-address').value = originalInvoiceData.customerAddress;
+                document.getElementById('payment-mode').value = originalInvoiceData.paymentMode;
+
+                const tableBody = document.getElementById('medicine-table-body');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                originalInvoiceData.medicines.forEach((med, index) => {
+                    const newRow = document.createElement('tr');
+                    newRow.className = 'medicine-row';
+                    newRow.innerHTML = `
+                        <td class="col-no">${index + 1}</td>
+                        <td class="col-name">
+                            <div class="suggestions-container">
+                                <input type="text" class="medicine-name" value="${med.name || ''}" oninput="showMedicineSuggestions(this); checkForModifications()" onkeydown="handleSuggestionNavigation(event, this)" onfocus="showMedicineSuggestions(this)">
+                                <div class="suggestions-list"></div>
+                            </div>
+                        </td>
+                        <td class="col-mfr"><input type="text" class="mfr-code" value="${med.mfr || ''}" readonly></td>
+                        <td class="col-hsn"><input type="text" class="hsn-code" value="${med.hsn || ''}" readonly></td>
+                        <td class="col-batch"><input type="text" class="batch-no" value="${med.batch || ''}" readonly></td>
+                        <td class="col-expiry"><input type="text" class="expiry" value="${med.expiry || ''}" readonly></td>
+                        <td class="col-qty"><input type="number" class="quantity" value="${med.quantity || 0}" min="1" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-rate"><input type="text" class="rate" value="${med.rate || 0}" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-disc"><input type="text" class="discount" value="${med.discount || 0}" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-cgst"><input type="number" class="cgst-rate" value="${med.cgst || 0}" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-sgst"><input type="number" class="sgst-rate" value="${med.sgst || 0}" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-igst"><input type="number" class="igst-rate" value="${med.igst || 0}" oninput="calculateInvoiceTotals(); checkForModifications()"></td>
+                        <td class="col-amount amount">${parseFloat(med.amount || 0).toFixed(2)}</td>
+                        <td class="col-action no-print"><button class="btn btn-remove" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>
+                    `;
+                    tableBody.appendChild(newRow);
+                    initializeAutofillForRow(newRow); // Re-initialize autofill for loaded rows
+                });
+
+                // Ensure at least two rows are present if the loaded invoice had fewer
+                while (tableBody.children.length < 2) {
+                    addNewRow();
+                }
+
+                calculateInvoiceTotals();
+                showMessage('Invoice Loaded', `Invoice ${originalInvoiceData.billNo} has been loaded. Make changes to create a new invoice.`);
+            } catch (error) {
+                console.error('Error loading invoice by bill number:', error);
+                showMessage('Error', 'Failed to load invoice: ' + error.message);
+            }
+        } // Function: loadInvoiceByBillNumber - Complete
+
+        function clearAllData() {
+    // Get the currently active page
+    const activePage = document.querySelector('.page-content:not([style*="display: none"])').id;
+    
+    // Only proceed if we're on invoice, purchases, or tracker page
+    if (activePage !== 'invoice-page' && activePage !== 'purchases-page' && activePage !== 'tracker-page') {
+        showMessage('Action Not Allowed', 'Clear All can only be used in Invoice, Purchases, and Tracker tabs.', 'alert');
+        return;
+    }
+
+    showMessage('Confirm Clear All', 'This will reset all form data. Are you sure?', 'confirm', (confirmed) => {
+        if (confirmed) {
+            if (activePage === 'invoice-page') {
+                // Clear invoice page data
+                document.getElementById('customer-name').value = '';
+                document.getElementById('customer-address').value = '';
+                const tableBody = document.getElementById('medicine-table-body');
+                tableBody.innerHTML = ''; // Clear all existing rows
+                rowCount = 0; // Reset row count
+                addNewRow(); // Add first default row
+                addNewRow(); // Add second default row
+                document.getElementById('payment-mode').value = 'Cash';
+                calculateInvoiceTotals();
+                // Reset originalInvoiceData
+                originalInvoiceData = null;
+                // Generate a new invoice number for the cleared form
+                generateNewInvoiceNumber().then(newBillNo => {
+                    document.getElementById('invoice-bill-no').textContent = newBillNo;
+                    updateInvoiceDateTime();
+                });
+            } 
+            else if (activePage === 'purchases-page') {
+                // Clear purchases page data
+                document.getElementById('vendor-name').value = '';
+                document.getElementById('vendor-gstin').value = '';
+                document.getElementById('vendor-address').value = '';
+                document.getElementById('purchase-date').valueAsDate = new Date();
+                document.getElementById('purchase-invoice').value = '';
+                document.getElementById('payment-terms').value = 'Immediate Payment';
+                const tableBody = document.getElementById('purchase-table-body');
+                tableBody.innerHTML = ''; // Clear all existing rows
+                purchaseRowCount = 0; // Reset purchase row count
+                addPurchaseRow(); // Add first default row
+                calculatePurchaseTotals();
+            }
+            else if (activePage === 'tracker-page') {
+                // Clear tracker page filters
+                document.getElementById('tracker-type').value = '';
+                document.getElementById('tracker-medicine-name').value = '';
+                document.getElementById('tracker-customer-vendor').value = '';
+                document.getElementById('tracker-batch').value = '';
+                document.getElementById('filter-expiry-month-year').value = '';
+                document.getElementById('tracker-from-date').value = '';
+                document.getElementById('tracker-to-date').value = '';
+                
+                // Clear tracker table
+                document.getElementById('tracker-table-body').innerHTML = '';
+                
+                // Optionally, you could re-apply filters to show all data
+                // applyFilters();
             }
         }
-    </script>
+    });
+}
+
+	 // Function: clearAllData - Complete
+
+        async function generateNewInvoiceNumber() {
+            const today = new Date();
+            const year = today.getFullYear().toString().slice(-2);
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            
+            let isUnique = false;
+            let newNumber = '';
+            
+            // Keep generating until we find a unique number
+            while (!isUnique) {
+                // Generate a random 3-digit suffix
+                const randomSuffix = Math.floor(Math.random() * 900) + 100;
+                newNumber = `MED${year}${month}${day}-${randomSuffix}`;
+                
+                // Check if this number already exists
+                isUnique = !(await invoiceNumberExists(newNumber));
+            }
+            
+            return newNumber;
+        } // Function: generateNewInvoiceNumber - Complete
+
+        function hasInvoiceBeenModified(originalData) {
+            // Check if original data exists
+            if (!originalData) return false;
+            
+            // Get current customer details
+            let currentCustomerName = document.getElementById('customer-name').value;
+            // Remove modification notes for comparison
+            currentCustomerName = currentCustomerName.replace(/ \(Modified from .*\)$/, '')
+                                                     .replace(/ \(Loaded from .*\)$/, '');
+
+            const currentCustomerAddress = document.getElementById('customer-address').value;
+            const currentPaymentMode = document.getElementById('payment-mode').value;
+            
+            // Check customer info changes (ignore the "Modified from" note if present)
+            const originalCustomerName = originalData.customerName.replace(/ \(Modified from .*\)$/, ''); // Clean original name too
+            if (currentCustomerName !== originalCustomerName ||
+                currentCustomerAddress !== originalData.customerAddress ||
+                currentPaymentMode !== originalData.paymentMode) {
+                return true;
+            }
+
+            // Check medicine rows count
+            const currentRows = document.querySelectorAll('#medicine-table-body .medicine-row');
+            if (currentRows.length !== originalData.medicines.length) {
+                return true;
+            }
+
+            // Check each medicine row
+            for (let i = 0; i < currentRows.length; i++) {
+                const row = currentRows[i];
+                const originalMed = originalData.medicines[i];
+                
+                if (row.querySelector('.medicine-name').value !== originalMed.name ||
+                    parseFloat(row.querySelector('.quantity').value) !== originalMed.quantity ||
+                    parseFloat(row.querySelector('.rate').value) !== originalMed.rate ||
+                    parseFloat(row.querySelector('.discount').value) !== originalMed.discount ||
+                    parseFloat(row.querySelector('.cgst-rate').value) !== originalMed.cgst ||
+                    parseFloat(row.querySelector('.sgst-rate').value) !== originalMed.sgst ||
+                    parseFloat(row.querySelector('.igst-rate').value) !== originalMed.igst) {
+                    return true;
+                }
+            }
+
+            return false;
+        } // Function: hasInvoiceBeenModified - Complete
+
+        function checkForModifications() {
+            if (!originalInvoiceData) return;
+            
+            if (hasInvoiceBeenModified(originalInvoiceData)) {
+                // Get current customer name without modification note if it exists
+                let currentName = document.getElementById('customer-name').value;
+                currentName = currentName.replace(/ \(Modified from .*\)$/, '')
+                                         .replace(/ \(Loaded from .*\)$/, '');
+                
+                // Add modified note only if not already present
+                if (!currentName.includes('(Modified from') && !currentName.includes('(Loaded from')) {
+                    document.getElementById('customer-name').value = 
+                        currentName + ` (Modified from ${originalInvoiceData.billNo})`;
+                }
+            } else {
+                // If no modifications, revert customer name to original loaded name
+                if (originalInvoiceData) {
+                    document.getElementById('customer-name').value = originalInvoiceData.customerName;
+                }
+            }
+            calculateInvoiceTotals();
+        } // Function: checkForModifications - Complete
+
+        async function invoiceNumberExists(billNo) {
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.trim().split('\n');
+                
+                // Skip header row
+                for (let i = 1; i < rows.length; i++) {
+                    if (rows[i].trim() === '') continue;
+                    const columns = rows[i].split(',');
+                    // Remove quotes from stored bill number for comparison
+                    const storedBillNo = columns[1].replace(/^"|"$/g, '');
+                    if (columns[0] === 'sale' && storedBillNo === billNo) {
+                        return true;
+                    }
+                }
+                return false;
+            } catch (error) {
+                console.error('Error checking invoice number:', error);
+                return false;
+            }
+        } // Function: invoiceNumberExists - Complete
+
+        function updateInvoiceDateTime() {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('en-GB');
+            const formattedTime = today.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                hour12: true 
+            });
+            
+            document.getElementById('invoice-date2').textContent = formattedDate;
+            document.getElementById('invoice-time').textContent = formattedTime;
+        } // Function: updateInvoiceDateTime - Complete
+
+        // Global variable to store medicine names cache
+        let medicineNamesCache = [];
+
+        // Function to load all medicine names from data
+        async function loadMedicineNamesCache() {
+            try {
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
+                
+                // Clear cache before repopulating
+                medicineNamesCache = [];
+
+                // Skip header row
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    if (columns.length > 7) {
+                        // Unescape medicine string
+                        let medicinesStr = columns[7];
+                        if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                            medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+                        }
+                        medicinesStr = medicinesStr.replace(/""/g, '"');
+                        
+                        const medicines = parseMedicinesString(medicinesStr);
+                        
+                        medicines.forEach(med => {
+                            if (med.name && !medicineNamesCache.includes(med.name)) {
+                                medicineNamesCache.push(med.name);
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading medicine names:', error);
+            }
+        } // Function: loadMedicineNamesCache - Complete
+
+        // Show suggestions while typing
+        function showMedicineSuggestions(inputElement) {
+            const searchTerm = inputElement.value.toLowerCase();
+            const container = inputElement.closest('.suggestions-container');
+            const suggestionsList = container.querySelector('.suggestions-list');
+            
+            // Clear previous suggestions
+            suggestionsList.innerHTML = '';
+            
+            if (searchTerm.length < 2) {
+                suggestionsList.style.display = 'none';
+                return;
+            }
+            
+            // Filter matching medicine names
+            const matches = medicineNamesCache.filter(name => 
+                name.toLowerCase().includes(searchTerm)
+            ).slice(0, 10); // Limit to 10 suggestions
+            
+            if (matches.length === 0) {
+                suggestionsList.style.display = 'none';
+                return;
+            }
+            
+            // Add matching suggestions
+            matches.forEach(match => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.textContent = match;
+                item.onclick = () => {
+                    inputElement.value = match;
+                    suggestionsList.style.display = 'none';
+                    autoFillMedicineDetails(inputElement); // Fill other details
+                };
+                suggestionsList.appendChild(item);
+            });
+            
+            suggestionsList.style.display = 'block';
+        } // Function: showMedicineSuggestions - Complete
+
+        // Handle keyboard navigation in suggestions
+        function handleSuggestionNavigation(event, inputElement) {
+            const container = inputElement.closest('.suggestions-container');
+            const suggestionsList = container.querySelector('.suggestions-list');
+            const items = suggestionsList.querySelectorAll('.suggestion-item');
+            
+            if (!items.length || suggestionsList.style.display === 'none') return;
+            
+            let currentIndex = -1;
+            items.forEach((item, index) => {
+                if (item.classList.contains('highlighted')) {
+                    currentIndex = index;
+                    item.classList.remove('highlighted');
+                }
+            });
+            
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                const nextIndex = (currentIndex + 1) % items.length;
+                items[nextIndex].classList.add('highlighted');
+                items[nextIndex].scrollIntoView({ block: 'nearest' });
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                const prevIndex = (currentIndex - 1 + items.length) % items.length;
+                items[prevIndex].classList.add('highlighted');
+                items[prevIndex].scrollIntoView({ block: 'nearest' });
+            } else if (event.key === 'Enter' && currentIndex >= 0) {
+                event.preventDefault();
+                inputElement.value = items[currentIndex].textContent;
+                suggestionsList.style.display = 'none';
+                autoFillMedicineDetails(inputElement);
+            } else if (event.key === 'Escape') {
+                suggestionsList.style.display = 'none';
+            }
+        } // Function: handleSuggestionNavigation - Complete
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.suggestions-container')) {
+                document.querySelectorAll('.suggestions-list').forEach(list => {
+                    list.style.display = 'none';
+                });
+            }
+        }); // Event Listener: document click - Complete
+
+        // Customer data management
+        const CUSTOMER_STORAGE_KEY = 'customerData';
+
+        async function loadCustomerData() {
+            let customerData = localStorage.getItem(CUSTOMER_STORAGE_KEY);
+            return customerData ? JSON.parse(customerData) : [];
+        } // Function: loadCustomerData - Complete
+
+        async function saveCustomerData(data) {
+            localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(data));
+        } 
+	// Function: saveCustomerData - Complete
+
+        async function getCustomerByName(name) {
+            const customers = await loadCustomerData();
+            return customers.find(c => c.name.toLowerCase() === name.toLowerCase());
+        } // Function: getCustomerByName - Complete
+
+        // Customer autofill functions
+        async function showCustomerSuggestions(inputElement) {
+            const searchTerm = inputElement.value.toLowerCase();
+            const suggestionsList = document.getElementById('customer-suggestions');
+            suggestionsList.innerHTML = '';
+            
+            if (searchTerm.length < 2) {
+                suggestionsList.style.display = 'none';
+                return;
+            }
+            
+            const salesCustomers = await getCustomerNamesFromSalesData();
+            const customerData = await loadCustomerData();
+            const allCustomers = [...new Set([
+                ...salesCustomers,
+                ...customerData.map(c => c.name)
+            ])];
+
+            const matches = allCustomers.filter(name => 
+                name.toLowerCase().includes(searchTerm)
+            ).slice(0, 5);
+            
+            if (matches.length === 0) {
+                suggestionsList.style.display = 'none';
+                return;
+            }
+            
+            matches.forEach(customerName => { // Changed parameter name to customerName
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.textContent = customerName;
+                item.onclick = async () => { // Made onclick async
+                    await selectCustomer(customerName); // Pass the name string
+                    suggestionsList.style.display = 'none';
+                    checkForModifications(); // Call this after selecting a customer
+                };
+                suggestionsList.appendChild(item);
+            });
+            
+            suggestionsList.style.display = 'block';
+        } // Function: showCustomerSuggestions - Complete
+
+        async function selectCustomer(name) { // Made function async
+            document.getElementById('customer-name').value = name;
+            
+            // Try to find in customer data first
+            const customers = await loadCustomerData();
+            const customer = customers.find(c => c.name === name);
+            
+            if (customer) {
+                // Build address from customer data
+                let address = customer.address || '';
+                if (customer.gstin) address += `\nGSTIN: ${customer.gstin}`;
+                if (customer.licenses && customer.licenses.length > 0) {
+                    address += `\nLicenses: ${customer.licenses.map(l => `${l.type}: ${l.number}`).join(', ')}`;
+                }
+                if (customer.mobile) address += `\nMobile: ${customer.mobile}`;
+                if (customer.email) address += `\nEmail: ${customer.email}`;
+                document.getElementById('customer-address').value = address;
+            } else {
+                // If not found in customerData, try to get address from sales data
+                const csvData = await loadDataFromStorage();
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
+                let foundAddress = '';
+
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    if (columns[0] === 'sale') {
+                        const storedCustomerName = columns[4].replace(/^"|"$/g, '').replace(/""/g, '"');
+                        if (storedCustomerName === name) {
+                            foundAddress = columns[5].replace(/^"|"$/g, '').replace(/""/g, '"');
+                            break; // Found the address, no need to continue
+                        }
+                    }
+                }
+                document.getElementById('customer-address').value = foundAddress;
+            }
+        } // Function: selectCustomer - Complete
+
+        // Customer form functions
+        function openCustomerForm() {
+            document.getElementById('customerFormModal').style.display = 'flex';
+            // Clear the form fields when opening
+            document.getElementById('customer-form-name').value = '';
+            document.getElementById('customer-form-address').value = '';
+            document.getElementById('customer-form-gstin').value = '';
+            document.getElementById('license-container').innerHTML = `
+                <div class="license-entry">
+                    <input type="text" placeholder="License Type" class="license-type">
+                    <input type="text" placeholder="License Number" class="license-number">
+                    <button type="button" class="btn btn-remove" onclick="removeLicense(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            document.getElementById('customer-form-mobile').value = '';
+            document.getElementById('customer-form-email').value = '';
+        } // Function: openCustomerForm - Complete
+
+        function closeCustomerForm() {
+            document.getElementById('customerFormModal').style.display = 'none';
+        } // Function: closeCustomerForm - Complete
+
+        function addLicense() {
+            const container = document.getElementById('license-container');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'license-entry';
+            newEntry.innerHTML = `
+                <input type="text" placeholder="License Type" class="license-type">
+                <input type="text" placeholder="License Number" class="license-number">
+                <button type="button" class="btn btn-remove" onclick="removeLicense(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(newEntry);
+        }
+
+
+
+ // Function: addLicense - Complete
+
+        function removeLicense(button) {
+            button.closest('.license-entry').remove();
+        } // Function: removeLicense - Complete
+
+        async function saveCustomer() {
+            const name = document.getElementById('customer-form-name').value.trim();
+            if (!name) {
+                showMessage('Error', 'Customer name is required', 'alert');
+                return;
+            }
+            
+            const customer = {
+                name,
+                address: document.getElementById('customer-form-address').value,
+                gstin: document.getElementById('customer-form-gstin').value,
+                licenses: [],
+                mobile: document.getElementById('customer-form-mobile').value,
+                email: document.getElementById('customer-form-email').value
+            };
+            
+            // Collect licenses
+            document.querySelectorAll('#license-container .license-entry').forEach(entry => { // Added #license-container for specificity
+                const type = entry.querySelector('.license-type').value;
+                const number = entry.querySelector('.license-number').value;
+                if (type && number) {
+                    customer.licenses.push({ type, number });
+                }
+            });
+            
+            // Save to storage
+            const customers = await loadCustomerData();
+            
+            // Update existing or add new
+            const existingIndex = customers.findIndex(c => c.name.toLowerCase() === name.toLowerCase());
+            if (existingIndex !== -1) {
+                customers[existingIndex] = customer;
+            } else {
+                customers.push(customer);
+            }
+            
+            await saveCustomerData(customers);
+            await selectCustomer(customer.name); // Pass the name string, and await it
+            closeCustomerForm();
+            showMessage('Success', 'Customer saved successfully');
+        } // Function: saveCustomer - Complete
+
+        // Add this function to initialize autofill for all existing rows
+        function initializeAutofill() {
+            // Initialize for all existing medicine rows
+            document.querySelectorAll('.medicine-row').forEach(row => {
+                initializeAutofillForRow(row);
+            });
+            
+            // Initialize customer suggestions
+            const customerInput = document.getElementById('customer-name');
+            if (customerInput) {
+                customerInput.addEventListener('input', function() {
+                    showCustomerSuggestions(this);
+                });
+            }
+        } // Function: initializeAutofill - Complete
+
+        function initializeAutofillForRow(row) {
+            const medicineInput = row.querySelector('.medicine-name');
+            if (medicineInput) {
+                medicineInput.addEventListener('input', function() {
+                    showMedicineSuggestions(this);
+                });
+                medicineInput.addEventListener('keydown', function(e) {
+                    handleSuggestionNavigation(e, this);
+                });
+                medicineInput.addEventListener('focus', function() {
+                    showMedicineSuggestions(this);
+                });
+            }
+        } // Function: initializeAutofillForRow - Complete
+	
+
+
+// Get unique customer names from sales data
+async function getCustomerNamesFromSalesData() {
+    try {
+        const csvData = await loadDataFromStorage();
+        const rows = csvData.split('\n').filter(row => row.trim() !== '');
+        const customerNames = new Set();
+
+        for (let i = 1; i < rows.length; i++) {
+            const columns = rows[i].split(',');
+            if (columns[0] === 'sale') {
+                const name = columns[4].replace(/^"|"$/g, '');
+                if (name) customerNames.add(name);
+            }
+        }
+        return Array.from(customerNames);
+    } catch (error) {
+        console.error('Error loading customer names from sales data:', error);
+        return [];
+    }
+}
+
+// Initial setup when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load medicine names cache for autofill
+    await loadMedicineNamesCache();
+
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-GB'); // DD/MM/YYYY
+    const formattedTime = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    
+    document.getElementById('invoice-date2').textContent = formattedDate;
+    document.getElementById('invoice-time').textContent = formattedTime;
+    document.getElementById('purchase-date').valueAsDate = today;
+    document.getElementById('report-from').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    document.getElementById('report-to').valueAsDate = today;
+    document.getElementById('report-stock-date').valueAsDate = today;
+    document.getElementById('delete-from-date').valueAsDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    document.getElementById('delete-to-date').valueAsDate = today;
+    
+    // Set QR code path
+    document.querySelector('.qr-code img').src = QR_PLACEHOLDER_PATH;
+
+    // Initialize autofill for both default rows
+    initializeAutofill();
+    
+    // Call showPage to initialize the invoice page and load any default reports
+    showPage('invoice-page'); // Changed to 'invoice-page'
+
+    document.getElementById('customer-name').addEventListener('input', function() {
+        showCustomerSuggestions(this);
+    });
+});
+
+
+
+
+
+
+
+// Helper function to convert MM/YY to a comparable format (YYMM as number)
+function expiryToComparable(expiry) {
+    if (!expiry) return 0;
+    const [month, year] = expiry.split('/');
+    return parseInt(`${year}${month.padStart(2, '0')}`);
+}
+
+// Main filter function for Tracker page
+async function applyFilters() {
+    try {
+        // Get filter values
+        const typeFilter = document.getElementById('tracker-type').value;
+        const medicineFilter = document.getElementById('tracker-medicine-name').value.trim().toLowerCase();
+        const customerVendorFilter = document.getElementById('tracker-customer-vendor').value.trim().toLowerCase();
+        const batchFilter = document.getElementById('tracker-batch').value.trim().toLowerCase();
+        const expiryFilter = document.getElementById('filter-expiry-month-year').value.trim();
+        const fromDateFilter = document.getElementById('tracker-from-date').value;
+        const toDateFilter = document.getElementById('tracker-to-date').value;
+
+        // Convert expiry filter to comparable format
+        const expiryComparable = expiryToComparable(expiryFilter);
+
+        // Load data
+        const csvData = await loadDataFromStorage();
+        const rows = csvData.split('\n').filter(row => row.trim() !== '');
+        const filteredItems = [];
+        const tableBody = document.getElementById('tracker-table-body');
+        
+        // Clear previous results
+        tableBody.innerHTML = '';
+
+        // Process each row (skip header)
+        for (let i = 1; i < rows.length; i++) {
+            const columns = rows[i].split(',');
+            if (columns.length < 8) continue;
+
+            const type = columns[0];
+            const billNo = columns[1].replace(/^"|"$/g, '');
+            const date = columns[2];
+            const time = columns[3];
+            
+            // Determine customer/vendor name based on transaction type
+            let customerVendor = '';
+            if (type === 'sale') {
+                customerVendor = columns[4].replace(/^"|"$/g, '').replace(/""/g, '"');
+            } else if (type === 'purchase') {
+                customerVendor = columns[14].replace(/^"|"$/g, '').replace(/""/g, '"'); // Vendor name index
+            }
+
+            // Apply type filter
+            if (typeFilter && type !== typeFilter) continue;
+            
+            // Apply date filters
+            if (fromDateFilter && date < fromDateFilter) continue;
+            if (toDateFilter && date > toDateFilter) continue;
+            
+            // Apply customer/vendor filter
+            if (customerVendorFilter && !customerVendor.toLowerCase().includes(customerVendorFilter)) {
+                continue;
+            }
+
+            // Parse medicines
+            let medicinesStr = columns[7];
+            if (medicinesStr.startsWith('"') && medicinesStr.endsWith('"')) {
+                medicinesStr = medicinesStr.substring(1, medicinesStr.length - 1);
+            }
+            const medicines = parseMedicinesString(medicinesStr.replace(/""/g, '"'));
+            
+            // Process each medicine in the transaction
+            for (const med of medicines) {
+                // Apply medicine name filter
+                if (medicineFilter && !med.name.toLowerCase().includes(medicineFilter)) {
+                    continue;
+                }
+                
+                // Apply batch filter
+                if (batchFilter && (!med.batch || !med.batch.toLowerCase().includes(batchFilter))) {
+                    continue;
+                }
+                
+                // Apply expiry filter
+                if (expiryFilter && med.expiry) {
+                    const medExpiry = expiryToComparable(med.expiry);
+                    if (medExpiry > expiryComparable) continue;
+                }
+                
+                // Add to results if all filters passed
+                filteredItems.push({
+                    date: formatDateForDisplay(date),
+                    billNo,
+                    type: type === 'sale' ? 'Sale' : 'Purchase',
+                    customerVendor,
+                    medicine: med.name,
+                    batch: med.batch,
+                    qty: med.quantity,
+                    rate: med.rate,
+                    amount: med.amount
+                });
+            }
+        }
+
+        // Populate table
+        if (filteredItems.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="9" class="no-results">No matching records found</td></tr>`;
+            return;
+        }
+
+        filteredItems.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.date}</td>
+                <td>${item.billNo}</td>
+                <td>${item.type}</td>
+                <td>${item.customerVendor}</td>
+                <td>${item.medicine}</td>
+                <td>${item.batch || ''}</td>
+                <td>${item.qty}</td>
+                <td>${item.rate.toFixed(2)}</td>
+                <td>${item.amount.toFixed(2)}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error('Error applying filters:', error);
+        showMessage('Filter Error', 'Failed to apply filters: ' + error.message);
+    }
+}
+
+
+
+
+
+
+
+	</script>
 </body>
 </html>
